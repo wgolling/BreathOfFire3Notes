@@ -1,0 +1,13 @@
+Character | Level Range | Master    | Levels | Time Unlocked
+------------------------------------------------------------
+Ryu         1 -
+
+Nina        5  -     
+
+Momo        10 -   
+
+Peco        1  -   
+
+Garr        13 - 
+
+Rei         20 -
