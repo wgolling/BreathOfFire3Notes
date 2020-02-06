@@ -1,4 +1,4 @@
-#Breath of Fire III Notes
+# Breath of Fire III Notes
 
 This is a project to help me take notes when doing runs for Breath Of Fire III.
 
