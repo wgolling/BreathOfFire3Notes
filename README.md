@@ -21,3 +21,5 @@ line arguments.
 - Make prefix and template path into command line arguments. Make sure the user can't break anything.
 
 - Write DataTracker object which keeps track of data like levels, money, etc. over time. Data is organized into segments (splits), and the `split()` method needs to compute dependent data for that segment.
+
+- Make a demonstraction folder.
