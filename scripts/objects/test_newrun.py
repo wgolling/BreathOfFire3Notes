@@ -2,6 +2,7 @@ import newrun
 from newrun import *
 
 from pathlib import Path
+from shutil import rmtree
 import unittest
 
 SCRIPTS_FOLDER = Path(__file__).absolute().parents[1]
@@ -88,6 +89,26 @@ class TestRunFolderMakerConstructor(unittest.TestCase):
 
 
 class TestFolderMaker(unittest.TestCase):
+
+  def setUp(self):
+    TestFolderMaker.delete_test_folders()
+
+  def tearDown(self):
+    TestFolderMaker.delete_test_folders()
+
+  def get_test_run_folders():
+    return TEST_FOLDER.glob('test*')
+
+  def delete_test_folders():
+    test_folders = TestFolderMaker.get_test_run_folders()
+    # print("Test folders: ")
+    for f in test_folders:
+      # print(f)
+      try:
+       rmtree(f)
+      except OSError:
+        raise
+
 
   def test_setup_folder(self):
     rfm = RunFolderMaker(TEST_FOLDER, prefix='test')
