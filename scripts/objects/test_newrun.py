@@ -42,54 +42,44 @@ class TestRunFolderMakerConstructor(unittest.TestCase):
   #
 
   # Invalid base_path
-  @unittest.expectedFailure
-  def test_base_path_not_valid(self):
+  def bad_input_with_defaults(self, base_path):
     try:
-      RunFolderMaker(7)
+      RunFolderMaker(base_path)
     except Exception as e:
       print(e)
       raise
+
+  @unittest.expectedFailure
+  def test_base_path_not_valid(self):
+    self.bad_input_with_defaults(7)
 
   @unittest.expectedFailure
   def test_base_path_not_found(self):
-    try:
-      RunFolderMaker(self.test_folder / 'foo')
-    except Exception as e:
-      print(e)
-      raise
+    self.bad_input_with_defaults(self.test_folder / 'foo')
 
   @unittest.expectedFailure
   def test_base_path_not_a_dir(self):
-    try:
-      RunFolderMaker(self.test_folder / 'dummy.txt')
-    except Exception as e:
-      print(e)
-      raise
+    self.bad_input_with_defaults(self.test_folder / 'dummy.txt')
 
   # Invalid template_path
-  @unittest.expectedFailure
-  def test_template_path_not_valid(self):
+  def bad_input_template_path(self, base_path, template_path):
     try:
-      RunFolderMaker(self.test_folder, template_path=7)
+      RunFolderMaker(base_path, template_path=template_path)
     except Exception as e:
       print(e)
       raise
+      
+  @unittest.expectedFailure
+  def test_template_path_not_valid(self):
+    self.bad_input_template_path(self.test_folder, 7)
 
   @unittest.expectedFailure
   def test_template_path_not_found(self):
-    try:
-      RunFolderMaker(self.test_folder, template_path=self.test_folder / 'foo')
-    except Exception as e:
-      print(e)
-      raise
+    self.bad_input_template_path(self.test_folder, template_path=self.test_folder / 'foo')
 
   @unittest.expectedFailure
   def test_template_path_not_a_dir(self):
-    try:
-      RunFolderMaker(self.test_folder, template_path=self.test_folder / 'dummy.txt')
-    except Exception as e:
-      print(e)
-      raise
+    self.bad_input_template_path(self.test_folder, template_path=self.test_folder / 'dummy.txt')
 
   #
   # Testing constructor success
