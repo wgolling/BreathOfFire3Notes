@@ -19,8 +19,13 @@ def get_largest_int(obj_list):
   Tries to convert the elements of obj_list to ints, and retuns the largest.
   Returns None if obj_list doesn't contain anything int-able.
   '''
+  try:
+    new_list = list(obj_list)
+  except Exception:
+    raise ValueError('input must be convertible to list')
+    
   max_int = None
-  for x in obj_list:
+  for x in new_list:
     try:
       int_x = int(x)
     except ValueError:
