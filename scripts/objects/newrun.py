@@ -146,7 +146,7 @@ class RunFolderMaker:
     title = "Notes " + run_suffix
     padding = ' '
     line_width = len(title) + 2 * len(padding) + len('||||||||')
-    header = (line_width - 2) * '=' + '||\n'    + \
+    header = (line_width - 2) * '='             + '||\n' + \
             '||'    + (line_width - 6) * '='    + '||||\n' + \
             '||||'  + padding + title + padding + '||||\n' + \
             '||||'  + (line_width - 6) * '='    + '||\n' + \
@@ -164,6 +164,4 @@ class RunFolderMaker:
         if line.startswith(tag):
           todo = todo + new_tag + line[len(tag):]
         line = f.readline()
-
     return todo
-
