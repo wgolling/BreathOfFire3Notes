@@ -40,45 +40,42 @@ class TestRunFolderMakerConstructor(unittest.TestCase):
   # Testing constructor failures
   #
 
-  # Invalid base_path
-  def bad_input_with_defaults(self, base_path):
+  # Helper function for bad input.
+  def bad_input(self, base_path, template_path=None):
     try:
-      RunFolderMaker(base_path)
+      if template_path:
+        RunFolderMaker(base_path, template_path=template_path)
+      else:
+        RunFolderMaker(base_path)
     except Exception as e:
       print(e)
       raise
 
+  # testing bad base_path
   @unittest.expectedFailure
   def test_base_path_not_valid(self):
-    self.bad_input_with_defaults(7)
+    self.bad_input(7)
 
   @unittest.expectedFailure
   def test_base_path_not_found(self):
-    self.bad_input_with_defaults(TEST_FOLDER / 'foo')
+    self.bad_input(TEST_FOLDER / 'foo')
 
   @unittest.expectedFailure
   def test_base_path_not_a_dir(self):
-    self.bad_input_with_defaults(TEST_FOLDER / 'dummy.txt')
+    self.bad_input(TEST_FOLDER / 'dummy.txt')
 
-  # Invalid template_path
-  def bad_input_template_path(self, base_path, template_path):
-    try:
-      RunFolderMaker(base_path, template_path=template_path)
-    except Exception as e:
-      print(e)
-      raise
-
+  # testing bad template_path
   @unittest.expectedFailure
   def test_template_path_not_valid(self):
-    self.bad_input_template_path(TEST_FOLDER, 7)
+    self.bad_input(TEST_FOLDER, template_path=7)
 
   @unittest.expectedFailure
   def test_template_path_not_found(self):
-    self.bad_input_template_path(TEST_FOLDER, template_path=TEST_FOLDER / 'foo')
+    self.bad_input(TEST_FOLDER, template_path=TEST_FOLDER / 'foo')
 
   @unittest.expectedFailure
   def test_template_path_not_a_dir(self):
-    self.bad_input_template_path(TEST_FOLDER, template_path=TEST_FOLDER / 'dummy.txt')
+    self.bad_input(TEST_FOLDER, template_path=TEST_FOLDER / 'dummy.txt')
 
   #
   # Testing constructor success
