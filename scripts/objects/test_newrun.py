@@ -116,9 +116,30 @@ class TestFolderMaker(unittest.TestCase):
     new_folder = TEST_FOLDER / run_name
     assert(new_folder.exists())
     path_prefix = str(new_folder / run_name)
-    assert(Path(path_prefix + '_notes.txt').exists())
-    assert(Path(path_prefix + '_testa.txt').exists())
-    assert(Path(path_prefix + '_testb.txt').exists())
+    testa_path = Path(path_prefix + '_testa.txt')
+    assert(testa_path.exists())
+    with testa_path.open() as f:
+      assert(f.readline() == 'testa')
+    testb_path = Path(path_prefix + '_testb.txt')
+    assert(testb_path.exists())
+    with testb_path.open() as f:
+      assert(f.readline() == 'testb')
+    test_notes_path = Path(path_prefix + '_notes.txt')
+    assert(test_notes_path.exists())
+    with test_notes_path.open() as f:
+      line = f.readline()
+      assert(line == '===============||\n')
+
+    # make second run
+    with test_notes_path.open('a') as f:
+      f.write('*NEXT TIME do this')
+    rfm.setup_folder()
+    test_notes_path_2 = TEST_FOLDER / 'test2/test2_notes.txt'
+    with test_notes_path_2.open() as f:
+      line = f.readline()
+      while line and not line.startswith('*THIS'):
+        line = f.readline()
+      assert(line == '*THIS TIME do this')
 
 
 if __name__ == "__main__":
