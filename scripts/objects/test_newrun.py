@@ -86,10 +86,12 @@ class TestRunFolderMakerConstructor(unittest.TestCase):
 
   def test_valid_params(self):
     assert(RunFolderMaker(TEST_FOLDER))
+    assert(RunFolderMaker(TEST_FOLDER, template_path=TEST_FOLDER / 'scripts'))
 
 
 class TestFolderMaker(unittest.TestCase):
 
+  # Make sure test folder is clean before and after running folder creation tests.
   def setUp(self):
     TestFolderMaker.delete_test_folders()
 
@@ -113,6 +115,13 @@ class TestFolderMaker(unittest.TestCase):
   def test_setup_folder(self):
     rfm = RunFolderMaker(TEST_FOLDER, prefix='test')
     rfm.setup_folder()
+    run_name = 'test1'
+    new_folder = TEST_FOLDER / run_name
+    assert(new_folder.exists())
+    path_prefix = str(new_folder / run_name)
+    assert(Path(path_prefix + '_notes.txt').exists())
+    assert(Path(path_prefix + '_testa.txt').exists())
+    assert(Path(path_prefix + '_testb.txt').exists())
 
 
 if __name__ == "__main__":
