@@ -4,6 +4,8 @@ from newrun import *
 from pathlib import Path
 import unittest
 
+SCRIPTS_FOLDER = Path(__file__).absolute().parents[1]
+TEST_FOLDER = SCRIPTS_FOLDER / 'objects/test'
 
 class TestHelperFunctions(unittest.TestCase):
 
@@ -33,10 +35,6 @@ class TestHelperFunctions(unittest.TestCase):
 
 class TestRunFolderMakerConstructor(unittest.TestCase):
 
-  def setUp(self):
-    self.scripts_folder = Path(__file__).absolute().parents[1]
-    self.test_folder = self.scripts_folder / 'objects/test'
-
   #
   # Testing constructor failures
   #
@@ -55,11 +53,11 @@ class TestRunFolderMakerConstructor(unittest.TestCase):
 
   @unittest.expectedFailure
   def test_base_path_not_found(self):
-    self.bad_input_with_defaults(self.test_folder / 'foo')
+    self.bad_input_with_defaults(TEST_FOLDER / 'foo')
 
   @unittest.expectedFailure
   def test_base_path_not_a_dir(self):
-    self.bad_input_with_defaults(self.test_folder / 'dummy.txt')
+    self.bad_input_with_defaults(TEST_FOLDER / 'dummy.txt')
 
   # Invalid template_path
   def bad_input_template_path(self, base_path, template_path):
@@ -68,24 +66,32 @@ class TestRunFolderMakerConstructor(unittest.TestCase):
     except Exception as e:
       print(e)
       raise
-      
+
   @unittest.expectedFailure
   def test_template_path_not_valid(self):
-    self.bad_input_template_path(self.test_folder, 7)
+    self.bad_input_template_path(TEST_FOLDER, 7)
 
   @unittest.expectedFailure
   def test_template_path_not_found(self):
-    self.bad_input_template_path(self.test_folder, template_path=self.test_folder / 'foo')
+    self.bad_input_template_path(TEST_FOLDER, template_path=TEST_FOLDER / 'foo')
 
   @unittest.expectedFailure
   def test_template_path_not_a_dir(self):
-    self.bad_input_template_path(self.test_folder, template_path=self.test_folder / 'dummy.txt')
+    self.bad_input_template_path(TEST_FOLDER, template_path=TEST_FOLDER / 'dummy.txt')
 
   #
   # Testing constructor success
   #
+
   def test_valid_params(self):
-    assert(RunFolderMaker(self.test_folder, template_path=self.scripts_folder / 'template'))
+    assert(RunFolderMaker(TEST_FOLDER))
+
+
+class TestFolderMaker(unittest.TestCase):
+
+  def test_setup_folder(self):
+    rfm = RunFolderMaker(TEST_FOLDER, prefix='test')
+    rfm.setup_folder()
 
 
 if __name__ == "__main__":
