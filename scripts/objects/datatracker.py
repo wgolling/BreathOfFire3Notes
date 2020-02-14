@@ -46,6 +46,9 @@ class Weapon(Enum):
 
 class DataTracker:
 
+  #
+  # Static fields
+
   STARTING_LEVELS = {
     Character.RYU:    1,
     Character.REI:    5,
@@ -56,17 +59,71 @@ class DataTracker:
     Character.GARR:   13,
   }
 
-  # WEAPON_REQUIREMENTS = map(lambda w: 2 if w in [Weapon.DAGGER, Weapon.BALLOCK_KNIFE, Weapon.BENT_SWORD, Weapon.POINTED_STICK] else 1, list(Weapon))
+  def make_weapon_requirements():
+    duplicates = [Weapon.DAGGER, Weapon.BALLOCK_KNIFE, Weapon.BENT_SWORD, Weapon.POINTED_STICK]
+    reqs = dict()
+    for w in Weapon:
+      reqs[w] = 2 if w in duplicates else 1
+    return reqs
+  WEAPON_REQUIREMENTS = make_weapon_requirements()
 
-  WEAPON_REQUIREMENTS = dict()
-  for w in Weapon:
-    if w in [Weapon.DAGGER, Weapon.BALLOCK_KNIFE, Weapon.BENT_SWORD, Weapon.POINTED_STICK]:
-      WEAPON_REQUIREMENTS[w] = 2
-    else:
-      WEAPON_REQUIREMENTS[w] = 1
-
+  #
+  #
+  # Constructor
 
   def __init__(self):
+    pass
+
+  #
+  #
+  # Interface methods
+
+  #
+  # Incrementing methods
+
+  # Character
+  def gain_character(character):
+    pass
+
+  def level_up(character):
+    pass
+
+  # Skill Ink
+  def pick_up_skill_ink():
+    pass
+
+  def buy_skill_ink():
+    pass
+
+  def use_skill_ink():
+    pass
+
+  # Zenny
+  def pick_up_zenny(amt):
+    pass
+
+  def boss_drop_zenny(amt):
+    pass
+
+  def sell(item, amt):
+    pass
+
+  def set_current_zenny(amt):
+    pass
+
+  # Weapon
+  def get_weapon(weapon):
+    pass 
+
+  # Split
+  def split(name):
+    pass
+
+  #  
+  # Getting methods
+
+  # General get method
+  def get(attribute, split):
     pass
 
 
