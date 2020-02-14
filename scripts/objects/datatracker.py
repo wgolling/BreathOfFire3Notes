@@ -61,10 +61,18 @@ class DataTracker:
 
   def make_weapon_requirements():
     duplicates = [Weapon.DAGGER, Weapon.BALLOCK_KNIFE, Weapon.BENT_SWORD, Weapon.POINTED_STICK]
+    l = lambda w: (w, 2 if w in duplicates else 1)
+    itt = map(l, list(Weapon))
     reqs = dict()
-    for w in Weapon:
-      reqs[w] = 2 if w in duplicates else 1
-    return reqs
+
+    # reqs = dict()
+    # for w in Weapon:
+    #   reqs[w] = l(w)
+    # return reqs
+    # reqs = dict()
+    # for w in Weapon:
+    #   reqs[w] = 2 if w in duplicates else 1
+    # return reqs
   WEAPON_REQUIREMENTS = make_weapon_requirements()
 
   #
