@@ -9,13 +9,20 @@ class TestCharacter(unittest.TestCase):
     assert(Character)
     assert(len(list(Character)) == 7)
     levels = datatracker.STARTING_LEVELS
-    assert(levels[Character.RYU] == 1)
-    assert(levels[Character.REI] == 5)
-    assert(levels[Character.TEEPO] == 1)
-    assert(levels[Character.NINA] == 5)
-    assert(levels[Character.MOMO] == 10)
-    assert(levels[Character.PECO] == 1)
-    assert(levels[Character.GARR] == 13)
+    assert(levels[Character.RYU]    == 1)
+    assert(levels[Character.REI]    == 5)
+    assert(levels[Character.TEEPO]  == 1)
+    assert(levels[Character.NINA]   == 5)
+    assert(levels[Character.MOMO]   == 10)
+    assert(levels[Character.PECO]   == 1)
+    assert(levels[Character.GARR]   == 13)
+
+
+class TestSkillInk(unittest.TestCase):
+
+  def test_skill_ink_enum(self):
+    assert(SkillInk)
+    assert(len(list(SkillInk)) == 4)
 
 class TestConstructor(unittest.TestCase):
 
