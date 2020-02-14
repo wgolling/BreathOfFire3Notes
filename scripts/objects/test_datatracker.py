@@ -31,6 +31,7 @@ class TestZenny(unittest.TestCase):
     assert(Zenny)
     assert(len(list(Zenny)) == 5)
 
+
 class TestConstructor(unittest.TestCase):
 
   def test_constructor(self):
