@@ -10,16 +10,6 @@ class Character(Enum):
   PECO  = auto()
   GARR  = auto()
 
-STARTING_LEVELS = {
-  Character.RYU:    1,
-  Character.REI:    5,
-  Character.TEEPO:  1,
-  Character.NINA:   5,
-  Character.MOMO:   10,
-  Character.PECO:   1,
-  Character.GARR:   13,
-}
-
 
 class SkillInk(Enum):
   PICK_UP = auto()
@@ -54,8 +44,31 @@ class Weapon(Enum):
   FIRE_CHRYSM   = auto()
 
 
-
 class DataTracker:
+
+  STARTING_LEVELS = {
+    Character.RYU:    1,
+    Character.REI:    5,
+    Character.TEEPO:  1,
+    Character.NINA:   5,
+    Character.MOMO:   10,
+    Character.PECO:   1,
+    Character.GARR:   13,
+  }
+
+  # WEAPON_REQUIREMENTS = map(lambda w: 2 if w in [Weapon.DAGGER, Weapon.BALLOCK_KNIFE, Weapon.BENT_SWORD, Weapon.POINTED_STICK] else 1, list(Weapon))
+
+  WEAPON_REQUIREMENTS = dict()
+  for w in Weapon:
+    if w in [Weapon.DAGGER, Weapon.BALLOCK_KNIFE, Weapon.BENT_SWORD, Weapon.POINTED_STICK]:
+      WEAPON_REQUIREMENTS[w] = 2
+    else:
+      WEAPON_REQUIREMENTS[w] = 1
+
 
   def __init__(self):
     pass
+
+
+
+
