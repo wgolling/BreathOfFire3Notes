@@ -24,6 +24,13 @@ class TestSkillInk(unittest.TestCase):
     assert(SkillInk)
     assert(len(list(SkillInk)) == 4)
 
+
+class TestZenny(unittest.TestCase):
+
+  def test_zenny_enum(self):
+    assert(Zenny)
+    assert(len(list(Zenny)) == 5)
+
 class TestConstructor(unittest.TestCase):
 
   def test_constructor(self):

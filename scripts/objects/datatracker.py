@@ -28,6 +28,13 @@ class SkillInk(Enum):
   CURRENT = auto()
 
 
+class Zenny(Enum):
+  PICK_UP     = auto()
+  BOSS_DROP   = auto()
+  ENEMY_DROP  = auto()
+  SALES       = auto()
+  CURRENT     = auto()
+
 
 class DataTracker:
 
