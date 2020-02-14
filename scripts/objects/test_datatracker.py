@@ -32,6 +32,13 @@ class TestZenny(unittest.TestCase):
     assert(len(list(Zenny)) == 5)
 
 
+class TestWeapon(unittest.TestCase):
+
+  def test_weapon_enum(self):
+    assert(Weapon)
+    assert(len(list(Weapon)) == 15)
+
+
 class TestConstructor(unittest.TestCase):
 
   def test_constructor(self):

@@ -36,6 +36,25 @@ class Zenny(Enum):
   CURRENT     = auto()
 
 
+class Weapon(Enum):
+  MELTED_BLADE  = auto()
+  DAGGER        = auto()
+  BALLOCK_KNIFE = auto()
+  BENT_SWORD    = auto()
+  BRONZE_SWORD  = auto()
+  POINTED_STICK = auto()
+  SILVER_KNIFE  = auto()
+  BROAD_SWORD   = auto()
+  OAKEN_STAFF   = auto()
+  MACE          = auto()
+  SCRAMASAX     = auto()
+  MAGICIAN_ROD  = auto()
+  RIPPERS       = auto()
+  ICE_CHRYSM    = auto()      
+  FIRE_CHRYSM   = auto()
+
+
+
 class DataTracker:
 
   def __init__(self):
