@@ -92,20 +92,29 @@ class TestCharacterInterface(unittest.TestCase):
     self.dt.level_up(Character.RYU, levels=4)
     assert(self.dt.get_party_levels()[Character.RYU] == 6)
 
-  @unittest.expectedFailure
-  def test_level_up_missing_character(self):
-    self.dt.level_up(Character.NINA)
 
 
 class TestSplitting(unittest.TestCase):
 
-  def test_splitting(self):
+  def test_split_name(self):
     dt = DataTracker()
     assert(len(dt.entries) == 1)
     dt.split("Test split")
     assert(len(dt.entries) == 2)
     assert(dt.get("name", 0) == "Test split")
     assert(dt.get("name", 1) == None)
+
+  def test_party_levels(self):
+    dt = DataTracker()
+    assert(Character.RYU in dt.current_entry.party)
+    dt.level_up(Character.RYU)
+    assert(dt.get_party_levels()[Character.RYU] == 2)
+    dt.split("Level Up Ryu")
+    assert(Character.RYU in dt.current_entry.party)
+    assert(dt.get_party_levels()[Character.RYU] == 2)
+    dt.level_up(Character.RYU)
+    assert(dt.get_party_levels()[Character.RYU] == 3)
+
 
 #
 # 

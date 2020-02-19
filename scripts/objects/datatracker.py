@@ -75,6 +75,7 @@ class DataTracker:
   def __init__(self):
     self.entries = [DataTracker.Entry()]
     self.current_entry = self.entries[0]
+    self.totals = []
     self.gain_character(Character.RYU)
 
   #
@@ -86,14 +87,14 @@ class DataTracker:
 
   # Character
   def gain_character(self, character):
-    pl = self.current_entry.party_levels
-    assert(not character in pl)
-    pl[character] = self.STARTING_LEVELS[character]
+    p = self.current_entry.party
+    assert(not character in p)
+    p.add(character)
+    self.current_entry.party_levels[character] = self.STARTING_LEVELS[character]
 
   def level_up(self, character, levels=1):
     pl = self.current_entry.party_levels
-    assert(character in pl)
-    pl[character] = pl[character] + levels
+    DataTracker.Entry.add_key_value_to_dict(pl, character, levels)
 
   # Skill Ink
   def pick_up_skill_ink(self):
@@ -131,17 +132,29 @@ class DataTracker:
     # Finalize current entry
     self.current_entry.name = str(name)
     self.current_entry.finalized = True
+    # Compute totals
+    previous_totals = self.get_previous_totals()
+    totals_entry = DataTracker.Entry.new_totals_entry(self.current_entry, previous_totals)
+    self.totals.append(totals_entry)
     # Make new entry
-    self.current_entry = DataTracker.Entry()
+    self.current_entry = DataTracker.Entry.new_current_entry(totals_entry)
     self.entries.append(self.current_entry)
+
+  def get_previous_totals(self):
+    if not self.totals:
+      return DataTracker.Entry()
+    else:
+      return self.totals[len(self.totals) - 1]
 
   #  
   # Getting methods
 
   def get_party_levels(self, split=None):
-    if not split:
-      split = len(self.entries) - 1
-    return dict(self.entries[split].party_levels)
+    if split:
+      return dict(self.totals[split].party_levels)
+    return DataTracker.Entry.add_level_dicts(
+        self.get_previous_totals().party_levels, 
+        self.current_entry.party_levels)
 
   def get_gain(self, attribute, total):
     pass
@@ -161,10 +174,40 @@ class DataTracker:
 
 
   class Entry:
-    def __init__(self):
+    def __init__(self, entry=None):
+      if entry:
+        assert(isinstance(entry, DataTracker.Entry))
       self.finalized = False
       self.name = None
+      self.party = set()
       self.party_levels = dict()
+
+    def new_totals_entry(current_entry, previous_totals):
+      e = DataTracker.Entry()
+      e.name = current_entry.name
+      e.party = set(current_entry.party)
+      current_gains = current_entry.party_levels
+      previous_levels = previous_totals.party_levels
+      e.party_levels = DataTracker.Entry.add_level_dicts(current_gains, previous_levels)
+      return e
+
+    def new_current_entry(totals_entry):
+      e = DataTracker.Entry()
+      e.party = set(totals_entry.party)
+      return e
+
+    def add_level_dicts(l1, l2):
+      new_dict = dict(l1)
+      for k in l2:
+        DataTracker.Entry.add_key_value_to_dict(new_dict, k, l2[k])
+      return new_dict 
+
+    def add_key_value_to_dict(d, k, v):
+      old_val = 0
+      if k in d:
+        old_val = d[k]
+      d[k] = v + old_val
+
 
     def finalize(self):
       self.finalized = True
