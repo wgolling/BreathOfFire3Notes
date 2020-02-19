@@ -46,6 +46,29 @@ class Weapon(Enum):
   FIRE_CHRYSM   = auto()
 
 
+#
+#
+# Helper functions
+
+def add_key_value_to_dict(d, k, v):
+  '''
+  Mutates dict
+  '''
+  old_val = 0
+  if k in d:
+    old_val = d[k]
+  d[k] = v + old_val
+
+def add_dicts(d1, d2):
+  '''
+  Returns a new dict
+  '''
+  new_dict = dict(d1)
+  for k in d2:
+    add_key_value_to_dict(new_dict, k, d2[k])
+  return new_dict 
+
+
 class DataTracker:
 
   #
@@ -95,7 +118,7 @@ class DataTracker:
   def level_up(self, character, levels=1):
     assert(character in self.current_entry.party)
     pl = self.current_entry.party_levels
-    DataTracker.Entry.add_key_value_to_dict(pl, character, levels)
+    add_key_value_to_dict(pl, character, levels)
 
   # Skill Ink
   def pick_up_skill_ink(self):
@@ -153,7 +176,7 @@ class DataTracker:
   def get_party_levels(self, split=None):
     if split:
       return dict(self.totals[split].party_levels)
-    return DataTracker.Entry.add_level_dicts(
+    return add_dicts(
         self.get_previous_totals().party_levels, 
         self.current_entry.party_levels)
 
@@ -189,7 +212,7 @@ class DataTracker:
       e.party = set(current_entry.party)
       current_gains = current_entry.party_levels
       previous_levels = previous_totals.party_levels
-      e.party_levels = DataTracker.Entry.add_level_dicts(current_gains, previous_levels)
+      e.party_levels = add_dicts(current_gains, previous_levels)
       return e
 
     def new_current_entry(totals_entry):
@@ -197,20 +220,8 @@ class DataTracker:
       e.party = set(totals_entry.party)
       return e
 
-    def add_level_dicts(l1, l2):
-      new_dict = dict(l1)
-      for k in l2:
-        DataTracker.Entry.add_key_value_to_dict(new_dict, k, l2[k])
-      return new_dict 
-
-    def add_key_value_to_dict(d, k, v):
-      old_val = 0
-      if k in d:
-        old_val = d[k]
-      d[k] = v + old_val
-
-
     def finalize(self):
       self.finalized = True
+
 
 

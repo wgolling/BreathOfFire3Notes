@@ -92,6 +92,9 @@ class TestCharacterInterface(unittest.TestCase):
     self.dt.level_up(Character.RYU, levels=4)
     assert(self.dt.get_party_levels()[Character.RYU] == 6)
 
+  @unittest.expectedFailure
+  def test_level_up_missing_character(self):
+    self.dt.level_up(Character.NINA)
 
 
 class TestSplitting(unittest.TestCase):
