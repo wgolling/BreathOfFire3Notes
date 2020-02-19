@@ -37,8 +37,8 @@ class TestWeapon(unittest.TestCase):
 
 
 #
+# 
 # DataTracker
-#
  
 class TestConstructor(unittest.TestCase):
 
@@ -67,6 +67,54 @@ class TestStaticFields(unittest.TestCase):
       else:
         assert(reqs[w] == 1)
 
+
+class TestCharacterInterface(unittest.TestCase):
+
+  def setUp(self):
+    self.dt = DataTracker()
+
+  def test_get_party_levels(self):
+    pl = self.dt.get_party_levels()
+    assert(pl[Character.RYU] == 1)
+    assert(not Character.NINA in pl)
+
+  def test_gain_character(self):
+    self.dt.gain_character(Character.NINA)
+    assert(self.dt.get_party_levels()[Character.NINA] == 5)
+
+  @unittest.expectedFailure
+  def test_gain_duplicate_character(self):
+    self.dt.gain_character(C.RYU)
+
+  def test_level_up(self):
+    self.dt.level_up(Character.RYU)
+    assert(self.dt.get_party_levels()[Character.RYU] == 2)
+    self.dt.level_up(Character.RYU, levels=4)
+    assert(self.dt.get_party_levels()[Character.RYU] == 6)
+
+  @unittest.expectedFailure
+  def test_level_up_missing_character(self):
+    self.dt.level_up(Character.NINA)
+
+
+class TestSplitting(unittest.TestCase):
+
+  def test_splitting(self):
+    dt = DataTracker()
+    assert(len(dt.entries) == 1)
+    dt.split("Test split")
+    assert(len(dt.entries) == 2)
+    assert(dt.get("name", 0) == "Test split")
+    assert(dt.get("name", 1) == None)
+
+#
+# 
+# DataTracker.Entry
+
+class TestEntry(unittest.TestCase):
+
+  def test(self):
+    pass
 
 
 if __name__ == "__main__":

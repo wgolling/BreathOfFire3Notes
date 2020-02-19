@@ -1,5 +1,7 @@
 from enum import Enum, auto
 
+#
+# Enums
 
 class Character(Enum):
   RYU   = auto()
@@ -49,6 +51,7 @@ class DataTracker:
   #
   # Static fields
 
+  # Chracter starting levels
   STARTING_LEVELS = {
     Character.RYU:    1,
     Character.REI:    5,
@@ -59,6 +62,7 @@ class DataTracker:
     Character.GARR:   13,
   }
 
+  # Weapon requirments for D'Lonzo
   def make_weapon_requirements():
     duplicates = [Weapon.DAGGER, Weapon.BALLOCK_KNIFE, Weapon.BENT_SWORD, Weapon.POINTED_STICK]
     return dict(map(lambda w: (w, 2 if w in duplicates else 1), list(Weapon)))
@@ -69,7 +73,9 @@ class DataTracker:
   # Constructor
 
   def __init__(self):
-    pass
+    self.entries = [DataTracker.Entry()]
+    self.current_entry = self.entries[0]
+    self.gain_character(Character.RYU)
 
   #
   #
@@ -79,50 +85,88 @@ class DataTracker:
   # Incrementing methods
 
   # Character
-  def gain_character(character):
-    pass
+  def gain_character(self, character):
+    pl = self.current_entry.party_levels
+    assert(not character in pl)
+    pl[character] = self.STARTING_LEVELS[character]
 
-  def level_up(character):
-    pass
+  def level_up(self, character, levels=1):
+    pl = self.current_entry.party_levels
+    assert(character in pl)
+    pl[character] = pl[character] + levels
 
   # Skill Ink
-  def pick_up_skill_ink():
+  def pick_up_skill_ink(self):
     pass
 
-  def buy_skill_ink():
+  def buy_skill_ink(self):
     pass
 
-  def use_skill_ink():
+  def use_skill_ink(self):
     pass
 
   # Zenny
-  def pick_up_zenny(amt):
+  def pick_up_zenny(self, amt):
     pass
 
-  def boss_drop_zenny(amt):
+  def boss_drop_zenny(self, amt):
     pass
 
-  def sell(item, amt):
+  def sell(self, item, amt):
     pass
 
-  def set_current_zenny(amt):
+  def set_current_zenny(self, amt):
     pass
 
   # Weapon
-  def get_weapon(weapon):
+  def pick_up_weapon(self, weapon):
     pass 
 
-  # Split
-  def split(name):
+  def buy_weapon(self, weapon):
     pass
+
+  #
+  # Split
+  def split(self, name):
+    # Finalize current entry
+    self.current_entry.name = str(name)
+    self.current_entry.finalized = True
+    # Make new entry
+    self.current_entry = DataTracker.Entry()
+    self.entries.append(self.current_entry)
 
   #  
   # Getting methods
 
-  # General get method
-  def get(attribute, split):
+  def get_party_levels(self, split=None):
+    if not split:
+      split = len(self.entries) - 1
+    return dict(self.entries[split].party_levels)
+
+  def get_gain(self, attribute, total):
     pass
 
+  def get_total(self, attribute, split):
+    pass
 
+  def get_current(self, attribute):
+    pass
+
+  # General get method
+  def get(self, attribute, split):
+    if attribute == "name":
+      return self.entries[split].name
+
+
+
+
+  class Entry:
+    def __init__(self):
+      self.finalized = False
+      self.name = None
+      self.party_levels = dict()
+
+    def finalize(self):
+      self.finalized = True
 
 
