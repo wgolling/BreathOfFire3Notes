@@ -93,6 +93,7 @@ class DataTracker:
     self.current_entry.party_levels[character] = self.STARTING_LEVELS[character]
 
   def level_up(self, character, levels=1):
+    assert(character in self.current_entry.party)
     pl = self.current_entry.party_levels
     DataTracker.Entry.add_key_value_to_dict(pl, character, levels)
 
