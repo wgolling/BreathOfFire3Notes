@@ -213,7 +213,7 @@ class TestSplitting(unittest.TestCase):
 
   #
   # Test Skill Ink
-  def helper(self, cc=0, tc=0, cp=0, tp=0, cb=0, tb=0, cu=0, tu=0):
+  def skill_ink_helper(self, cc=0, tc=0, cp=0, tp=0, cb=0, tb=0, cu=0, tu=0):
     assert(self.dt.get_current(SkillInk.CURRENT) == cc)
     assert(self.dt.get_total(SkillInk.CURRENT)   == tc)
     assert(self.dt.get_current(SkillInk.PICK_UP) == cp)
@@ -223,7 +223,7 @@ class TestSplitting(unittest.TestCase):
     assert(self.dt.get_current(SkillInk.USE)     == cu)
     assert(self.dt.get_total(SkillInk.USE)       == tu)
 
-  def helper_with_split(self, split, gc=0, tc=0, gp=0, tp=0, gb=0, tb=0, gu=0, tu=0):
+  def skill_ink_helper_with_split(self, split, gc=0, tc=0, gp=0, tp=0, gb=0, tb=0, gu=0, tu=0):
     assert(self.dt.get_gain(SkillInk.CURRENT, split)   == gc)
     assert(self.dt.get_total(SkillInk.CURRENT, split)  == tc)
     assert(self.dt.get_gain(SkillInk.PICK_UP, split)   == gp)
@@ -236,30 +236,32 @@ class TestSplitting(unittest.TestCase):
   def test_skill_ink(self):
     dt = self.dt
     # Check default state.
-    self.helper()
+    self.skill_ink_helper()
     # Pick up a skill ink.
     dt.pick_up_skill_ink()
-    self.helper(cc=1, tc=1, cp=1, tp=1)
+    self.skill_ink_helper(cc=1, tc=1, cp=1, tp=1)
     # Split 1.
     dt.split("Pick Up Skill Ink")
-    self.helper(tc=1, tp=1)
+    self.skill_ink_helper(tc=1, tp=1)
     # Buy skill ink
     dt.buy_skill_ink()
-    self.helper(cc=1, tc=2, tp=1, cb=1, tb=1)
+    self.skill_ink_helper(cc=1, tc=2, tp=1, cb=1, tb=1)
     # Split 2
     dt.split("Buy Skill Ink")
-    self.helper(tc=2, tp=1, tb=1)
+    self.skill_ink_helper(tc=2, tp=1, tb=1)
     # Use skill ink
     dt.use_skill_ink()
-    self.helper(cc=-1, tc=1, tp=1, tb=1, cu=1, tu=1)
+    self.skill_ink_helper(cc=-1, tc=1, tp=1, tb=1, cu=1, tu=1)
     # Split
     dt.split("Use Skill Ink")
-    self.helper(tc=1, tp=1, tb=1, tu=1)
+    self.skill_ink_helper(tc=1, tp=1, tb=1, tu=1)
 
     # Check previous splits
-    self.helper_with_split(0, gc=1, tc=1, gp=1, tp=1)
-    self.helper_with_split(1, gc=1, tc=2, tp=1, gb=1, tb=1)
-    self.helper_with_split(2, gc=-1, tc=1, tp=1, tb=1, gu=1, tu=1)
+    self.skill_ink_helper_with_split(0, gc=1, tc=1, gp=1, tp=1)
+    self.skill_ink_helper_with_split(1, gc=1, tc=2, tp=1, gb=1, tb=1)
+    self.skill_ink_helper_with_split(2, gc=-1, tc=1, tp=1, tb=1, gu=1, tu=1)
+
+
 
 
 #
