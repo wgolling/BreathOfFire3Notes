@@ -181,6 +181,23 @@ class TestZennyInterface(unittest.TestCase):
     assert(enemy_drops == 20)
 
 
+class TestWeaponInterface(unittest.TestCase):
+
+  def setUp(self):
+    self.dt = DataTracker()
+
+  def test_pick_up_weapon(self):
+    dt = self.dt
+    dt.pick_up_weapon(Weapon.DAGGER)
+    weapons = dt.get_weapons()
+    assert(weapons[Weapon.DAGGER] == 1)
+
+  def test_buy_weapon(self):
+    dt = self.dt
+    dt.buy_weapon(Weapon.DAGGER, 50)
+    weapons = dt.get_weapons()
+    assert(weapons[Weapon.DAGGER] == 1)
+    assert(dt.get_current(Zenny.BUY) == [50])
 
 
 
@@ -307,6 +324,19 @@ class TestSplitting(unittest.TestCase):
     assert(dt.get_total(Zenny.CURRENT   , 1) == 250)
     assert(dt.get_gain(Zenny.ENEMY_DROP , 1) == 0)
     assert(dt.get_total(Zenny.ENEMY_DROP, 1) == 30)
+
+  #
+  # Test Weapons
+  def test_weapons(self):
+    dt = self.dt
+    dt.pick_up_weapon(Weapon.DAGGER)
+    dt.buy_weapon(Weapon.BALLOCK_KNIFE, 50)
+    dt.split("Get stuff")
+    dt.pick_up_weapon(Weapon.DAGGER)
+    weapons = dt.get_weapons()
+    assert(weapons[Weapon.DAGGER] == 2)
+    assert(weapons[Weapon.BALLOCK_KNIFE] == 1)
+    assert(dt.get_total(Zenny.BUY) == 50)
 
 #
 # 

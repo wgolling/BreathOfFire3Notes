@@ -165,10 +165,12 @@ class DataTracker:
 
   # Weapon
   def pick_up_weapon(self, weapon):
-    pass 
+    add_key_value_to_dict(self.current_entry.weapons, weapon, 1) 
 
-  def buy_weapon(self, weapon):
-    pass
+  def buy_weapon(self, weapon, cost):
+    self.pick_up_weapon(weapon)
+    self.buy(cost)
+
 
   #
   # Split
@@ -199,6 +201,13 @@ class DataTracker:
     return add_dicts(
         self.get_previous_totals().party_levels, 
         self.current_entry.party_levels)
+
+  def get_weapons(self, split=None):
+    if split:
+      return dict(self.totals[split].weapons)
+    return add_dicts(
+        self.get_previous_totals().weapons, 
+        self.current_entry.weapons)
 
   def get_gain(self, attribute, split):
     return self.entries[split].get(attribute)
@@ -233,6 +242,7 @@ class DataTracker:
       self.zenny = dict(map(lambda a : (a, []), list(Zenny)))
       self.zenny[Zenny.CURRENT] = 0
       self.zenny[Zenny.ENEMY_DROP] = 0
+      self.weapons = dict(map(lambda a : (a, 0), list(Weapon)))
 
     def new_totals_entry(current_entry, previous_totals):
       e = DataTracker.Entry()
@@ -251,6 +261,8 @@ class DataTracker:
         gain_totals[k] = current_entry.zenny[k] if k in [Zenny.CURRENT, Zenny.ENEMY_DROP]\
                                         else sum(current_entry.zenny[k])
       e.zenny = gain_totals
+      # set weapons
+      e.weapons = add_dicts(current_entry.weapons, previous_totals.weapons)
       # Finalize
       e.finalize()
       return e
