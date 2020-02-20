@@ -209,6 +209,14 @@ class DataTracker:
         self.get_previous_totals().weapons, 
         self.current_entry.weapons)
 
+  def have_all_weapons(self):
+    weapons = self.get_weapons()
+    reqs = self.WEAPON_REQUIREMENTS
+    finished = True
+    for w in list(Weapon):
+      finished = finished and reqs[w] <= weapons[w]
+    return finished
+
   def get_gain(self, attribute, split):
     return self.entries[split].get(attribute)
 

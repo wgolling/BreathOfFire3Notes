@@ -199,6 +199,15 @@ class TestWeaponInterface(unittest.TestCase):
     assert(weapons[Weapon.DAGGER] == 1)
     assert(dt.get_current(Zenny.BUY) == [50])
 
+  def test_have_all_weapons(self):
+    dt = self.dt
+    assert(not dt.have_all_weapons())
+    for w in list(Weapon):
+      assert(not dt.have_all_weapons())
+      while dt.get_weapons()[w] < DataTracker.WEAPON_REQUIREMENTS[w]:
+        dt.pick_up_weapon(w)
+    assert(dt.have_all_weapons())
+
 
 
 class TestSplitting(unittest.TestCase):
@@ -337,15 +346,6 @@ class TestSplitting(unittest.TestCase):
     assert(weapons[Weapon.DAGGER] == 2)
     assert(weapons[Weapon.BALLOCK_KNIFE] == 1)
     assert(dt.get_total(Zenny.BUY) == 50)
-
-#
-# 
-# DataTracker.Entry
-
-class TestEntry(unittest.TestCase):
-
-  def test(self):
-    pass
 
 
 if __name__ == "__main__":
