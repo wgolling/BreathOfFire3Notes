@@ -188,8 +188,11 @@ class TestZennyInterface(unittest.TestCase):
 
 class TestSplitting(unittest.TestCase):
 
+  def setUp(self):
+    self.dt = DataTracker()
+
   def test_split_name(self):
-    dt = DataTracker()
+    dt = self.dt
     assert(len(dt.entries) == 1)
     dt.split("Test split")
     assert(len(dt.entries) == 2)
@@ -197,7 +200,7 @@ class TestSplitting(unittest.TestCase):
     assert(dt.get("name", 1) == None)
 
   def test_party_levels(self):
-    dt = DataTracker()
+    dt = self.dt
     assert(Character.RYU in dt.current_entry.party)
     dt.level_up(Character.RYU)
     assert(dt.get_party_levels()[Character.RYU] == 2)
@@ -207,105 +210,56 @@ class TestSplitting(unittest.TestCase):
     dt.level_up(Character.RYU)
     assert(dt.get_party_levels()[Character.RYU] == 3)
 
+
+  #
+  # Test Skill Ink
+  def helper(self, cc=0, tc=0, cp=0, tp=0, cb=0, tb=0, cu=0, tu=0):
+    assert(self.dt.get_current(SkillInk.CURRENT) == cc)
+    assert(self.dt.get_total(SkillInk.CURRENT)   == tc)
+    assert(self.dt.get_current(SkillInk.PICK_UP) == cp)
+    assert(self.dt.get_total(SkillInk.PICK_UP)   == tp)
+    assert(self.dt.get_current(SkillInk.BUY)     == cb)
+    assert(self.dt.get_total(SkillInk.BUY)       == tb)
+    assert(self.dt.get_current(SkillInk.USE)     == cu)
+    assert(self.dt.get_total(SkillInk.USE)       == tu)
+
+  def helper_with_split(self, split, gc=0, tc=0, gp=0, tp=0, gb=0, tb=0, gu=0, tu=0):
+    assert(self.dt.get_gain(SkillInk.CURRENT, split)   == gc)
+    assert(self.dt.get_total(SkillInk.CURRENT, split)  == tc)
+    assert(self.dt.get_gain(SkillInk.PICK_UP, split)   == gp)
+    assert(self.dt.get_total(SkillInk.PICK_UP, split)  == tp)
+    assert(self.dt.get_gain(SkillInk.BUY, split)       == gb)
+    assert(self.dt.get_total(SkillInk.BUY, split)      == tb)
+    assert(self.dt.get_gain(SkillInk.USE, split)       == gu)
+    assert(self.dt.get_total(SkillInk.USE, split)      == tu)
+
   def test_skill_ink(self):
-    dt = DataTracker()
+    dt = self.dt
     # Check default state.
-    assert(dt.get_current(SkillInk.CURRENT) == 0)
-    assert(dt.get_total(SkillInk.CURRENT) == 0)
-    assert(dt.get_current(SkillInk.PICK_UP) == 0)
-    assert(dt.get_total(SkillInk.PICK_UP) == 0)
-    assert(dt.get_current(SkillInk.BUY) == 0)
-    assert(dt.get_total(SkillInk.BUY) == 0)
-    assert(dt.get_current(SkillInk.USE) == 0)
-    assert(dt.get_total(SkillInk.USE) == 0)
+    self.helper()
     # Pick up a skill ink.
     dt.pick_up_skill_ink()
-    assert(dt.get_current(SkillInk.CURRENT) == 1)
-    assert(dt.get_total(SkillInk.CURRENT) == 1)
-    assert(dt.get_current(SkillInk.PICK_UP) == 1)
-    assert(dt.get_total(SkillInk.PICK_UP) == 1)
-    assert(dt.get_current(SkillInk.BUY) == 0)
-    assert(dt.get_total(SkillInk.BUY) == 0)
-    assert(dt.get_current(SkillInk.USE) == 0)
-    assert(dt.get_total(SkillInk.USE) == 0)
+    self.helper(cc=1, tc=1, cp=1, tp=1)
     # Split 1.
     dt.split("Pick Up Skill Ink")
-    assert(dt.get_current(SkillInk.CURRENT) == 0)
-    assert(dt.get_total(SkillInk.CURRENT) == 1)
-    assert(dt.get_current(SkillInk.PICK_UP) == 0)
-    assert(dt.get_total(SkillInk.PICK_UP) == 1)
-    assert(dt.get_current(SkillInk.BUY) == 0)
-    assert(dt.get_total(SkillInk.BUY) == 0)
-    assert(dt.get_current(SkillInk.USE) == 0)
-    assert(dt.get_total(SkillInk.USE) == 0)
+    self.helper(tc=1, tp=1)
     # Buy skill ink
     dt.buy_skill_ink()
-    assert(dt.get_current(SkillInk.CURRENT) == 1)
-    assert(dt.get_total(SkillInk.CURRENT) == 2)
-    assert(dt.get_current(SkillInk.PICK_UP) == 0)
-    assert(dt.get_total(SkillInk.PICK_UP) == 1)
-    assert(dt.get_current(SkillInk.BUY) == 1)
-    assert(dt.get_total(SkillInk.BUY) == 1)
-    assert(dt.get_current(SkillInk.USE) == 0)
-    assert(dt.get_total(SkillInk.USE) == 0)
+    self.helper(cc=1, tc=2, tp=1, cb=1, tb=1)
     # Split 2
     dt.split("Buy Skill Ink")
-    assert(dt.get_current(SkillInk.CURRENT) == 0)
-    assert(dt.get_total(SkillInk.CURRENT) == 2)
-    assert(dt.get_current(SkillInk.PICK_UP) == 0)
-    assert(dt.get_total(SkillInk.PICK_UP) == 1)
-    assert(dt.get_current(SkillInk.BUY) == 0)
-    assert(dt.get_total(SkillInk.BUY) == 1)
-    assert(dt.get_current(SkillInk.USE) == 0)
-    assert(dt.get_total(SkillInk.USE) == 0)
+    self.helper(tc=2, tp=1, tb=1)
     # Use skill ink
     dt.use_skill_ink()
-    assert(dt.get_current(SkillInk.CURRENT) == -1)
-    assert(dt.get_total(SkillInk.CURRENT) == 1)
-    assert(dt.get_current(SkillInk.PICK_UP) == 0)
-    assert(dt.get_total(SkillInk.PICK_UP) == 1)
-    assert(dt.get_current(SkillInk.BUY) == 0)
-    assert(dt.get_total(SkillInk.BUY) == 1)
-    assert(dt.get_current(SkillInk.USE) == 1)
-    assert(dt.get_total(SkillInk.USE) == 1)
+    self.helper(cc=-1, tc=1, tp=1, tb=1, cu=1, tu=1)
     # Split
     dt.split("Use Skill Ink")
-    assert(dt.get_current(SkillInk.CURRENT) == 0)
-    assert(dt.get_total(SkillInk.CURRENT) == 1)
-    assert(dt.get_current(SkillInk.PICK_UP) == 0)
-    assert(dt.get_total(SkillInk.PICK_UP) == 1)
-    assert(dt.get_current(SkillInk.BUY) == 0)
-    assert(dt.get_total(SkillInk.BUY) == 1)
-    assert(dt.get_current(SkillInk.USE) == 0)
-    assert(dt.get_total(SkillInk.USE) == 1)
+    self.helper(tc=1, tp=1, tb=1, tu=1)
 
     # Check previous splits
-    assert(dt.get_gain(SkillInk.CURRENT, 0) == 1)
-    assert(dt.get_total(SkillInk.CURRENT, 0) == 1)
-    assert(dt.get_gain(SkillInk.PICK_UP, 0) == 1)
-    assert(dt.get_total(SkillInk.PICK_UP, 0) == 1)
-    assert(dt.get_gain(SkillInk.BUY, 0) == 0)
-    assert(dt.get_total(SkillInk.BUY, 0) == 0)
-    assert(dt.get_gain(SkillInk.USE, 0) == 0)
-    assert(dt.get_total(SkillInk.USE, 0) == 0)
-
-    assert(dt.get_gain(SkillInk.CURRENT, 1) == 1)
-    assert(dt.get_total(SkillInk.CURRENT, 1) == 2)
-    assert(dt.get_gain(SkillInk.PICK_UP, 1) == 0)
-    assert(dt.get_total(SkillInk.PICK_UP, 1) == 1)
-    assert(dt.get_gain(SkillInk.BUY, 1) == 1)
-    assert(dt.get_total(SkillInk.BUY, 1) == 1)
-    assert(dt.get_gain(SkillInk.USE, 1) == 0)
-    assert(dt.get_total(SkillInk.USE, 1) == 0)
-
-    assert(dt.get_gain(SkillInk.CURRENT, 2) == -1)
-    assert(dt.get_total(SkillInk.CURRENT, 2) == 1)
-    assert(dt.get_gain(SkillInk.PICK_UP, 2) == 0)
-    assert(dt.get_total(SkillInk.PICK_UP, 2) == 1)
-    assert(dt.get_gain(SkillInk.BUY, 2) == 0)
-    assert(dt.get_total(SkillInk.BUY, 2) == 1)
-    assert(dt.get_gain(SkillInk.USE, 2) == 1)
-    assert(dt.get_total(SkillInk.USE, 2) == 1)
+    self.helper_with_split(0, gc=1, tc=1, gp=1, tp=1)
+    self.helper_with_split(1, gc=1, tc=2, tp=1, gb=1, tb=1)
+    self.helper_with_split(2, gc=-1, tc=1, tp=1, tb=1, gu=1, tu=1)
 
 
 #
