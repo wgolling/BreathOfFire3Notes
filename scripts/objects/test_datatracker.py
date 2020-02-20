@@ -145,6 +145,7 @@ class TestZennyInterface(unittest.TestCase):
     assert(len(current_zenny) == 2)
     assert(current_zenny[0] == 100)
     assert(current_zenny[1] == 50)
+    assert(current_zenny == [100, 50])
 
   def test_sell(self):
     self.dt.sell(100)
@@ -165,12 +166,10 @@ class TestZennyInterface(unittest.TestCase):
   def test_set_current_zenny(self):
     self.dt.set_current_zenny(100)
     current_zenny = self.dt.get_current(Zenny.CURRENT)
-    assert(len(current_zenny) == 1)
-    assert(current_zenny[0] == 100)
+    assert(current_zenny == 100)
     self.dt.set_current_zenny(50)
     current_zenny = self.dt.get_current(Zenny.CURRENT)
-    assert(len(current_zenny) == 1)
-    assert(current_zenny[0] == 50)
+    assert(current_zenny == 50)
 
   def test_get_enemy_drop(self):
     self.dt.pick_up_zenny(100)  # total 100
@@ -179,8 +178,7 @@ class TestZennyInterface(unittest.TestCase):
     self.dt.buy(75)             # total 80
     self.dt.set_current_zenny(100)
     enemy_drops = self.dt.get_current(Zenny.ENEMY_DROP)
-    assert(len(enemy_drops) == 1)
-    assert(enemy_drops[0] == 20)
+    assert(enemy_drops == 20)
 
 
 
@@ -262,7 +260,53 @@ class TestSplitting(unittest.TestCase):
     self.skill_ink_helper_with_split(2, gc=-1, tc=1, tp=1, tb=1, gu=1, tu=1)
 
 
+  #
+  # Test Zenny
+  def zenny_helper(self, cc=0, tc=0, cp=0, tp=0, cb=0, tb=0, cu=0, tu=0):
+    assert(self.dt.get_current(SkillInk.CURRENT) == cc)
+    assert(self.dt.get_total(SkillInk.CURRENT)   == tc)
+    assert(self.dt.get_current(SkillInk.PICK_UP) == cp)
+    assert(self.dt.get_total(SkillInk.PICK_UP)   == tp)
+    assert(self.dt.get_current(SkillInk.BUY)     == cb)
+    assert(self.dt.get_total(SkillInk.BUY)       == tb)
+    assert(self.dt.get_current(SkillInk.USE)     == cu)
+    assert(self.dt.get_total(SkillInk.USE)       == tu)
 
+  def test_zenny(self):
+    dt = self.dt
+    dt.pick_up_zenny(100)
+    dt.pick_up_zenny(50) # 150
+    dt.boss_drop_zenny(500) # 650
+    dt.sell(120) 
+    dt.sell(50) # 820
+    dt.buy(600) # 220
+    dt.set_current_zenny(250)
+    dt.split("Pick up zenny")
+    assert(dt.get_gain(Zenny.PICK_UP    , 0) == [100, 50])
+    assert(dt.get_total(Zenny.PICK_UP   , 0) == 150)
+    assert(dt.get_gain(Zenny.BOSS_DROP  , 0) == [500])
+    assert(dt.get_total(Zenny.BOSS_DROP , 0) == 500)
+    assert(dt.get_gain(Zenny.SALES      , 0) == [120, 50])
+    assert(dt.get_total(Zenny.SALES     , 0) == 170)
+    assert(dt.get_gain(Zenny.BUY        , 0) == [600])
+    assert(dt.get_total(Zenny.BUY       , 0) == 600)
+    assert(dt.get_gain(Zenny.CURRENT    , 0) == 250)
+    assert(dt.get_total(Zenny.CURRENT   , 0) == 250)
+    assert(dt.get_gain(Zenny.ENEMY_DROP , 0) == 30)
+    assert(dt.get_total(Zenny.ENEMY_DROP, 0) == 30)
+
+    assert(dt.get_gain(Zenny.PICK_UP    , 1) == [])
+    assert(dt.get_total(Zenny.PICK_UP   , 1) == 150)
+    assert(dt.get_gain(Zenny.BOSS_DROP  , 1) == [])
+    assert(dt.get_total(Zenny.BOSS_DROP , 1) == 500)
+    assert(dt.get_gain(Zenny.SALES      , 1) == [])
+    assert(dt.get_total(Zenny.SALES     , 1) == 170)
+    assert(dt.get_gain(Zenny.BUY        , 1) == [])
+    assert(dt.get_total(Zenny.BUY       , 1) == 600)
+    assert(dt.get_gain(Zenny.CURRENT    , 1) == 0)
+    assert(dt.get_total(Zenny.CURRENT   , 1) == 250)
+    assert(dt.get_gain(Zenny.ENEMY_DROP , 1) == 0)
+    assert(dt.get_total(Zenny.ENEMY_DROP, 1) == 30)
 
 #
 # 

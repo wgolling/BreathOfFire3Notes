@@ -1,5 +1,6 @@
 from enum import Enum, auto
 from collections import defaultdict
+from copy import copy
 
 #
 # Enums
@@ -69,6 +70,17 @@ def add_dicts(d1, d2):
   for k in d2:
     add_key_value_to_dict(new_dict, k, d2[k])
   return new_dict 
+
+def absolute_value(arg):
+  try: 
+    return int(arg)
+  except:
+    pass
+
+  try:
+    return sum(list(arg))
+  except:
+    raise
 
 
 class DataTracker:
@@ -149,7 +161,7 @@ class DataTracker:
     self.current_entry.zenny[Zenny.BUY].append(amt)
 
   def set_current_zenny(self, amt):
-    self.current_entry.zenny[Zenny.CURRENT] = [amt]
+    self.current_entry.zenny[Zenny.CURRENT] = amt
 
   # Weapon
   def pick_up_weapon(self, weapon):
@@ -195,7 +207,7 @@ class DataTracker:
     if (split == -1) or (split == len(self.entries) - 1):
       gain = self.get_current(attribute)
       prev_total = self.get_previous_totals().get(attribute)
-      return gain + prev_total
+      return absolute_value(gain) + prev_total
     return self.totals[split].get(attribute)
 
   def get_current(self, attribute):
@@ -219,6 +231,8 @@ class DataTracker:
       self.party_levels = dict()
       self.skill_ink = dict(map(lambda a : (a, 0), list(SkillInk)))
       self.zenny = dict(map(lambda a : (a, []), list(Zenny)))
+      self.zenny[Zenny.CURRENT] = 0
+      self.zenny[Zenny.ENEMY_DROP] = 0
 
     def new_totals_entry(current_entry, previous_totals):
       e = DataTracker.Entry()
@@ -231,6 +245,12 @@ class DataTracker:
       e.party_levels = add_dicts(current_gains, previous_levels)
       # set skill ink
       e.skill_ink = add_dicts(current_entry.skill_ink, previous_totals.skill_ink)
+      # set zenny
+      gain_totals = dict()
+      for k in current_entry.zenny:
+        gain_totals[k] = current_entry.zenny[k] if k in [Zenny.CURRENT, Zenny.ENEMY_DROP]\
+                                        else sum(current_entry.zenny[k])
+      e.zenny = gain_totals
       # Finalize
       e.finalize()
       return e
@@ -241,7 +261,9 @@ class DataTracker:
       return e
 
     def finalize(self):
+      # compute all derived fields
       self.skill_ink[SkillInk.CURRENT] = self.current_skill_ink()
+      self.zenny[Zenny.ENEMY_DROP] = self.enemy_drop()
       self.finalized = True
 
 
@@ -255,7 +277,7 @@ class DataTracker:
       if isinstance(attribute, Zenny):
         if attribute == Zenny.ENEMY_DROP:
           return self.enemy_drop()
-        return list(self.zenny[attribute])
+        return copy(self.zenny[attribute])
 
     # derived fields
     def current_skill_ink(self):
@@ -270,13 +292,15 @@ class DataTracker:
       this subtotal.
       '''
       z = self.zenny
-      return z[Zenny.PICK_UP][0] + z[Zenny.BOSS_DROP][0] + z[Zenny.SALES][0] - z[Zenny.BUY][0]
+      return absolute_value(z[Zenny.PICK_UP]) + absolute_value(z[Zenny.BOSS_DROP]) \
+          + absolute_value(z[Zenny.SALES]) - absolute_value(z[Zenny.BUY])
+
 
     def enemy_drop(self):
       z = self.zenny
       if self.finalized:
         return z[Zenny.ENEMY_DROP]
-      return [z[Zenny.CURRENT][0] - self.zenny_subtotal()]
+      return z[Zenny.CURRENT] - self.zenny_subtotal()
 
 
 
