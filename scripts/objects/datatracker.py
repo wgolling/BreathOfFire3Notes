@@ -1,4 +1,5 @@
 from enum import Enum, auto
+from collections import defaultdict
 
 #
 # Enums
@@ -122,13 +123,16 @@ class DataTracker:
 
   # Skill Ink
   def pick_up_skill_ink(self):
-    pass
+    sk = self.current_entry.skill_ink
+    add_key_value_to_dict(sk, SkillInk.PICK_UP, 1)
 
-  def buy_skill_ink(self):
-    pass
+  def buy_skill_ink(self, amt=1):
+    sk = self.current_entry.skill_ink
+    add_key_value_to_dict(sk, SkillInk.BUY, amt)
 
   def use_skill_ink(self):
-    pass
+    sk = self.current_entry.skill_ink
+    add_key_value_to_dict(sk, SkillInk.USE, 1)
 
   # Zenny
   def pick_up_zenny(self, amt):
@@ -155,7 +159,7 @@ class DataTracker:
   def split(self, name):
     # Finalize current entry
     self.current_entry.name = str(name)
-    self.current_entry.finalized = True
+    self.current_entry.finalize()
     # Compute totals
     previous_totals = self.get_previous_totals()
     totals_entry = DataTracker.Entry.new_totals_entry(self.current_entry, previous_totals)
@@ -180,14 +184,18 @@ class DataTracker:
         self.get_previous_totals().party_levels, 
         self.current_entry.party_levels)
 
-  def get_gain(self, attribute, total):
-    pass
+  def get_gain(self, attribute, split):
+    return self.entries[split].get(attribute)
 
-  def get_total(self, attribute, split):
-    pass
+  def get_total(self, attribute, split=-1):
+    if (split == -1) or (split == len(self.entries) - 1):
+      gain = self.get_current(attribute)
+      prev_total = self.get_previous_totals().get(attribute)
+      return gain + prev_total
+    return self.totals[split].get(attribute)
 
   def get_current(self, attribute):
-    pass
+    return self.current_entry.get(attribute)
 
   # General get method
   def get(self, attribute, split):
@@ -205,14 +213,21 @@ class DataTracker:
       self.name = None
       self.party = set()
       self.party_levels = dict()
+      self.skill_ink = dict(map(lambda a : (a, 0), list(SkillInk)))
 
     def new_totals_entry(current_entry, previous_totals):
       e = DataTracker.Entry()
+      # set name
       e.name = current_entry.name
+      # set party
       e.party = set(current_entry.party)
       current_gains = current_entry.party_levels
       previous_levels = previous_totals.party_levels
       e.party_levels = add_dicts(current_gains, previous_levels)
+      # set skill ink
+      e.skill_ink = add_dicts(current_entry.skill_ink, previous_totals.skill_ink)
+      # Finalize
+      e.finalize()
       return e
 
     def new_current_entry(totals_entry):
@@ -221,7 +236,25 @@ class DataTracker:
       return e
 
     def finalize(self):
+      self.skill_ink[SkillInk.CURRENT] = self.current_skill_ink()
       self.finalized = True
+
+
+    #
+    # Getting methods
+    def get(self, attribute):
+      if isinstance(attribute, SkillInk):
+        if attribute == SkillInk.CURRENT:
+          return self.current_skill_ink()
+      return self.skill_ink.get(attribute, 0)
+
+    # derived fields
+    def current_skill_ink(self):
+      sk = self.skill_ink
+      if self.finalized:
+        return sk[SkillInk.CURRENT]
+      return sk[SkillInk.PICK_UP] + sk[SkillInk.BUY] - sk[SkillInk.USE]
+
 
 
 

@@ -84,7 +84,7 @@ class TestCharacterInterface(unittest.TestCase):
 
   @unittest.expectedFailure
   def test_gain_duplicate_character(self):
-    self.dt.gain_character(C.RYU)
+    self.dt.gain_character(Character.RYU)
 
   def test_level_up(self):
     self.dt.level_up(Character.RYU)
@@ -95,6 +95,34 @@ class TestCharacterInterface(unittest.TestCase):
   @unittest.expectedFailure
   def test_level_up_missing_character(self):
     self.dt.level_up(Character.NINA)
+
+
+class TestSkillInkInterface(unittest.TestCase):
+
+  def setUp(self):
+    self.dt = DataTracker()
+
+  def test_pick_up_skill_ink(self):
+    self.dt.pick_up_skill_ink()
+    current_pick_up = self.dt.get_current(SkillInk.PICK_UP)
+    assert(current_pick_up == 1)
+
+  def test_buy_skill_ink(self):
+    self.dt.buy_skill_ink()
+    current_buy = self.dt.get_current(SkillInk.BUY)
+    assert(current_buy == 1)
+
+  def test_use_skill_ink(self):
+    self.dt.use_skill_ink()
+    current_use = self.dt.get_current(SkillInk.USE)
+    assert(current_use == 1)
+
+  def test_current_skill_ink(self):
+    self.dt.pick_up_skill_ink()
+    self.dt.buy_skill_ink()
+    self.dt.use_skill_ink()
+    current_sk = self.dt.get_current(SkillInk.CURRENT)
+    assert(current_sk == 1)
 
 
 class TestSplitting(unittest.TestCase):
@@ -117,6 +145,106 @@ class TestSplitting(unittest.TestCase):
     assert(dt.get_party_levels()[Character.RYU] == 2)
     dt.level_up(Character.RYU)
     assert(dt.get_party_levels()[Character.RYU] == 3)
+
+  def test_skill_ink(self):
+    dt = DataTracker()
+    # Check default state.
+    assert(dt.get_current(SkillInk.CURRENT) == 0)
+    assert(dt.get_total(SkillInk.CURRENT) == 0)
+    assert(dt.get_current(SkillInk.PICK_UP) == 0)
+    assert(dt.get_total(SkillInk.PICK_UP) == 0)
+    assert(dt.get_current(SkillInk.BUY) == 0)
+    assert(dt.get_total(SkillInk.BUY) == 0)
+    assert(dt.get_current(SkillInk.USE) == 0)
+    assert(dt.get_total(SkillInk.USE) == 0)
+    # Pick up a skill ink.
+    dt.pick_up_skill_ink()
+    assert(dt.get_current(SkillInk.CURRENT) == 1)
+    assert(dt.get_total(SkillInk.CURRENT) == 1)
+    assert(dt.get_current(SkillInk.PICK_UP) == 1)
+    assert(dt.get_total(SkillInk.PICK_UP) == 1)
+    assert(dt.get_current(SkillInk.BUY) == 0)
+    assert(dt.get_total(SkillInk.BUY) == 0)
+    assert(dt.get_current(SkillInk.USE) == 0)
+    assert(dt.get_total(SkillInk.USE) == 0)
+    # Split 1.
+    dt.split("Pick Up Skill Ink")
+    assert(dt.get_current(SkillInk.CURRENT) == 0)
+    assert(dt.get_total(SkillInk.CURRENT) == 1)
+    assert(dt.get_current(SkillInk.PICK_UP) == 0)
+    assert(dt.get_total(SkillInk.PICK_UP) == 1)
+    assert(dt.get_current(SkillInk.BUY) == 0)
+    assert(dt.get_total(SkillInk.BUY) == 0)
+    assert(dt.get_current(SkillInk.USE) == 0)
+    assert(dt.get_total(SkillInk.USE) == 0)
+    # Buy skill ink
+    dt.buy_skill_ink()
+    assert(dt.get_current(SkillInk.CURRENT) == 1)
+    assert(dt.get_total(SkillInk.CURRENT) == 2)
+    assert(dt.get_current(SkillInk.PICK_UP) == 0)
+    assert(dt.get_total(SkillInk.PICK_UP) == 1)
+    assert(dt.get_current(SkillInk.BUY) == 1)
+    assert(dt.get_total(SkillInk.BUY) == 1)
+    assert(dt.get_current(SkillInk.USE) == 0)
+    assert(dt.get_total(SkillInk.USE) == 0)
+    # Split 2
+    dt.split("Buy Skill Ink")
+    assert(dt.get_current(SkillInk.CURRENT) == 0)
+    assert(dt.get_total(SkillInk.CURRENT) == 2)
+    assert(dt.get_current(SkillInk.PICK_UP) == 0)
+    assert(dt.get_total(SkillInk.PICK_UP) == 1)
+    assert(dt.get_current(SkillInk.BUY) == 0)
+    assert(dt.get_total(SkillInk.BUY) == 1)
+    assert(dt.get_current(SkillInk.USE) == 0)
+    assert(dt.get_total(SkillInk.USE) == 0)
+    # Use skill ink
+    dt.use_skill_ink()
+    assert(dt.get_current(SkillInk.CURRENT) == -1)
+    assert(dt.get_total(SkillInk.CURRENT) == 1)
+    assert(dt.get_current(SkillInk.PICK_UP) == 0)
+    assert(dt.get_total(SkillInk.PICK_UP) == 1)
+    assert(dt.get_current(SkillInk.BUY) == 0)
+    assert(dt.get_total(SkillInk.BUY) == 1)
+    assert(dt.get_current(SkillInk.USE) == 1)
+    assert(dt.get_total(SkillInk.USE) == 1)
+    # Split
+    dt.split("Use Skill Ink")
+    assert(dt.get_current(SkillInk.CURRENT) == 0)
+    assert(dt.get_total(SkillInk.CURRENT) == 1)
+    assert(dt.get_current(SkillInk.PICK_UP) == 0)
+    assert(dt.get_total(SkillInk.PICK_UP) == 1)
+    assert(dt.get_current(SkillInk.BUY) == 0)
+    assert(dt.get_total(SkillInk.BUY) == 1)
+    assert(dt.get_current(SkillInk.USE) == 0)
+    assert(dt.get_total(SkillInk.USE) == 1)
+
+    # Check previous splits
+    assert(dt.get_gain(SkillInk.CURRENT, 0) == 1)
+    assert(dt.get_total(SkillInk.CURRENT, 0) == 1)
+    assert(dt.get_gain(SkillInk.PICK_UP, 0) == 1)
+    assert(dt.get_total(SkillInk.PICK_UP, 0) == 1)
+    assert(dt.get_gain(SkillInk.BUY, 0) == 0)
+    assert(dt.get_total(SkillInk.BUY, 0) == 0)
+    assert(dt.get_gain(SkillInk.USE, 0) == 0)
+    assert(dt.get_total(SkillInk.USE, 0) == 0)
+
+    assert(dt.get_gain(SkillInk.CURRENT, 1) == 1)
+    assert(dt.get_total(SkillInk.CURRENT, 1) == 2)
+    assert(dt.get_gain(SkillInk.PICK_UP, 1) == 0)
+    assert(dt.get_total(SkillInk.PICK_UP, 1) == 1)
+    assert(dt.get_gain(SkillInk.BUY, 1) == 1)
+    assert(dt.get_total(SkillInk.BUY, 1) == 1)
+    assert(dt.get_gain(SkillInk.USE, 1) == 0)
+    assert(dt.get_total(SkillInk.USE, 1) == 0)
+
+    assert(dt.get_gain(SkillInk.CURRENT, 2) == -1)
+    assert(dt.get_total(SkillInk.CURRENT, 2) == 1)
+    assert(dt.get_gain(SkillInk.PICK_UP, 2) == 0)
+    assert(dt.get_total(SkillInk.PICK_UP, 2) == 1)
+    assert(dt.get_gain(SkillInk.BUY, 2) == 0)
+    assert(dt.get_total(SkillInk.BUY, 2) == 1)
+    assert(dt.get_gain(SkillInk.USE, 2) == 1)
+    assert(dt.get_total(SkillInk.USE, 2) == 1)
 
 
 #
