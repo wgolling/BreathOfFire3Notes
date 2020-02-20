@@ -26,7 +26,7 @@ class TestZenny(unittest.TestCase):
 
   def test_zenny_enum(self):
     assert(Zenny)
-    assert(len(list(Zenny)) == 5)
+    assert(len(list(Zenny)) == 6)
 
 
 class TestWeapon(unittest.TestCase):
@@ -123,6 +123,67 @@ class TestSkillInkInterface(unittest.TestCase):
     self.dt.use_skill_ink()
     current_sk = self.dt.get_current(SkillInk.CURRENT)
     assert(current_sk == 1)
+
+
+class TestZennyInterface(unittest.TestCase):
+
+  def setUp(self):
+    self.dt = DataTracker()
+
+  def test_pick_up_zenny(self):
+    self.dt.pick_up_zenny(100)
+    self.dt.pick_up_zenny(50)
+    current_zenny = self.dt.get_current(Zenny.PICK_UP)
+    assert(len(current_zenny) == 2)
+    assert(current_zenny[0] == 100)
+    assert(current_zenny[1] == 50)
+
+  def test_boss_drop_zenny(self):
+    self.dt.boss_drop_zenny(100)
+    self.dt.boss_drop_zenny(50)
+    current_zenny = self.dt.get_current(Zenny.BOSS_DROP)
+    assert(len(current_zenny) == 2)
+    assert(current_zenny[0] == 100)
+    assert(current_zenny[1] == 50)
+
+  def test_sell(self):
+    self.dt.sell(100)
+    self.dt.sell(50)
+    current_zenny = self.dt.get_current(Zenny.SALES)
+    assert(len(current_zenny) == 2)
+    assert(current_zenny[0] == 100)
+    assert(current_zenny[1] == 50)
+
+  def test_buy(self):
+    self.dt.buy(100)
+    self.dt.buy(50)
+    current_zenny = self.dt.get_current(Zenny.BUY)
+    assert(len(current_zenny) == 2)
+    assert(current_zenny[0] == 100)
+    assert(current_zenny[1] == 50)
+
+  def test_set_current_zenny(self):
+    self.dt.set_current_zenny(100)
+    current_zenny = self.dt.get_current(Zenny.CURRENT)
+    assert(len(current_zenny) == 1)
+    assert(current_zenny[0] == 100)
+    self.dt.set_current_zenny(50)
+    current_zenny = self.dt.get_current(Zenny.CURRENT)
+    assert(len(current_zenny) == 1)
+    assert(current_zenny[0] == 50)
+
+  def test_get_enemy_drop(self):
+    self.dt.pick_up_zenny(100)  # total 100
+    self.dt.boss_drop_zenny(50) # total 150
+    self.dt.sell(5)             # total 155
+    self.dt.buy(75)             # total 80
+    self.dt.set_current_zenny(100)
+    enemy_drops = self.dt.get_current(Zenny.ENEMY_DROP)
+    assert(len(enemy_drops) == 1)
+    assert(enemy_drops[0] == 20)
+
+
+
 
 
 class TestSplitting(unittest.TestCase):

@@ -26,6 +26,7 @@ class Zenny(Enum):
   BOSS_DROP   = auto()
   ENEMY_DROP  = auto()
   SALES       = auto()
+  BUY         = auto()
   CURRENT     = auto()
 
 
@@ -136,16 +137,19 @@ class DataTracker:
 
   # Zenny
   def pick_up_zenny(self, amt):
-    pass
+    self.current_entry.zenny[Zenny.PICK_UP].append(amt)
 
   def boss_drop_zenny(self, amt):
-    pass
+    self.current_entry.zenny[Zenny.BOSS_DROP].append(amt)
 
-  def sell(self, item, amt):
-    pass
+  def sell(self, amt):
+    self.current_entry.zenny[Zenny.SALES].append(amt)
+
+  def buy(self, amt):
+    self.current_entry.zenny[Zenny.BUY].append(amt)
 
   def set_current_zenny(self, amt):
-    pass
+    self.current_entry.zenny[Zenny.CURRENT] = [amt]
 
   # Weapon
   def pick_up_weapon(self, weapon):
@@ -214,6 +218,7 @@ class DataTracker:
       self.party = set()
       self.party_levels = dict()
       self.skill_ink = dict(map(lambda a : (a, 0), list(SkillInk)))
+      self.zenny = dict(map(lambda a : (a, []), list(Zenny)))
 
     def new_totals_entry(current_entry, previous_totals):
       e = DataTracker.Entry()
@@ -246,7 +251,11 @@ class DataTracker:
       if isinstance(attribute, SkillInk):
         if attribute == SkillInk.CURRENT:
           return self.current_skill_ink()
-      return self.skill_ink.get(attribute, 0)
+        return self.skill_ink.get(attribute, 0)
+      if isinstance(attribute, Zenny):
+        if attribute == Zenny.ENEMY_DROP:
+          return self.enemy_drop()
+        return list(self.zenny[attribute])
 
     # derived fields
     def current_skill_ink(self):
@@ -254,6 +263,20 @@ class DataTracker:
       if self.finalized:
         return sk[SkillInk.CURRENT]
       return sk[SkillInk.PICK_UP] + sk[SkillInk.BUY] - sk[SkillInk.USE]
+
+    def zenny_subtotal(self):
+      '''
+      Current and Enemy Drops can be computed in terms of one another by using
+      this subtotal.
+      '''
+      z = self.zenny
+      return z[Zenny.PICK_UP][0] + z[Zenny.BOSS_DROP][0] + z[Zenny.SALES][0] - z[Zenny.BUY][0]
+
+    def enemy_drop(self):
+      z = self.zenny
+      if self.finalized:
+        return z[Zenny.ENEMY_DROP]
+      return [z[Zenny.CURRENT][0] - self.zenny_subtotal()]
 
 
 
