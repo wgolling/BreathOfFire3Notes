@@ -83,6 +83,14 @@ class TestCharacterInterface(unittest.TestCase):
     assert(Character.NINA in self.dt.get_party())
     assert(self.dt.get_party_levels()[Character.NINA] == 5)
 
+  def test_gain_duplicate_character(self):
+    with self.assertRaises(KeyError):
+      self.dt.gain_character(Character.RYU)
+
+  def test_gain_character_wrong_type(self):
+    with self.assertRaises(TypeError):
+      self.dt.gain_character("buh")
+
   def test_lose_character(self):
     self.dt.level_up(Character.RYU)
     self.dt.lose_character(Character.RYU)
@@ -92,10 +100,13 @@ class TestCharacterInterface(unittest.TestCase):
     assert(Character.RYU in self.dt.get_party())
     assert(self.dt.get_party_levels()[Character.RYU] == 2)
 
+  def test_lose_character_wrong_type(self):
+    with self.assertRaises(TypeError):
+      self.dt.lose_character("buh")
 
-  @unittest.expectedFailure
-  def test_gain_duplicate_character(self):
-    self.dt.gain_character(Character.RYU)
+  def test_lose_character_missing(self):
+    with self.assertRaises(KeyError):
+      self.dt.lose_character(Character.NINA)
 
   def test_level_up(self):
     self.dt.level_up(Character.RYU)
@@ -103,9 +114,17 @@ class TestCharacterInterface(unittest.TestCase):
     self.dt.level_up(Character.RYU, levels=4)
     assert(self.dt.get_party_levels()[Character.RYU] == 6)
 
-  @unittest.expectedFailure
+  def test_level_up_wrong_type(self):
+    with self.assertRaises(TypeError):
+      self.dt.level_up("buh")
+
   def test_level_up_missing_character(self):
-    self.dt.level_up(Character.NINA)
+    with self.assertRaises(KeyError):
+      self.dt.level_up(Character.NINA)
+
+  def test_level_up_nonpositive_level(self):
+    with self.assertRaises(ValueError):
+      self.dt.level_up(Character.RYU, levels=0)
 
 
 class TestSkillInkInterface(unittest.TestCase):
@@ -122,6 +141,10 @@ class TestSkillInkInterface(unittest.TestCase):
     self.dt.buy_skill_ink()
     current_buy = self.dt.get_current(SkillInk.BUY)
     assert(current_buy == 1)
+
+  def test_buy_skill_ink_nonpositive_amount(self):
+    with self.assertRaises(ValueError):
+      self.dt.buy_skill_ink(amt=0)
 
   def test_use_skill_ink(self):
     self.dt.use_skill_ink()
@@ -149,6 +172,10 @@ class TestZennyInterface(unittest.TestCase):
     assert(current_zenny[0] == 100)
     assert(current_zenny[1] == 50)
 
+  def test_pick_up_zenny_nonpositive_amount(self):
+    with self.assertRaises(ValueError):
+      self.dt.pick_up_zenny(amt=0)
+
   def test_boss_drop_zenny(self):
     self.dt.boss_drop_zenny(100)
     self.dt.boss_drop_zenny(50)
@@ -158,6 +185,10 @@ class TestZennyInterface(unittest.TestCase):
     assert(current_zenny[1] == 50)
     assert(current_zenny == [100, 50])
 
+  def test_boss_drop_zenny_nonpositive_amount(self):
+    with self.assertRaises(ValueError):
+      self.dt.boss_drop_zenny(amt=0)
+
   def test_sell(self):
     self.dt.sell(100)
     self.dt.sell(50)
@@ -165,6 +196,10 @@ class TestZennyInterface(unittest.TestCase):
     assert(len(current_zenny) == 2)
     assert(current_zenny[0] == 100)
     assert(current_zenny[1] == 50)
+
+  def test_sell_nonpositive_amount(self):
+    with self.assertRaises(ValueError):
+      self.dt.sell(amt=0)
 
   def test_buy(self):
     self.dt.buy(100)
@@ -174,6 +209,10 @@ class TestZennyInterface(unittest.TestCase):
     assert(current_zenny[0] == 100)
     assert(current_zenny[1] == 50)
 
+  def test_buy_nonpositive_amount(self):
+    with self.assertRaises(ValueError):
+      self.dt.buy(amt=0)
+
   def test_set_current_zenny(self):
     self.dt.set_current_zenny(100)
     current_zenny = self.dt.get_current(Zenny.CURRENT)
@@ -181,6 +220,10 @@ class TestZennyInterface(unittest.TestCase):
     self.dt.set_current_zenny(50)
     current_zenny = self.dt.get_current(Zenny.CURRENT)
     assert(current_zenny == 50)
+
+  def test_set_current_zenny(self):
+    with self.assertRaises(ValueError):
+      self.dt.set_current_zenny(amt=-1)
 
   def test_get_enemy_drop(self):
     self.dt.pick_up_zenny(100)  # total 100
@@ -203,12 +246,24 @@ class TestWeaponInterface(unittest.TestCase):
     weapons = dt.get_weapons()
     assert(weapons[Weapon.DAGGER] == 1)
 
+  def test_pick_up_weapon_wrong_type(self):
+    with self.assertRaises(TypeError):
+      self.dt.pick_up_weapon("buh")
+
   def test_buy_weapon(self):
     dt = self.dt
     dt.buy_weapon(Weapon.DAGGER, 50)
     weapons = dt.get_weapons()
     assert(weapons[Weapon.DAGGER] == 1)
     assert(dt.get_current(Zenny.BUY) == [50])
+
+  def test_buy_weapon_wrong_type(self):
+    with self.assertRaises(TypeError):
+      self.dt.buy_weapon("buh")
+
+  def test_buy_weapon_nonpositive_amount(self):
+    with self.assertRaises(ValueError):
+      self.dt.buy_weapon(Weapon.DAGGER, cost=0)
 
   def test_have_all_weapons(self):
     dt = self.dt
@@ -225,6 +280,12 @@ class TestSplitting(unittest.TestCase):
 
   def setUp(self):
     self.dt = DataTracker()
+
+  def test_number_of_splits(self):
+    for x in range(10):
+      assert(self.dt.number_of_splits() == x)
+      self.dt.split(str(x))
+    assert(self.dt.number_of_splits() == 10)
 
   def test_split_name(self):
     dt = self.dt

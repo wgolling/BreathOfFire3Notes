@@ -88,7 +88,8 @@ class DataTracker:
   """Tracks some key data for Breath Of Fire III.
 
   Tracks current party, party levels, Skill Ink and Zenny attributes, 
-  and tracks weapon quantities for the weapons you can find before D'Lonzo."""
+  and tracks weapon quantities for the weapons you can find before D'Lonzo.
+  """
 
   #
   #
@@ -138,10 +139,13 @@ class DataTracker:
     Args:
       character (Character): The character being gained by the party.
 
+    Raises:
+      TypeError: If character is not a Character.
+      AssertionError: If character is already in the party.
+
     """
-    p = self.current_entry.party
-    assert(not character in p)
-    p.add(character)
+    self.__validate_character_for_add(character)
+    self.current_entry.party.add(character)
     if character not in self.current_entry.party_levels:
       self.current_entry.party_levels[character] = self.STARTING_LEVELS[character]
 
@@ -151,8 +155,14 @@ class DataTracker:
     Args:
       character (Character): The character leaving the party.
 
+    Raises:
+      TypeError: If character is not a Character.
+      KeyError: If character is not in the party.
+
     """
-    self.current_entry.party.remove(Character.RYU)
+    self.__validate_character_for_modify(character)
+    self.current_entry.party.remove(character)
+
 
   def level_up(self, character, levels=1):
     """Level up character.
@@ -161,8 +171,14 @@ class DataTracker:
       character (Character): The character levelling up.
       levels (:obj:`int`, optional): The amount of levels gained. Defaults to 1.
 
+    Raises:
+      TypeError: If character is not a Character. 
+      KeyError: If character is not in the party.   
+      ValueError: If levels is nonpositive.  
+
     """
-    assert(character in self.current_entry.party)
+    self.__validate_character_for_modify(character)
+    self.__validate_positive_input(levels, "Levels gained")
     pl = self.current_entry.party_levels
     add_key_value_to_dict(pl, character, levels)
 
@@ -179,7 +195,11 @@ class DataTracker:
     Args:
       amt (int): Amount of Skill Inks purchased. Defaults to 1.
 
+    Raises:
+      ValueError: If amt is nonpositive.
+
     """
+    self.__validate_positive_input(amt, "Skill Ink amount")
     sk = self.current_entry.skill_ink
     add_key_value_to_dict(sk, SkillInk.BUY, amt)
 
@@ -196,7 +216,11 @@ class DataTracker:
     Args:
       amt (int): Amount of Zenny gained.
 
+    Raises:
+      ValueError: If amt is nonpositive.
+
     """
+    self.__validate_positive_input(amt, "Picked up Zenny amount")
     self.current_entry.zenny[Zenny.PICK_UP].append(amt)
 
   def boss_drop_zenny(self, amt):
@@ -205,7 +229,11 @@ class DataTracker:
     Args:
       amt (int): Amount of Zenny gained.
 
+    Raises:
+      ValueError: If amt is nonpositive.
+
     """
+    self.__validate_positive_input(amt, "Zenny dropped by Boss")
     self.current_entry.zenny[Zenny.BOSS_DROP].append(amt)
 
   def sell(self, amt):
@@ -214,7 +242,11 @@ class DataTracker:
     Args:
       amt (int): Amount of Zenny gained.
 
+    Raises:
+      ValueError: If amt is nonpositive.
+
     """
+    self.__validate_positive_input(amt, "Zenny from sale")
     self.current_entry.zenny[Zenny.SALES].append(amt)
 
   def buy(self, amt):
@@ -223,7 +255,11 @@ class DataTracker:
     Args:
       amt (int): Amount of Zenny lost.
 
+    Raises:
+      ValueError: If amt is nonpositive.
+
     """
+    self.__validate_positive_input(amt, "Zenny spent")
     self.current_entry.zenny[Zenny.BUY].append(amt)
 
   def set_current_zenny(self, amt):
@@ -232,7 +268,11 @@ class DataTracker:
     Args:
       amt (int): The value to set as current.
 
+    Raises:
+      ValueError: If amt is nonnegative.
+
     """
+    self.__validate_nonnegative_input(amt, "Current Zenny amount")
     self.current_entry.zenny[Zenny.CURRENT] = amt
 
   # Weapon methods
@@ -243,7 +283,11 @@ class DataTracker:
     Args:
       weapon (Weapon): The weapon picked up.
 
+    Raises:
+      TypeError: If weapon is not Weapon type.
+
     """
+    self.__validate_weapon_for_add(weapon)
     add_key_value_to_dict(self.current_entry.weapons, weapon, 1) 
 
   def buy_weapon(self, weapon, cost):
@@ -253,20 +297,29 @@ class DataTracker:
       weapon (Weapon): The weapon purchased.
       cost (int): The amount of money spent.
 
+    Raises:
+      TypeError: If weapon is not Weapon type.
+      ValueError: If cost is nonpositive.
+
     """
+    self.__validate_weapon_for_add(weapon)
+    self.__validate_positive_input(cost, "Cost")
     self.pick_up_weapon(weapon)
     self.buy(cost)
 
-  #  
   #
   # Getting methods
+
+  def number_of_splits(self):
+    """Returns the number of splits so far."""
+    return len(self.totals)
 
   def __get_previous_totals(self):
     """Return the entry containing the totals from the previous split."""
     if not self.totals:
       return DataTracker.Entry()
     else:
-      return self.totals[len(self.totals) - 1]
+      return self.totals[self.number_of_splits() - 1]
 
   def get_name(self, split):
     """Return the name of a split.
@@ -387,6 +440,36 @@ class DataTracker:
 
   #
   #
+  # Input validation
+
+  def __validate_character_for_add(self, character):
+    self.__validate_character_type(character)
+    if character in self.current_entry.party:
+      raise KeyError("Character already in party.")
+
+  def __validate_character_for_modify(self, character):
+    self.__validate_character_type(character)
+    if character not in self.current_entry.party:
+      raise KeyError("Character not in party.")
+
+  def __validate_character_type(self, character):
+    if not isinstance(character, Character):
+      raise TypeError("Input must be Character type.")
+
+  def __validate_positive_input(self, x, argname):
+    if x < 1:
+      raise ValueError(argname + " must be positive.")
+
+  def __validate_nonnegative_input(self, x, argname):
+    if x < 0:
+      raise ValueError(argname + " must be nonnegative.")
+
+  def __validate_weapon_for_add(self, weapon):
+    if not isinstance(weapon, Weapon):
+      raise TypeError("Input must be Weapon type.")
+
+  #
+  #
   # Inner class DataTracker.Entry
 
   class Entry:
@@ -466,7 +549,7 @@ class DataTracker:
     #
     #
     # Derived fields
-    
+
     def __current_skill_ink(self):
       sk = self.skill_ink
       if self.finalized:
@@ -474,9 +557,8 @@ class DataTracker:
       return sk[SkillInk.PICK_UP] + sk[SkillInk.BUY] - sk[SkillInk.USE]
 
     def __zenny_subtotal(self):
-      '''
-      Current and Enemy Drops can be computed in terms of one another by using
-      this subtotal.
+      '''Current Zenny and enemy urops can be computed in terms of one another
+      by using this subtotal.
       '''
       z = self.zenny
       return absolute_value(z[Zenny.PICK_UP]) + absolute_value(z[Zenny.BOSS_DROP]) \
