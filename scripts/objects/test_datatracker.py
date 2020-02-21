@@ -80,7 +80,18 @@ class TestCharacterInterface(unittest.TestCase):
 
   def test_gain_character(self):
     self.dt.gain_character(Character.NINA)
+    assert(Character.NINA in self.dt.get_party())
     assert(self.dt.get_party_levels()[Character.NINA] == 5)
+
+  def test_lose_character(self):
+    self.dt.level_up(Character.RYU)
+    self.dt.lose_character(Character.RYU)
+    assert(Character.RYU not in self.dt.get_party())
+    assert(self.dt.get_party_levels()[Character.RYU] == 2)
+    self.dt.gain_character(Character.RYU)
+    assert(Character.RYU in self.dt.get_party())
+    assert(self.dt.get_party_levels()[Character.RYU] == 2)
+
 
   @unittest.expectedFailure
   def test_gain_duplicate_character(self):

@@ -142,10 +142,17 @@ class DataTracker:
     p = self.current_entry.party
     assert(not character in p)
     p.add(character)
-    self.current_entry.party_levels[character] = self.STARTING_LEVELS[character]
+    if character not in self.current_entry.party_levels:
+      self.current_entry.party_levels[character] = self.STARTING_LEVELS[character]
 
   def lose_character(self, character):
-    pass
+    """Lose character from party.
+
+    Args:
+      character (Character): The character leaving the party.
+
+    """
+    self.current_entry.party.remove(Character.RYU)
 
   def level_up(self, character, levels=1):
     """Level up character.
@@ -260,6 +267,18 @@ class DataTracker:
       return DataTracker.Entry()
     else:
       return self.totals[len(self.totals) - 1]
+
+  def get_party(self, split=None):
+    """Return the party.
+
+    Args:
+      split (:obj:`int`, optional): Selects the split. Defaults to None.
+          If not specified, returns current party.
+
+    """
+    if split:
+      return set(self.totals[split].party)
+    return set(self.current_entry.party)
 
   def get_party_levels(self, split=None):
     """Return the party levels.
@@ -417,7 +436,6 @@ class DataTracker:
       self.zenny[Zenny.ENEMY_DROP] = self.enemy_drop()
       self.finalized = True
 
-
     #
     # Getting methods
     def get(self, attribute):
@@ -448,7 +466,6 @@ class DataTracker:
       z = self.zenny
       return absolute_value(z[Zenny.PICK_UP]) + absolute_value(z[Zenny.BOSS_DROP]) \
           + absolute_value(z[Zenny.SALES]) - absolute_value(z[Zenny.BUY])
-
 
     def enemy_drop(self):
       # TODO make private.
