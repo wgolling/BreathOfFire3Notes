@@ -261,12 +261,21 @@ class DataTracker:
   #
   # Getting methods
 
-  def get_previous_totals(self):
-    #TODO make private
+  def __get_previous_totals(self):
+    """Return the entry containing the totals from the previous split."""
     if not self.totals:
       return DataTracker.Entry()
     else:
       return self.totals[len(self.totals) - 1]
+
+  def get_name(self, split):
+    """Return the name of a split.
+
+    Args:
+      split (int): Selects the split.
+
+    """
+    return self.totals[split].name
 
   def get_party(self, split=None):
     """Return the party.
@@ -291,7 +300,7 @@ class DataTracker:
     if split:
       return dict(self.totals[split].party_levels)
     return add_dicts(
-        self.get_previous_totals().party_levels, 
+        self.__get_previous_totals().party_levels, 
         self.current_entry.party_levels)
 
   def get_weapons(self, split=None):
@@ -305,7 +314,7 @@ class DataTracker:
     if split:
       return dict(self.totals[split].weapons)
     return add_dicts(
-        self.get_previous_totals().weapons, 
+        self.__get_previous_totals().weapons, 
         self.current_entry.weapons)
 
   def have_all_weapons(self):
@@ -340,7 +349,7 @@ class DataTracker:
     """
     if (split == -1) or (split == len(self.entries) - 1):
       gain = self.get_current(attribute)
-      prev_total = self.get_previous_totals().get(attribute)
+      prev_total = self.__get_previous_totals().get(attribute)
       return absolute_value(gain) + prev_total
     return self.totals[split].get(attribute)
 
@@ -353,12 +362,6 @@ class DataTracker:
 
     """
     return self.current_entry.get(attribute)
-
-  # General get method
-  def get(self, attribute, split):
-    #TODO refactor into Entry
-    if attribute == "name":
-      return self.entries[split].name
 
   #
   #
@@ -375,7 +378,7 @@ class DataTracker:
     self.current_entry.name = str(name)
     self.current_entry.finalize()
     # Compute totals
-    previous_totals = self.get_previous_totals()
+    previous_totals = self.__get_previous_totals()
     totals_entry = DataTracker.Entry.new_totals_entry(self.current_entry, previous_totals)
     self.totals.append(totals_entry)
     # Make new entry
@@ -387,6 +390,12 @@ class DataTracker:
   # Inner class DataTracker.Entry
 
   class Entry:
+    """Stores relevant data for a split."""
+
+    #
+    #
+    # Constructors
+
     def __init__(self):
       """Construct DataTracker.Entry instance."""
       self.finalized = False
@@ -429,36 +438,42 @@ class DataTracker:
       e.party = set(totals_entry.party)
       return e
 
+    #
+    #
+    # Finalization
+
     def finalize(self):
-      # compute all derived fields
-      # TODO make private
-      self.skill_ink[SkillInk.CURRENT] = self.current_skill_ink()
-      self.zenny[Zenny.ENEMY_DROP] = self.enemy_drop()
+      """Compute derived fields and finalize."""
+      self.skill_ink[SkillInk.CURRENT] = self.__current_skill_ink()
+      self.zenny[Zenny.ENEMY_DROP] = self.__enemy_drop()
       self.finalized = True
 
     #
+    #
     # Getting methods
+
     def get(self, attribute):
       """Return the value of an attribute."""
       if isinstance(attribute, SkillInk):
         if attribute == SkillInk.CURRENT:
-          return self.current_skill_ink()
+          return self.__current_skill_ink()
         return self.skill_ink.get(attribute, 0)
       if isinstance(attribute, Zenny):
         if attribute == Zenny.ENEMY_DROP:
-          return self.enemy_drop()
+          return self.__enemy_drop()
         return copy(self.zenny[attribute])
 
-    # derived fields
-    def current_skill_ink(self):
-      # TODO make private
+    #
+    #
+    # Derived fields
+    
+    def __current_skill_ink(self):
       sk = self.skill_ink
       if self.finalized:
         return sk[SkillInk.CURRENT]
       return sk[SkillInk.PICK_UP] + sk[SkillInk.BUY] - sk[SkillInk.USE]
 
-    def zenny_subtotal(self):
-      # TODO make private
+    def __zenny_subtotal(self):
       '''
       Current and Enemy Drops can be computed in terms of one another by using
       this subtotal.
@@ -467,12 +482,11 @@ class DataTracker:
       return absolute_value(z[Zenny.PICK_UP]) + absolute_value(z[Zenny.BOSS_DROP]) \
           + absolute_value(z[Zenny.SALES]) - absolute_value(z[Zenny.BUY])
 
-    def enemy_drop(self):
-      # TODO make private.
+    def __enemy_drop(self):
       z = self.zenny
       if self.finalized:
         return z[Zenny.ENEMY_DROP]
-      return z[Zenny.CURRENT] - self.zenny_subtotal()
+      return z[Zenny.CURRENT] - self.__zenny_subtotal()
 
 
 

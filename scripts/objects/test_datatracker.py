@@ -231,8 +231,7 @@ class TestSplitting(unittest.TestCase):
     assert(len(dt.entries) == 1)
     dt.split("Test split")
     assert(len(dt.entries) == 2)
-    assert(dt.get("name", 0) == "Test split")
-    assert(dt.get("name", 1) == None)
+    assert(dt.get_name(0) == "Test split")
 
   def test_party_levels(self):
     dt = self.dt
