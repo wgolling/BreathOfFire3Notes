@@ -1,8 +1,6 @@
-import datatracker
 from datatracker import *
 
 import unittest
-
 
 #
 #
@@ -14,20 +12,17 @@ class TestCharacter(unittest.TestCase):
     assert(Character)
     assert(len(list(Character)) == 7)
 
-
 class TestSkillInk(unittest.TestCase):
 
   def test_skill_ink_enum(self):
     assert(SkillInk)
     assert(len(list(SkillInk)) == 4)
 
-
 class TestZenny(unittest.TestCase):
 
   def test_zenny_enum(self):
     assert(Zenny)
     assert(len(list(Zenny)) == 6)
-
 
 class TestWeapon(unittest.TestCase):
 
@@ -97,7 +92,6 @@ class TestConstructor(unittest.TestCase):
     dt = DataTracker()
     assert(dt)
 
-
 class TestStaticFields(unittest.TestCase):
 
   def test_starting_levels(self):
@@ -117,7 +111,6 @@ class TestStaticFields(unittest.TestCase):
         assert(reqs[w] == 2)
       else:
         assert(reqs[w] == 1)
-
 
 class TestCharacterInterface(unittest.TestCase):
 
@@ -177,7 +170,6 @@ class TestCharacterInterface(unittest.TestCase):
     with self.assertRaises(ValueError):
       self.dt.level_up(Character.RYU, levels=0)
 
-
 class TestSkillInkInterface(unittest.TestCase):
 
   def setUp(self):
@@ -208,7 +200,6 @@ class TestSkillInkInterface(unittest.TestCase):
     self.dt.use_skill_ink()
     current_sk = self.dt.get_current(SkillInk.CURRENT)
     assert(current_sk == 1)
-
 
 class TestZennyInterface(unittest.TestCase):
 
@@ -285,7 +276,6 @@ class TestZennyInterface(unittest.TestCase):
     enemy_drops = self.dt.get_current(Zenny.ENEMY_DROP)
     assert(enemy_drops == 20)
 
-
 class TestWeaponInterface(unittest.TestCase):
 
   def setUp(self):
@@ -325,7 +315,6 @@ class TestWeaponInterface(unittest.TestCase):
         dt.pick_up_weapon(w)
     assert(dt.have_all_weapons())
 
-
 class TestSplitting(unittest.TestCase):
 
   def setUp(self):
@@ -355,6 +344,7 @@ class TestSplitting(unittest.TestCase):
 
   #
   # Test Skill Ink
+
   def skill_ink_helper(self, cc=0, tc=0, cp=0, tp=0, cb=0, tb=0, cu=0, tu=0):
     assert(self.dt.get_current(SkillInk.CURRENT) == cc)
     assert(self.dt.get_total(SkillInk.CURRENT)   == tc)
@@ -405,15 +395,6 @@ class TestSplitting(unittest.TestCase):
 
   #
   # Test Zenny
-  def zenny_helper(self, cc=0, tc=0, cp=0, tp=0, cb=0, tb=0, cu=0, tu=0):
-    assert(self.dt.get_current(SkillInk.CURRENT) == cc)
-    assert(self.dt.get_total(SkillInk.CURRENT)   == tc)
-    assert(self.dt.get_current(SkillInk.PICK_UP) == cp)
-    assert(self.dt.get_total(SkillInk.PICK_UP)   == tp)
-    assert(self.dt.get_current(SkillInk.BUY)     == cb)
-    assert(self.dt.get_total(SkillInk.BUY)       == tb)
-    assert(self.dt.get_current(SkillInk.USE)     == cu)
-    assert(self.dt.get_total(SkillInk.USE)       == tu)
 
   def test_zenny(self):
     dt = self.dt
@@ -453,6 +434,7 @@ class TestSplitting(unittest.TestCase):
 
   #
   # Test Weapons
+
   def test_weapons(self):
     dt = self.dt
     dt.pick_up_weapon(Weapon.DAGGER)
@@ -463,7 +445,6 @@ class TestSplitting(unittest.TestCase):
     assert(weapons[Weapon.DAGGER] == 2)
     assert(weapons[Weapon.BALLOCK_KNIFE] == 1)
     assert(dt.get_total(Zenny.BUY) == 50)
-
 
 class TestGetterMethodErrors(unittest.TestCase):
 
@@ -535,7 +516,5 @@ class TestGetterMethodErrors(unittest.TestCase):
   def test_get_current_wrong_type(self):
     self.wrong_key_type(self.dt.get_current)
 
-
 if __name__ == "__main__":
   unittest.main()
-

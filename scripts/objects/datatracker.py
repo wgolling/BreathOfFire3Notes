@@ -98,10 +98,10 @@ def absolute_value(arg):
     arg (int or list of int): Pseudo-numerical input.
 
   Returns:
-    The value `arg` if `arg` is int, or `sum(arg)` if arg is a list of int.
+    The value `arg` if `arg` is int, or `sum(arg)` if arg is a summable.
 
   Raises:
-    TypeError: If `arg` is not int or list of int.
+    TypeError: If `arg` is not int or a summable list.
 
   """
   try: 
@@ -123,6 +123,7 @@ class DataTracker:
 
   Tracks current party, party levels, Skill Ink and Zenny attributes, 
   and tracks weapon quantities for the weapons you can find before D'Lonzo.
+
   """
 
   #
@@ -152,10 +153,11 @@ class DataTracker:
 
   def __init__(self):
     """Construct a DataTracker instance."""
-    # TODO make these private.
+    # TODO make fields private.
     self.entries = [DataTracker.Entry()]
     self.current_entry = self.entries[0]
     self.totals = []
+    # Add starting character.
     self.gain_character(Character.RYU)
 
   #
@@ -345,7 +347,7 @@ class DataTracker:
   # Getting methods
 
   def number_of_splits(self):
-    """Returns the number of splits so far."""
+    """Return the number of splits so far."""
     return len(self.totals)
 
   def __get_previous_totals(self):
@@ -361,6 +363,9 @@ class DataTracker:
     Args:
       split (int): Selects the split.
 
+    Returns:
+      The name of the specified split.
+
     Raises:
       IndexError: If split is negative or at least number_of_splits().
 
@@ -374,6 +379,9 @@ class DataTracker:
     Args:
       split (:obj:`int`, optional): Selects the split. Defaults to None.
           If not specified, returns current party.
+
+    Returns:
+      The current party, or from a given split if specified.
 
     Raises:
       IndexError: If split is negative or at least number_of_splits().
@@ -390,6 +398,9 @@ class DataTracker:
     Args:
       split (:obj:`int`, optional): Selects the split. Defaults to None.
           If not specified, returns current party levels.
+
+    Returns:
+      The current party levels, or from a given split if specified.
 
     Raises:
       IndexError: If split is negative or at least number_of_splits().
@@ -409,6 +420,9 @@ class DataTracker:
       split (:obj:`int`, optional): Selects the split. Defaults to None.
           If not specified, returns current weapon quantities.
 
+    Returns:
+      The current weapon amounts, or from a given split if specified.
+
     Raises:
       IndexError: If split is negative or at least number_of_splits().
 
@@ -421,7 +435,7 @@ class DataTracker:
         self.current_entry.weapons)
 
   def have_all_weapons(self):
-    """Returns (True iff weapon requirements are met)."""
+    """Returns True if weapon requirements are met, false otherwise."""
     weapons = self.get_weapons()
     reqs = self.WEAPON_REQUIREMENTS
     finished = True
@@ -436,6 +450,9 @@ class DataTracker:
       attribute ("name" or Character or SkillInk or Zenny or Weapon): The
           attribute to retrieve data for.
       split (int): Selects the split to retrive data for.
+
+    Returns:
+      The amount gained for a given attribute during the specified split.
 
     Raises:
       IndexError: If split is negative or at least number_of_splits().
@@ -454,6 +471,9 @@ class DataTracker:
           attribute to retrieve data for.
       split (:obj:`int`, optional): Selects the split. Defaults to -1.
           If not specified, returns current total.
+
+    Returns:
+      The total for a given attribute, or from a given split if specified.
 
     Raises:
       IndexError: If split is negative or at greater than number_of_splits().
@@ -474,6 +494,9 @@ class DataTracker:
     Args:
       attribute ("name" or Character or SkillInk or Zenny or Weapon): The
           attribute to retrieve data for.
+
+    Returns:
+      The current amount for a given attribute.
 
     Raises:
       KeyError: If attribute is not SkillInk or Zenny type.
@@ -643,7 +666,3 @@ class DataTracker:
       if self.finalized:
         return z[Zenny.ENEMY_DROP]
       return z[Zenny.CURRENT] - self.__zenny_subtotal()
-
-
-
-
