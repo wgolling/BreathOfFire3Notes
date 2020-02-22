@@ -5,8 +5,8 @@ import unittest
 
 
 #
-# Enums
 #
+# Enums
 
 class TestCharacter(unittest.TestCase):
 
@@ -35,6 +35,57 @@ class TestWeapon(unittest.TestCase):
     assert(Weapon)
     assert(len(list(Weapon)) == 15)
 
+#
+#
+# Helper methods
+
+class TestHelperMethods(unittest.TestCase):
+
+  #
+  # Add key/value to dict
+
+  def test_add_key_value_to_dict(self):
+    d = {"buh": 1, Weapon.DAGGER: 2}
+    add_key_value_to_dict(d, 7, 8)
+    add_key_value_to_dict(d, Weapon.DAGGER, 1)
+    assert(d == {"buh": 1, Weapon.DAGGER: 3, 7: 8})
+
+  def test_add_key_value_to_dict_wrong_dict_type(self):
+    with self.assertRaises(TypeError):
+      add_dicts(0, 0, 0)    
+
+  def test_add_key_value_to_dict_wrong_value_type(self):
+    with self.assertRaises(TypeError):
+      add_dicts(dict(), 0, "buh")    
+
+  #
+  # Add dicts
+
+  def test_add_dicts(self):
+    d1 = {"buh": 1, Weapon.DAGGER: 2}
+    d2 = {Weapon.DAGGER: 1, 7: 8}
+    d3 = add_dicts(d1, d2)
+    assert(d3 == {"buh": 1, Weapon.DAGGER: 3, 7: 8})
+
+  def test_add_dicts_wrong_type(self):
+    with self.assertRaises(TypeError):
+      add_dicts(0, dict())    
+    with self.assertRaises(TypeError):
+      add_dicts(dict(), 0)    
+
+  #
+  # Absolute Value
+
+  def test_abolute_value(self):
+    assert(3 == absolute_value(3))
+    assert(3 == absolute_value([1,2]))
+    assert(0 == absolute_value([]))
+
+  def test_abolute_value_wrong_type(self):
+    with self.assertRaises(TypeError):
+      absolute_value("buh")    
+    with self.assertRaises(TypeError):
+      absolute_value(["buh", "foo"])    
 
 #
 # 
@@ -275,7 +326,6 @@ class TestWeaponInterface(unittest.TestCase):
     assert(dt.have_all_weapons())
 
 
-
 class TestSplitting(unittest.TestCase):
 
   def setUp(self):
@@ -289,9 +339,7 @@ class TestSplitting(unittest.TestCase):
 
   def test_split_name(self):
     dt = self.dt
-    assert(len(dt.entries) == 1)
     dt.split("Test split")
-    assert(len(dt.entries) == 2)
     assert(dt.get_name(0) == "Test split")
 
   def test_party_levels(self):
@@ -304,7 +352,6 @@ class TestSplitting(unittest.TestCase):
     assert(dt.get_party_levels()[Character.RYU] == 2)
     dt.level_up(Character.RYU)
     assert(dt.get_party_levels()[Character.RYU] == 3)
-
 
   #
   # Test Skill Ink
@@ -356,7 +403,6 @@ class TestSplitting(unittest.TestCase):
     self.skill_ink_helper_with_split(1, gc=1, tc=2, tp=1, gb=1, tb=1)
     self.skill_ink_helper_with_split(2, gc=-1, tc=1, tp=1, tb=1, gu=1, tu=1)
 
-
   #
   # Test Zenny
   def zenny_helper(self, cc=0, tc=0, cp=0, tp=0, cb=0, tb=0, cu=0, tu=0):
@@ -392,17 +438,17 @@ class TestSplitting(unittest.TestCase):
     assert(dt.get_gain(Zenny.ENEMY_DROP , 0) == 30)
     assert(dt.get_total(Zenny.ENEMY_DROP, 0) == 30)
 
-    assert(dt.get_gain(Zenny.PICK_UP    , 1) == [])
+    assert(dt.get_current(Zenny.PICK_UP    ) == [])
     assert(dt.get_total(Zenny.PICK_UP   , 1) == 150)
-    assert(dt.get_gain(Zenny.BOSS_DROP  , 1) == [])
+    assert(dt.get_current(Zenny.BOSS_DROP  ) == [])
     assert(dt.get_total(Zenny.BOSS_DROP , 1) == 500)
-    assert(dt.get_gain(Zenny.SALES      , 1) == [])
+    assert(dt.get_current(Zenny.SALES      ) == [])
     assert(dt.get_total(Zenny.SALES     , 1) == 170)
-    assert(dt.get_gain(Zenny.BUY        , 1) == [])
+    assert(dt.get_current(Zenny.BUY        ) == [])
     assert(dt.get_total(Zenny.BUY       , 1) == 600)
-    assert(dt.get_gain(Zenny.CURRENT    , 1) == 0)
+    assert(dt.get_current(Zenny.CURRENT    ) == 0)
     assert(dt.get_total(Zenny.CURRENT   , 1) == 250)
-    assert(dt.get_gain(Zenny.ENEMY_DROP , 1) == 0)
+    assert(dt.get_current(Zenny.ENEMY_DROP ) == 0)
     assert(dt.get_total(Zenny.ENEMY_DROP, 1) == 30)
 
   #
@@ -417,6 +463,77 @@ class TestSplitting(unittest.TestCase):
     assert(weapons[Weapon.DAGGER] == 2)
     assert(weapons[Weapon.BALLOCK_KNIFE] == 1)
     assert(dt.get_total(Zenny.BUY) == 50)
+
+
+class TestGetterMethodErrors(unittest.TestCase):
+
+  def setUp(self):
+    self.dt = DataTracker()
+
+  #
+  # Helper methods
+
+  def out_of_bounds(self, function):
+    with self.assertRaises(IndexError):
+      function(-1)
+    with self.assertRaises(IndexError):
+      function(0)
+    self.dt.split("Test split")
+    with self.assertRaises(IndexError):
+      function(1)
+
+  def wrong_key_type(self, function):
+    with self.assertRaises(KeyError):
+      function("buh")
+
+  #
+  # Split name
+  
+  def test_split_name_out_of_bounds(self):
+    self.out_of_bounds(self.dt.get_name)
+
+  #
+  # Party levels
+
+  def test_party_levels_out_of_bounds(self):
+    self.out_of_bounds(lambda split: self.dt.get_party_levels(split=split))
+
+  #
+  # Weapons
+
+  def test_get_weapons_out_of_bounds(self):
+    self.out_of_bounds(lambda split: self.dt.get_weapons(split=split))
+
+  #
+  # Gain
+
+  def test_get_gain_out_of_bounds(self):
+    self.out_of_bounds(lambda split: self.dt.get_gain(Zenny.PICK_UP, split))
+
+  def test_get_gain_wrong_type(self):
+    self.dt.split("Test")
+    self.wrong_key_type(lambda att: self.dt.get_gain(att, 0))
+
+  #
+  # Total
+
+  def test_get_total_out_of_bounds(self):
+    with self.assertRaises(IndexError):
+      self.dt.get_total(Zenny.PICK_UP, -1)
+    with self.assertRaises(IndexError):
+      self.dt.get_total(Zenny.PICK_UP, 1)
+    self.dt.split("Test split")
+    with self.assertRaises(IndexError):
+      self.dt.get_total(Zenny.PICK_UP, 2)
+
+  def test_get_total_wrong_type(self):
+    self.wrong_key_type(lambda att: self.dt.get_total(att, 0))
+
+  #
+  # Current
+
+  def test_get_current_wrong_type(self):
+    self.wrong_key_type(self.dt.get_current)
 
 
 if __name__ == "__main__":

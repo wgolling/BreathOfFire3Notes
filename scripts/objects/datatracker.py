@@ -1,5 +1,4 @@
 from enum import Enum, auto
-from collections import defaultdict
 from copy import copy
 
 #
@@ -55,21 +54,56 @@ class Weapon(Enum):
 # Helper functions
 
 def add_key_value_to_dict(d, k, v):
-  """Add add a key/value pair to a dict."""
+  """Add add a key/value pair to a dict.
+
+  Args:
+    d (dict of ?: int): A dictionary.
+    k (?): A key.
+    v (int): An int value.
+
+  Raises:
+    TypeError: If `v` cannot be converted to int.
+    TypeError: If `d` is not subscriptable.
+
+  """
   old_val = 0
   if k in d:
     old_val = d[k]
-  d[k] = v + old_val
+  d[k] = int(v) + old_val
 
 def add_dicts(d1, d2):
-  """Return a dict which is the sum of the given dicts."""
+  """Return a dict which is the sum of the given dicts.
+
+  Args:
+    d1 (dict of ?: int): The first dict.
+    d2 (dict of ?: int): The second dict.
+
+  Returns:
+    A new dict whose value at k is d1[k] + d2[k].
+
+  Raises:
+    TypeError: If either argument cannot be converted to dict.
+
+  """
   new_dict = dict(d1)
-  for k in d2:
+  other_dict = dict(d2)
+  for k in other_dict:
     add_key_value_to_dict(new_dict, k, d2[k])
   return new_dict 
 
 def absolute_value(arg):
-  """Return a numerical value representing the argument."""
+  """Return a numerical value representing the argument.
+
+  Args:
+    arg (int or list of int): Pseudo-numerical input.
+
+  Returns:
+    The value `arg` if `arg` is int, or `sum(arg)` if arg is a list of int.
+
+  Raises:
+    TypeError: If `arg` is not int or list of int.
+
+  """
   try: 
     return int(arg)
   except:
@@ -78,14 +112,14 @@ def absolute_value(arg):
   try:
     return sum(list(arg))
   except:
-    raise
+    raise TypeError("Argument must be int or list of int.")
 
 #
 #
 # DataTracker class.
 
 class DataTracker:
-  """Tracks some key data for Breath Of Fire III.
+  """Tracks some data for Breath Of Fire III.
 
   Tracks current party, party levels, Skill Ink and Zenny attributes, 
   and tracks weapon quantities for the weapons you can find before D'Lonzo.
@@ -327,7 +361,11 @@ class DataTracker:
     Args:
       split (int): Selects the split.
 
+    Raises:
+      IndexError: If split is negative or at least number_of_splits().
+
     """
+    self.__validate_split_number(split)
     return self.totals[split].name
 
   def get_party(self, split=None):
@@ -337,8 +375,12 @@ class DataTracker:
       split (:obj:`int`, optional): Selects the split. Defaults to None.
           If not specified, returns current party.
 
+    Raises:
+      IndexError: If split is negative or at least number_of_splits().
+
     """
-    if split:
+    if not split == None:
+      self.__validate_split_number(split)
       return set(self.totals[split].party)
     return set(self.current_entry.party)
 
@@ -349,8 +391,12 @@ class DataTracker:
       split (:obj:`int`, optional): Selects the split. Defaults to None.
           If not specified, returns current party levels.
 
+    Raises:
+      IndexError: If split is negative or at least number_of_splits().
+
     """
-    if split:
+    if not split == None:
+      self.__validate_split_number(split)
       return dict(self.totals[split].party_levels)
     return add_dicts(
         self.__get_previous_totals().party_levels, 
@@ -363,8 +409,12 @@ class DataTracker:
       split (:obj:`int`, optional): Selects the split. Defaults to None.
           If not specified, returns current weapon quantities.
 
+    Raises:
+      IndexError: If split is negative or at least number_of_splits().
+
     """
-    if split:
+    if not split == None:
+      self.__validate_split_number(split)
       return dict(self.totals[split].weapons)
     return add_dicts(
         self.__get_previous_totals().weapons, 
@@ -387,10 +437,16 @@ class DataTracker:
           attribute to retrieve data for.
       split (int): Selects the split to retrive data for.
 
+    Raises:
+      IndexError: If split is negative or at least number_of_splits().
+      KeyError: If attribute is not SkillInk or Zenny type.
+
     """ 
+    self.__validate_attribute_type(attribute)
+    self.__validate_split_number(split)
     return self.entries[split].get(attribute)
 
-  def get_total(self, attribute, split=-1):
+  def get_total(self, attribute, split=None):
     """Return the total of an attribute.
 
     Args:
@@ -399,11 +455,17 @@ class DataTracker:
       split (:obj:`int`, optional): Selects the split. Defaults to -1.
           If not specified, returns current total.
 
+    Raises:
+      IndexError: If split is negative or at greater than number_of_splits().
+      KeyError: If attribute is not SkillInk or Zenny type.
+
     """
-    if (split == -1) or (split == len(self.entries) - 1):
+    self.__validate_attribute_type(attribute)
+    if (split == None) or (split == len(self.entries) - 1):
       gain = self.get_current(attribute)
       prev_total = self.__get_previous_totals().get(attribute)
-      return absolute_value(gain) + prev_total
+      return absolute_value(gain) + absolute_value(prev_total)
+    self.__validate_split_number(split)
     return self.totals[split].get(attribute)
 
   def get_current(self, attribute):
@@ -413,7 +475,11 @@ class DataTracker:
       attribute ("name" or Character or SkillInk or Zenny or Weapon): The
           attribute to retrieve data for.
 
+    Raises:
+      KeyError: If attribute is not SkillInk or Zenny type.
+
     """
+    self.__validate_attribute_type(attribute)
     return self.current_entry.get(attribute)
 
   #
@@ -467,6 +533,14 @@ class DataTracker:
   def __validate_weapon_for_add(self, weapon):
     if not isinstance(weapon, Weapon):
       raise TypeError("Input must be Weapon type.")
+
+  def __validate_split_number(self, split):
+    if split < 0 or split >= self.number_of_splits():
+      raise IndexError("Split index must be nonnegative and less than the number of splits.")
+
+  def __validate_attribute_type(self, attribute):
+    if not isinstance(attribute, Zenny) and not isinstance(attribute, SkillInk):
+      raise KeyError("Attribute must be Zenny or SkillInk type.")
 
   #
   #
