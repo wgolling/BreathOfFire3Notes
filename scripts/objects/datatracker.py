@@ -14,6 +14,13 @@ class Character(Enum):
   MOMO  = auto()
   PECO  = auto()
   GARR  = auto()
+RYU   = Character.RYU
+REI   = Character.REI
+TEEPO = Character.TEEPO
+NINA  = Character.NINA
+MOMO  = Character.MOMO
+PECO  = Character.PECO
+GARR  = Character.GARR
 
 class SkillInk(Enum):
   """Enum representing Skill Ink attributes."""
@@ -48,6 +55,21 @@ class Weapon(Enum):
   RIPPERS       = auto()
   ICE_CHRYSM    = auto()      
   FIRE_CHRYSM   = auto()
+MELTED_BLADE  = Weapon.MELTED_BLADE
+DAGGER        = Weapon.DAGGER
+BALLOCK_KNIFE = Weapon.BALLOCK_KNIFE
+BENT_SWORD    = Weapon.BENT_SWORD
+BRONZE_SWORD  = Weapon.BRONZE_SWORD
+POINTED_STICK = Weapon.POINTED_STICK
+SILVER_KNIFE  = Weapon.SILVER_KNIFE
+BROAD_SWORD   = Weapon.BROAD_SWORD
+OAKEN_STAFF   = Weapon.OAKEN_STAFF
+MACE          = Weapon.MACE
+SCRAMASAX     = Weapon.SCRAMASAX
+MAGICIAN_ROD  = Weapon.MAGICIAN_ROD
+RIPPERS       = Weapon.RIPPERS
+ICE_CHRYSM    = Weapon.ICE_CHRYSM  
+FIRE_CHRYSM   = Weapon.FIRE_CHRYSM
 
 #
 #
