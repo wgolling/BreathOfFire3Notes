@@ -375,7 +375,7 @@ class DataTracker:
   def __get_previous_totals(self):
     """Return the entry containing the totals from the previous split."""
     if not self.totals:
-      return DataTracker.Entry()
+      return DataTracker.Entry.empty_totals()
     else:
       return self.totals[self.number_of_splits() - 1]
 
@@ -610,6 +610,11 @@ class DataTracker:
       self.zenny[Zenny.ENEMY_DROP] = 0
       self.weapons = dict(map(lambda a : (a, 0), list(Weapon)))
 
+    def empty_totals():
+      e = DataTracker.Entry()
+      e.zenny = dict(map(lambda a : (a, 0), list(Zenny)))
+      return e
+
     def new_totals_entry(current_entry, previous_totals):
       """Compute the new totals from the current entry and the previous totals."""
       e = DataTracker.Entry()
@@ -625,9 +630,13 @@ class DataTracker:
       # set zenny
       gain_totals = dict()
       for k in current_entry.zenny:
-        gain_totals[k] = current_entry.zenny[k] if k in [Zenny.CURRENT, Zenny.ENEMY_DROP]\
-                                        else sum(current_entry.zenny[k])
-      e.zenny = gain_totals
+        # gain_totals[k] = current_entry.zenny[k] if k in [Zenny.CURRENT, Zenny.ENEMY_DROP]\
+        #                                 else sum(current_entry.zenny[k])
+        try:
+          gain_totals[k] = int(current_entry.zenny[k])
+        except TypeError:
+          gain_totals[k] = sum(current_entry.zenny[k])
+      e.zenny = add_dicts(gain_totals, previous_totals.zenny)
       # set weapons
       e.weapons = add_dicts(current_entry.weapons, previous_totals.weapons)
       # Finalize
