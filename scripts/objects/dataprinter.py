@@ -6,6 +6,12 @@ class DataPrinter():
     self.dt = data_tracker
     self.line_width = 60
 
+  def print(self):
+    s = ''
+    for i in range(0, self.dt.number_of_splits()):
+      s += self.print_entry(i)
+    return s
+
   def print_entry(self, i):
     if i < 0 or i >= self.dt.number_of_splits():
       raise IndexError("Split index must be nonnegative and less than the number of splits.")
@@ -33,16 +39,6 @@ class DataPrinter():
         s += suf
     return s + '\n'
 
-
-  def __print_zenny(self, i):
-    s = ''
-    for z in list(Zenny):
-      gain = self.dt.get_gain(z, i)
-      total = self.dt.get_total(z, split=i)
-      s += z.name + ': ' + DataPrinter.__print_list(gain) + ' '
-      s += '(' + str(total) +')' + '\n'
-    return s
-
   def __print_list(l):
     try:
       int(l)
@@ -56,18 +52,25 @@ class DataPrinter():
       return str(l[0])
     return '+'.join(str(i) for i in l) + ' = ' + str(sum(l))
 
-
-
+  def __print_zenny(self, i):
+    s = 'Zenny:\n'
+    for z in list(Zenny):
+      gain = self.dt.get_gain(z, i)
+      total = self.dt.get_total(z, split=i)
+      s += z.name + ': ' + DataPrinter.__print_list(gain) + ' '
+      s += '(' + str(total) +')' + '\n'
+    return s
 
   def __print_skill_ink(self, i):
-    return ''
+    s = 'Skill Ink:\n'
+    for att in list(SkillInk):
+      gain = self.dt.get_gain(att, i)
+      total = self.dt.get_total(att, split=i)
+      s += att.name + ': ' + DataPrinter.__print_list(gain) + ' '
+      s += '(' + str(total) +')' + '\n'
+    return s
 
   def __print_weapon(self, i):
     return ''
 
 
-  def print(self):
-    s = ''
-    for i in range(0, self.dt.number_of_splits()):
-      s += self.print_entry(i)
-    return s
