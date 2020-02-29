@@ -10,8 +10,8 @@ class DataPrinter():
     if i < 0 or i >= self.dt.number_of_splits():
       raise IndexError("Split index must be nonnegative and less than the number of splits.")
     s = DataPrinter.__make_header(self.dt.get_name(i))
-    s += self.__print_characters(i)
-    s += self.__print_zenny(i)
+    s += self.__print_characters(i) + '\n'
+    s += self.__print_zenny(i) + '\n'
     s += self.__print_skill_ink(i)
     s += self.__print_weapon(i)
     return s + "\n"
@@ -35,7 +35,29 @@ class DataPrinter():
 
 
   def __print_zenny(self, i):
-    return ''
+    s = ''
+    for z in list(Zenny):
+      gain = self.dt.get_gain(z, i)
+      total = self.dt.get_total(z, split=i)
+      s += z.name + ': ' + DataPrinter.__print_list(gain) + ' '
+      s += '(' + str(total) +')' + '\n'
+    return s
+
+  def __print_list(l):
+    try:
+      int(l)
+    except TypeError:
+      pass
+    else:
+      return str(l)
+    if len(l) == 0:
+      return '0'
+    if len(l) == 1:
+      return str(l[0])
+    return '+'.join(str(i) for i in l) + ' = ' + str(sum(l))
+
+
+
 
   def __print_skill_ink(self, i):
     return ''
@@ -49,4 +71,3 @@ class DataPrinter():
     for i in range(0, self.dt.number_of_splits()):
       s += self.print_entry(i)
     return s
-    
