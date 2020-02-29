@@ -40,10 +40,10 @@ class TestHelperMethods(unittest.TestCase):
   # Add key/value to dict
 
   def test_add_key_value_to_dict(self):
-    d = {"buh": 1, Weapon.DAGGER: 2}
+    d = {"buh": 1, DAGGER: 2}
     add_key_value_to_dict(d, 7, 8)
-    add_key_value_to_dict(d, Weapon.DAGGER, 1)
-    assert(d == {"buh": 1, Weapon.DAGGER: 3, 7: 8})
+    add_key_value_to_dict(d, DAGGER, 1)
+    assert(d == {"buh": 1, DAGGER: 3, 7: 8})
 
   def test_add_key_value_to_dict_wrong_dict_type(self):
     with self.assertRaises(TypeError):
@@ -57,10 +57,10 @@ class TestHelperMethods(unittest.TestCase):
   # Add dicts
 
   def test_add_dicts(self):
-    d1 = {"buh": 1, Weapon.DAGGER: 2}
-    d2 = {Weapon.DAGGER: 1, 7: 8}
+    d1 = {"buh": 1, DAGGER: 2}
+    d2 = {DAGGER: 1, 7: 8}
     d3 = add_dicts(d1, d2)
-    assert(d3 == {"buh": 1, Weapon.DAGGER: 3, 7: 8})
+    assert(d3 == {"buh": 1, DAGGER: 3, 7: 8})
 
   def test_add_dicts_wrong_type(self):
     with self.assertRaises(TypeError):
@@ -96,18 +96,18 @@ class TestStaticFields(unittest.TestCase):
 
   def test_starting_levels(self):
     levels = DataTracker.STARTING_LEVELS
-    assert(levels[Character.RYU]    == 1)
-    assert(levels[Character.REI]    == 5)
-    assert(levels[Character.TEEPO]  == 1)
-    assert(levels[Character.NINA]   == 5)
-    assert(levels[Character.MOMO]   == 10)
-    assert(levels[Character.PECO]   == 1)
-    assert(levels[Character.GARR]   == 13)
+    assert(levels[RYU]    == 1)
+    assert(levels[REI]    == 5)
+    assert(levels[TEEPO]  == 1)
+    assert(levels[NINA]   == 5)
+    assert(levels[MOMO]   == 10)
+    assert(levels[PECO]   == 1)
+    assert(levels[GARR]   == 13)
 
   def test_weapon_requirements(self):
     reqs = DataTracker.WEAPON_REQUIREMENTS
     for w in Weapon:
-      if w in [Weapon.DAGGER, Weapon.BALLOCK_KNIFE, Weapon.BENT_SWORD, Weapon.POINTED_STICK]:
+      if w in [DAGGER, BALLOCK_KNIFE, BENT_SWORD, POINTED_STICK]:
         assert(reqs[w] == 2)
       else:
         assert(reqs[w] == 1)
@@ -119,30 +119,30 @@ class TestCharacterInterface(unittest.TestCase):
 
   def test_get_party_levels(self):
     pl = self.dt.get_party_levels()
-    assert(pl[Character.RYU] == 1)
-    assert(not Character.NINA in pl)
+    assert(pl[RYU] == 1)
+    assert(not NINA in pl)
 
   def test_gain_character(self):
-    self.dt.gain_character(Character.NINA)
-    assert(Character.NINA in self.dt.get_party())
-    assert(self.dt.get_party_levels()[Character.NINA] == 5)
+    self.dt.gain_character(NINA)
+    assert(NINA in self.dt.get_party())
+    assert(self.dt.get_party_levels()[NINA] == 5)
 
   def test_gain_duplicate_character(self):
     with self.assertRaises(KeyError):
-      self.dt.gain_character(Character.RYU)
+      self.dt.gain_character(RYU)
 
   def test_gain_character_wrong_type(self):
     with self.assertRaises(TypeError):
       self.dt.gain_character("buh")
 
   def test_lose_character(self):
-    self.dt.level_up(Character.RYU)
-    self.dt.lose_character(Character.RYU)
-    assert(Character.RYU not in self.dt.get_party())
-    assert(self.dt.get_party_levels()[Character.RYU] == 2)
-    self.dt.gain_character(Character.RYU)
-    assert(Character.RYU in self.dt.get_party())
-    assert(self.dt.get_party_levels()[Character.RYU] == 2)
+    self.dt.level_up(RYU)
+    self.dt.lose_character(RYU)
+    assert(RYU not in self.dt.get_party())
+    assert(self.dt.get_party_levels()[RYU] == 2)
+    self.dt.gain_character(RYU)
+    assert(RYU in self.dt.get_party())
+    assert(self.dt.get_party_levels()[RYU] == 2)
 
   def test_lose_character_wrong_type(self):
     with self.assertRaises(TypeError):
@@ -150,13 +150,13 @@ class TestCharacterInterface(unittest.TestCase):
 
   def test_lose_character_missing(self):
     with self.assertRaises(KeyError):
-      self.dt.lose_character(Character.NINA)
+      self.dt.lose_character(NINA)
 
   def test_level_up(self):
-    self.dt.level_up(Character.RYU)
-    assert(self.dt.get_party_levels()[Character.RYU] == 2)
-    self.dt.level_up(Character.RYU, levels=4)
-    assert(self.dt.get_party_levels()[Character.RYU] == 6)
+    self.dt.level_up(RYU)
+    assert(self.dt.get_party_levels()[RYU] == 2)
+    self.dt.level_up(RYU, levels=4)
+    assert(self.dt.get_party_levels()[RYU] == 6)
 
   def test_level_up_wrong_type(self):
     with self.assertRaises(TypeError):
@@ -164,11 +164,11 @@ class TestCharacterInterface(unittest.TestCase):
 
   def test_level_up_missing_character(self):
     with self.assertRaises(KeyError):
-      self.dt.level_up(Character.NINA)
+      self.dt.level_up(NINA)
 
   def test_level_up_nonpositive_level(self):
     with self.assertRaises(ValueError):
-      self.dt.level_up(Character.RYU, levels=0)
+      self.dt.level_up(RYU, levels=0)
 
 class TestSkillInkInterface(unittest.TestCase):
 
@@ -283,9 +283,9 @@ class TestWeaponInterface(unittest.TestCase):
 
   def test_pick_up_weapon(self):
     dt = self.dt
-    dt.pick_up_weapon(Weapon.DAGGER)
+    dt.pick_up_weapon(DAGGER)
     weapons = dt.get_weapons()
-    assert(weapons[Weapon.DAGGER] == 1)
+    assert(weapons[DAGGER] == 1)
 
   def test_pick_up_weapon_wrong_type(self):
     with self.assertRaises(TypeError):
@@ -293,9 +293,9 @@ class TestWeaponInterface(unittest.TestCase):
 
   def test_buy_weapon(self):
     dt = self.dt
-    dt.buy_weapon(Weapon.DAGGER, 50)
+    dt.buy_weapon(DAGGER, 50)
     weapons = dt.get_weapons()
-    assert(weapons[Weapon.DAGGER] == 1)
+    assert(weapons[DAGGER] == 1)
     assert(dt.get_current(Zenny.BUY) == [50])
 
   def test_buy_weapon_wrong_type(self):
@@ -304,7 +304,7 @@ class TestWeaponInterface(unittest.TestCase):
 
   def test_buy_weapon_nonpositive_amount(self):
     with self.assertRaises(ValueError):
-      self.dt.buy_weapon(Weapon.DAGGER, cost=0)
+      self.dt.buy_weapon(DAGGER, cost=0)
 
   def test_have_all_weapons(self):
     dt = self.dt
@@ -333,14 +333,14 @@ class TestSplitting(unittest.TestCase):
 
   def test_party_levels(self):
     dt = self.dt
-    assert(Character.RYU in dt.current_entry.party)
-    dt.level_up(Character.RYU)
-    assert(dt.get_party_levels()[Character.RYU] == 2)
+    assert(RYU in dt.current_entry.party)
+    dt.level_up(RYU)
+    assert(dt.get_party_levels()[RYU] == 2)
     dt.split("Level Up Ryu")
-    assert(Character.RYU in dt.current_entry.party)
-    assert(dt.get_party_levels()[Character.RYU] == 2)
-    dt.level_up(Character.RYU)
-    assert(dt.get_party_levels()[Character.RYU] == 3)
+    assert(RYU in dt.current_entry.party)
+    assert(dt.get_party_levels()[RYU] == 2)
+    dt.level_up(RYU)
+    assert(dt.get_party_levels()[RYU] == 3)
 
   #
   # Test Skill Ink
@@ -437,13 +437,13 @@ class TestSplitting(unittest.TestCase):
 
   def test_weapons(self):
     dt = self.dt
-    dt.pick_up_weapon(Weapon.DAGGER)
-    dt.buy_weapon(Weapon.BALLOCK_KNIFE, 50)
+    dt.pick_up_weapon(DAGGER)
+    dt.buy_weapon(BALLOCK_KNIFE, 50)
     dt.split("Get stuff")
-    dt.pick_up_weapon(Weapon.DAGGER)
+    dt.pick_up_weapon(DAGGER)
     weapons = dt.get_weapons()
-    assert(weapons[Weapon.DAGGER] == 2)
-    assert(weapons[Weapon.BALLOCK_KNIFE] == 1)
+    assert(weapons[DAGGER] == 2)
+    assert(weapons[BALLOCK_KNIFE] == 1)
     assert(dt.get_total(Zenny.BUY) == 50)
 
 class TestGetterMethodErrors(unittest.TestCase):
