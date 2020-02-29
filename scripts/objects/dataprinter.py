@@ -2,7 +2,8 @@ from datatracker import *
 
 class DataPrinter():
    
-  def __init__(self, data_tracker):
+  def __init__(self, name, data_tracker):
+    self.name = name
     self.dt = data_tracker
     self.line_width = 60
 
@@ -13,7 +14,16 @@ class DataPrinter():
     return s
 
   def __make_header(self):
-    return ''
+    title = "Data for " + self.name
+    padding = ' '
+    line_width = len(title) + 2 * len(padding) + len('||||||||')
+    header = (line_width - 2) * '='             + '||\n' + \
+            '||'    + (line_width - 6) * '='    + '||||\n' + \
+            '||||'  + padding + title + padding + '||||\n' + \
+            '||||'  + (line_width - 6) * '='    + '||\n' + \
+            '||'    + (line_width - 2) * '='    + '\n' + \
+            '\n'
+    return header
 
   def print_entry(self, i):
     if i < 0 or i >= self.dt.number_of_splits():
