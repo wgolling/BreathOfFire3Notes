@@ -28,11 +28,9 @@ class TestHelperFunctions(unittest.TestCase):
     test_list.append('8')
     assert(get_largest_int(test_list) == 8)
 
-  @unittest.expectedFailure
   def test_get_largest_int_bad_input(self):
-    test_list = None
-    get_largest_int(test_list)
-
+    with self.assertRaises(ValueError):
+      get_largest_int(None)
 
 class TestRunFolderMakerConstructor(unittest.TestCase):
 
@@ -42,38 +40,29 @@ class TestRunFolderMakerConstructor(unittest.TestCase):
 
   # Helper function for bad input.
   def bad_input(self, base_path, template_path=None):
-    try:
+    with self.assertRaises(ValueError):
       if template_path:
         RunFolderMaker(base_path, template_path=template_path)
       else:
         RunFolderMaker(base_path)
-    except Exception as e:
-      print(e)
-      raise
 
   # testing bad base_path
-  @unittest.expectedFailure
   def test_base_path_not_valid(self):
     self.bad_input(7)
 
-  @unittest.expectedFailure
   def test_base_path_not_found(self):
     self.bad_input(TEST_FOLDER / 'foo')
 
-  @unittest.expectedFailure
   def test_base_path_not_a_dir(self):
     self.bad_input(TEST_FOLDER / 'dummy.txt')
 
   # testing bad template_path
-  @unittest.expectedFailure
   def test_template_path_not_valid(self):
     self.bad_input(TEST_FOLDER, template_path=7)
 
-  @unittest.expectedFailure
   def test_template_path_not_found(self):
     self.bad_input(TEST_FOLDER, template_path=TEST_FOLDER / 'foo')
 
-  @unittest.expectedFailure
   def test_template_path_not_a_dir(self):
     self.bad_input(TEST_FOLDER, template_path=TEST_FOLDER / 'dummy.txt')
 
