@@ -432,6 +432,19 @@ class TestSplitting(unittest.TestCase):
     assert(dt.get_current(Zenny.ENEMY_DROP ) == 0)
     assert(dt.get_total(Zenny.ENEMY_DROP, 1) == 30)
 
+    dt.split("Another split")
+    assert(dt.get_gain(Zenny.PICK_UP    , 1) == [])
+    assert(dt.get_total(Zenny.PICK_UP   , 1) == 150)
+    assert(dt.get_gain(Zenny.BOSS_DROP  , 1) == [])
+    assert(dt.get_total(Zenny.BOSS_DROP , 1) == 500)
+    assert(dt.get_gain(Zenny.SALES      , 1) == [])
+    assert(dt.get_total(Zenny.SALES     , 1) == 170)
+    assert(dt.get_gain(Zenny.BUY        , 1) == [])
+    assert(dt.get_total(Zenny.BUY       , 1) == 600)
+    assert(dt.get_gain(Zenny.CURRENT    , 1) == 0)
+    assert(dt.get_total(Zenny.CURRENT   , 1) == 250)
+    assert(dt.get_gain(Zenny.ENEMY_DROP , 1) == 0)
+    assert(dt.get_total(Zenny.ENEMY_DROP, 1) == 30)
   #
   # Test Weapons
 
