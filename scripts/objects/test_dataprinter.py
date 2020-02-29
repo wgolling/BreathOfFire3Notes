@@ -6,14 +6,14 @@ import unittest
 class TestConstructor(unittest.TestCase):
 
   def test_constructor(self):
-    dp = DataPrinter(DataTracker())
+    dp = DataPrinter("Test", DataTracker())
 
 
 class TestOutput(unittest.TestCase):
 
   def test_print_entry(self):
     dt = DataTracker()
-    dp = DataPrinter(dt)
+    dp = DataPrinter("Test", dt)
     dt.split("Test")
     with self.assertRaises(IndexError):
       dp.print_entry(-1)
