@@ -2,10 +2,10 @@ from datatracker import *
 
 class DataPrinter():
    
-  def __init__(self, name, data_tracker):
+  def __init__(self, name, data_tracker, line_width=60):
     self.name = name
     self.dt = data_tracker
-    self.line_width = 60
+    self.line_width = line_width
 
   def print(self):
     s = self.__make_header()
