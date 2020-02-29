@@ -25,17 +25,18 @@ or "splits", and there are public interface methods for accessing the data from
 a given split. For a given run, the user will use a `data.py` file to input 
 commands to their `DataTracker`'s interface.
 
-There are two more pieces which are not done yet: the next step is to make a 
-`DataPrinter` object, which takes a `DataTracker` and makes readable text out 
-of it. Then, there will be a script called `compile_data` which takes a folder 
-name as input, and then runs that folder's `data.py` file and produces an output
-file in the same folder.
+The third piece is the `DataPrinter` object, which produces a readable output string
+from the information in a `DataTracker`. It has a `print()` method that outputs
+the string, and the line width is an optional parameter that defaults to 60.
 
 ## TODO
 
 ### `new_run`
 
-- Update the script to set up a `data.py` file which imports `DataTracker`.
+- Update the script to set up a `data.py` file which imports `DataTracker` and
+`DataPrinter`. The user will write commands in this file using the `DataTracker`
+public interface, and it should write the output from a `DataPrinter` object to a
+file in the same folder.
 
 - Make prefix and template path into command line arguments. Make sure the user 
 can't break anything.
@@ -45,16 +46,16 @@ can't break anything.
 ### `DataTracker`
 
 - Write a `Value` class to replace `absolute_value` helper function and some 
-awkward type checking.
+awkward type checking and printing difficulties.
 
 ### `DataPrinter`
 
-- Do.
+- Polish output string.
 
-### `compile_data`
-
-- Do.
+- Documentation.
 
 ### At some point, down the road, eventually, etc., etc....
 
 - Make a GUI for the `DataTracker` object.
+
+- Serialize `DataTracker` information.
