@@ -53,6 +53,7 @@ class Weapon(Enum):
   SCRAMASAX     = auto()
   MAGICIAN_ROD  = auto()
   RIPPERS       = auto()
+  AMMO          = auto()
   ICE_CHRYSM    = auto()      
   FIRE_CHRYSM   = auto()
 MELTED_BLADE  = Weapon.MELTED_BLADE
@@ -68,6 +69,7 @@ MACE          = Weapon.MACE
 SCRAMASAX     = Weapon.SCRAMASAX
 MAGICIAN_ROD  = Weapon.MAGICIAN_ROD
 RIPPERS       = Weapon.RIPPERS
+AMMO          = Weapon.AMMO
 ICE_CHRYSM    = Weapon.ICE_CHRYSM  
 FIRE_CHRYSM   = Weapon.FIRE_CHRYSM
 
@@ -154,13 +156,24 @@ class DataTracker:
 
   # Chracter starting levels
   STARTING_LEVELS = {
-    Character.RYU:    1,
-    Character.REI:    5,
-    Character.TEEPO:  1,
-    Character.NINA:   5,
-    Character.MOMO:   10,
-    Character.PECO:   1,
-    Character.GARR:   13,
+    RYU:    1,
+    REI:    5,
+    TEEPO:  1,
+    NINA:   5,
+    MOMO:   10,
+    PECO:   1,
+    GARR:   13,
+  }
+
+  # Character starting equipment
+  STARTING_EQUIPMENT = {
+    RYU:    DAGGER,
+    REI:    BALLOCK_KNIFE,
+    TEEPO:  DAGGER,
+    NINA:   OAKEN_STAFF,
+    MOMO:   AMMO,
+    PECO:   None,
+    GARR:   None,
   }
 
   # Weapon requirments for D'Lonzo
@@ -206,6 +219,9 @@ class DataTracker:
     self.current_entry.party.add(character)
     if character not in self.current_entry.party_levels:
       self.current_entry.party_levels[character] = self.STARTING_LEVELS[character]
+    weapon = self.STARTING_EQUIPMENT[character]
+    if weapon:
+      self.pick_up_weapon(weapon)
 
   def lose_character(self, character):
     """Lose character from party.

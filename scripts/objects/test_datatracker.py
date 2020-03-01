@@ -28,7 +28,7 @@ class TestWeapon(unittest.TestCase):
 
   def test_weapon_enum(self):
     assert(Weapon)
-    assert(len(list(Weapon)) == 15)
+    assert(len(list(Weapon)) == 16)
 
 #
 #
@@ -285,7 +285,7 @@ class TestWeaponInterface(unittest.TestCase):
     dt = self.dt
     dt.pick_up_weapon(DAGGER)
     weapons = dt.get_weapons()
-    assert(weapons[DAGGER] == 1)
+    assert(weapons[DAGGER] == 2)
 
   def test_pick_up_weapon_wrong_type(self):
     with self.assertRaises(TypeError):
@@ -295,7 +295,7 @@ class TestWeaponInterface(unittest.TestCase):
     dt = self.dt
     dt.buy_weapon(DAGGER, 50)
     weapons = dt.get_weapons()
-    assert(weapons[DAGGER] == 1)
+    assert(weapons[DAGGER] == 2)
     assert(dt.get_current(Zenny.BUY) == [50])
 
   def test_buy_weapon_wrong_type(self):
@@ -455,7 +455,7 @@ class TestSplitting(unittest.TestCase):
     dt.split("Get stuff")
     dt.pick_up_weapon(DAGGER)
     weapons = dt.get_weapons()
-    assert(weapons[DAGGER] == 2)
+    assert(weapons[DAGGER] == 3)
     assert(weapons[BALLOCK_KNIFE] == 1)
     assert(dt.get_total(Zenny.BUY) == 50)
 
