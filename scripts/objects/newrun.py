@@ -127,7 +127,7 @@ class RunFolderMaker:
     # The default template has extra setup.
     if self.default_template:
       self.__setup_notes_file(new_folder, new_run_name, copy_suffix)
-      self.__setup_data_file()
+      self.__setup_data_file(new_folder, new_run_name)
 
   def __setup_notes_file(self, new_folder, new_run_name, copy_suffix):
     '''
@@ -147,8 +147,14 @@ class RunFolderMaker:
     new_notes =  new_folder / (new_run_name + '_notes.txt')
     new_notes.write_text(content)
 
-  def __setup_data_file(self):
-    pass
+  def __setup_data_file(self, new_folder, new_run_name):
+    first_line = "run_name = '" + new_run_name + "'"
+    template_file = self.template_path / "data.py"
+    assert(template_file.exists())
+    template_content = template_file.read_text()
+    content = first_line + '\n' + template_content
+    new_file = new_folder / (new_run_name + '_data.py')
+    new_file.write_text(content)
 
   def __make_header(self, run_suffix):
     title = "Notes " + run_suffix
