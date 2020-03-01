@@ -178,7 +178,7 @@ class DataTracker:
 
   # Weapon requirments for D'Lonzo
   def __make_weapon_requirements():
-    duplicates = [Weapon.DAGGER, Weapon.BALLOCK_KNIFE, Weapon.BENT_SWORD, Weapon.POINTED_STICK]
+    duplicates = [DAGGER, BALLOCK_KNIFE, BENT_SWORD, POINTED_STICK]
     return dict(map(lambda w: (w, 2 if w in duplicates else 1), list(Weapon)))
   WEAPON_REQUIREMENTS = __make_weapon_requirements()
 
@@ -193,7 +193,7 @@ class DataTracker:
     self.current_entry = self.entries[0]
     self.totals = []
     # Add starting character.
-    self.gain_character(Character.RYU)
+    self.gain_character(RYU)
 
   #
   #
