@@ -403,7 +403,7 @@ class DataTracker:
 
     """
     self.__validate_split_number(split)
-    return self.totals[split].name
+    return self.totals[split].get_name()
 
   def get_party(self, split=None):
     """Return the party.
@@ -419,10 +419,8 @@ class DataTracker:
       IndexError: If split is negative or at least number_of_splits().
 
     """
-    if not split == None:
-      self.__validate_split_number(split)
-      return set(self.totals[split].party)
-    return set(self.current_entry.party)
+    e = self.current_entry if split == None else self.totals[split]
+    return e.get_party()
 
   def get_party_levels(self, split=None):
     """Return the party levels.
@@ -438,12 +436,7 @@ class DataTracker:
       IndexError: If split is negative or at least number_of_splits().
 
     """
-    if not split == None:
-      self.__validate_split_number(split)
-      return dict(self.totals[split].party_levels)
-    return add_dicts(
-        self.__get_previous_totals().party_levels, 
-        self.current_entry.party_levels)
+    return self.__get_dict(split, lambda e : e.get_party_levels())
 
   def get_weapons(self, split=None):
     """Return the weapons in inventory.
@@ -459,12 +452,15 @@ class DataTracker:
       IndexError: If split is negative or at least number_of_splits().
 
     """
+    return self.__get_dict(split, lambda e : e.get_weapons())
+
+  def __get_dict(self, split, dict_getter):
     if not split == None:
       self.__validate_split_number(split)
-      return dict(self.totals[split].weapons)
+      return dict_getter(self.totals[split])
     return add_dicts(
-        self.__get_previous_totals().weapons, 
-        self.current_entry.weapons)
+        dict_getter(self.__get_previous_totals()), 
+        dict_getter(self.current_entry))
 
   def have_all_weapons(self):
     """Returns True if weapon requirements are met, false otherwise."""
@@ -619,6 +615,18 @@ class DataTracker:
       self.zenny[Zenny.CURRENT] = 0
       self.zenny[Zenny.ENEMY_DROP] = 0
       self.weapons = dict(map(lambda a : (a, 0), list(Weapon)))
+
+    def get_name(self):
+      return self.name
+
+    def get_party(self):
+      return set(self.party)
+
+    def get_party_levels(self):
+      return dict(self.party_levels)
+
+    def get_weapons(self):
+      return dict(self.weapons)
 
     def empty_totals():
       e = DataTracker.Entry()
