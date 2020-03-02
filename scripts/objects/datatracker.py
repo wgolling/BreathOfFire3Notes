@@ -347,7 +347,8 @@ class DataTracker:
 
     """
     self.__validate_nonnegative_input(amt, "Current Zenny amount")
-    self.current_entry.zenny[Zenny.CURRENT] = amt
+    old_total = self.__get_previous_totals().zenny[Zenny.CURRENT]
+    self.current_entry.zenny[Zenny.CURRENT] = amt - old_total
 
   # Weapon methods
 
