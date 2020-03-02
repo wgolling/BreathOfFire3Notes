@@ -216,9 +216,7 @@ class DataTracker:
 
     """
     self.__validate_character_for_add(character)
-    self.current_entry.party.add(character)
-    if character not in self.current_entry.party_levels:
-      self.current_entry.party_levels[character] = self.STARTING_LEVELS[character]
+    self.current_entry.gain_character(character)
     weapon = self.STARTING_EQUIPMENT[character]
     if weapon:
       self.pick_up_weapon(weapon)
@@ -235,8 +233,7 @@ class DataTracker:
 
     """
     self.__validate_character_for_modify(character)
-    self.current_entry.party.remove(character)
-
+    self.current_entry.lose_character(character)
 
   def level_up(self, character, levels=1):
     """Level up character.
@@ -253,15 +250,13 @@ class DataTracker:
     """
     self.__validate_character_for_modify(character)
     self.__validate_positive_input(levels, "Levels gained")
-    pl = self.current_entry.party_levels
-    add_key_value_to_dict(pl, character, levels)
+    self.current_entry.add(character, levels)
 
   # Skill Ink methods
 
   def pick_up_skill_ink(self):
     """Add picked up Skill Ink to inventory."""
-    sk = self.current_entry.skill_ink
-    add_key_value_to_dict(sk, SkillInk.PICK_UP, 1)
+    self.current_entry.add(SkillInk.PICK_UP, 1)
 
   def buy_skill_ink(self, amt=1):
     """Add purchased Skill Ink to inventory.
@@ -274,13 +269,11 @@ class DataTracker:
 
     """
     self.__validate_positive_input(amt, "Skill Ink amount")
-    sk = self.current_entry.skill_ink
-    add_key_value_to_dict(sk, SkillInk.BUY, amt)
+    self.current_entry.add(SkillInk.BUY, amt)
 
   def use_skill_ink(self):
     """Take used Skill Ink out of inventory."""
-    sk = self.current_entry.skill_ink
-    add_key_value_to_dict(sk, SkillInk.USE, 1)
+    self.current_entry.add(SkillInk.USE, 1)
 
   # Zenny methods
 
@@ -295,7 +288,7 @@ class DataTracker:
 
     """
     self.__validate_positive_input(amt, "Picked up Zenny amount")
-    self.current_entry.zenny[Zenny.PICK_UP].append(amt)
+    self.current_entry.add(Zenny.PICK_UP, amt)
 
   def boss_drop_zenny(self, amt):
     """Add Zenny from Boss to total.
@@ -308,7 +301,7 @@ class DataTracker:
 
     """
     self.__validate_positive_input(amt, "Zenny dropped by Boss")
-    self.current_entry.zenny[Zenny.BOSS_DROP].append(amt)
+    self.current_entry.add(Zenny.BOSS_DROP, amt)
 
   def sell(self, amt):
     """Add Zenny from Sale to total.
@@ -321,7 +314,7 @@ class DataTracker:
 
     """
     self.__validate_positive_input(amt, "Zenny from sale")
-    self.current_entry.zenny[Zenny.SALES].append(amt)
+    self.current_entry.add(Zenny.SALES, amt)
 
   def buy(self, amt):
     """Take Zenny from purchase off of total.
@@ -334,7 +327,7 @@ class DataTracker:
 
     """
     self.__validate_positive_input(amt, "Zenny spent")
-    self.current_entry.zenny[Zenny.BUY].append(amt)
+    self.current_entry.add(Zenny.BUY, amt)
 
   def set_current_zenny(self, amt):
     """Set current Zenny total.
@@ -347,8 +340,8 @@ class DataTracker:
 
     """
     self.__validate_nonnegative_input(amt, "Current Zenny amount")
-    old_total = self.__get_previous_totals().zenny[Zenny.CURRENT]
-    self.current_entry.zenny[Zenny.CURRENT] = amt - old_total
+    old_total = self.__get_previous_totals().get(Zenny.CURRENT)
+    self.current_entry.add(Zenny.CURRENT, amt - old_total)
 
   # Weapon methods
 
@@ -363,7 +356,7 @@ class DataTracker:
 
     """
     self.__validate_weapon_for_add(weapon)
-    add_key_value_to_dict(self.current_entry.weapons, weapon, 1) 
+    self.current_entry.add(weapon, 1)
 
   def buy_weapon(self, weapon, cost):
     """Add purchased weapon to inventory.
@@ -678,7 +671,44 @@ class DataTracker:
 
     #
     #
-    # Getting methods
+    # Adding and getting methods
+
+    def gain_character(self, c):
+      self.party.add(c)
+      if c not in self.party_levels:
+        self.party_levels[c] = DataTracker.STARTING_LEVELS[c]
+
+    def lose_character(self, c):
+      self.party.remove(c)
+
+    def add(self, attribute, v):
+      assert(not self.finalized)
+      d = None
+      if isinstance(attribute, Character):
+        d = self.party_levels
+      elif isinstance(attribute, SkillInk):
+        d = self.skill_ink
+      elif isinstance(attribute, Zenny):
+        d = self.zenny
+      elif isinstance(attribute, Weapon):
+        d = self.weapons
+      DataTracker.Entry.add_key_value_to_dict(d, attribute, v)
+
+    def add_key_value_to_dict(d, k, v):
+      new_val = int(v)
+      old_val = 0 if not k in d else d[k]
+      try:
+        d[k] = old_val + new_val
+        return
+      except TypeError:
+        pass
+      try:
+        list(old_val)
+        d[k].append(new_val)
+        return
+      except:
+        raise
+
 
     def get(self, attribute):
       """Return the value of an attribute."""
