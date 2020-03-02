@@ -616,18 +616,6 @@ class DataTracker:
       self.zenny[Zenny.ENEMY_DROP] = 0
       self.weapons = dict(map(lambda a : (a, 0), list(Weapon)))
 
-    def get_name(self):
-      return self.name
-
-    def get_party(self):
-      return set(self.party)
-
-    def get_party_levels(self):
-      return dict(self.party_levels)
-
-    def get_weapons(self):
-      return dict(self.weapons)
-
     def empty_totals():
       e = DataTracker.Entry()
       e.zenny = dict(map(lambda a : (a, 0), list(Zenny)))
@@ -717,6 +705,17 @@ class DataTracker:
       except:
         raise
 
+    def get_name(self):
+      return self.name
+
+    def get_party(self):
+      return set(self.party)
+
+    def get_party_levels(self):
+      return dict(self.party_levels)
+
+    def get_weapons(self):
+      return dict(self.weapons)
 
     def get(self, attribute):
       """Return the value of an attribute."""
