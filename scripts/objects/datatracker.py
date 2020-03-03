@@ -634,16 +634,16 @@ class DataTracker:
       e.party = set(current_entry.party)
       current_gains = current_entry.party_levels
       previous_levels = previous_totals.party_levels
-      e.party_levels = add_dicts(current_gains, previous_levels)
+      e.party_levels = add_dicts(previous_levels, current_gains)
       # set skill ink
-      e.skill_ink = add_dicts(current_entry.skill_ink, previous_totals.skill_ink)
+      e.skill_ink = add_dicts(previous_totals.skill_ink, current_entry.skill_ink)
       # set zenny
       gain_totals = dict()
       for k in current_entry.zenny:
         gain_totals[k] = absolute_value(current_entry.zenny[k])
-      e.zenny = add_dicts(gain_totals, previous_totals.zenny)
+      e.zenny = add_dicts(previous_totals.zenny, gain_totals)
       # set weapons
-      e.weapons = add_dicts(current_entry.weapons, previous_totals.weapons)
+      e.weapons = add_dicts(previous_totals.weapons, current_entry.weapons)
       # Finalize
       e.finalize()
       return e
