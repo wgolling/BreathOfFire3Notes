@@ -192,7 +192,7 @@ class DataTracker:
   def __init__(self):
     """Construct a DataTracker instance."""
     # TODO make fields private.
-    self.entries = [DataTracker.Entry()]
+    self.entries = [DataTracker.Entry.first_entry()]
     self.current_entry = self.entries[0]
     self.totals = []
     # Add starting character.
@@ -610,19 +610,26 @@ class DataTracker:
       self.name = None
       # initialize party variables
       self.party = set()
-      self.party_levels = dict()
+
+      self.party_levels = dict(map(lambda a : (a, BasicValue()), list(Character)))
       # initialize skill ink variables
-      self.skill_ink = dict(map(lambda a : (a, 0), list(SkillInk)))
+      self.skill_ink = dict(map(lambda a : (a, BasicValue()), list(SkillInk)))
       # initialize zenny variables
-      self.zenny = dict(map(lambda a : (a, []), list(Zenny)))
-      self.zenny[Zenny.CURRENT] = 0
-      self.zenny[Zenny.ENEMY_DROP] = 0
+      self.zenny = dict(map(lambda a : (a, ListValue()), list(Zenny)))
+      self.zenny[Zenny.CURRENT] = BasicValue()
+      self.zenny[Zenny.ENEMY_DROP] = BasicValue()
       # initialize weapon variables
-      self.weapons = dict(map(lambda a : (a, 0), list(Weapon)))
+      self.weapons = dict(map(lambda a : (a, BasicValue()), list(Weapon)))
+
+    def first_entry():
+      e = DataTracker.Entry()
+      for c in list(Character):
+        value.add_key_int_to_dict(e.party_levels, c, DataTracker.STARTING_LEVELS[c])
+      return e
 
     def empty_totals():
       e = DataTracker.Entry()
-      e.zenny = dict(map(lambda a : (a, 0), list(Zenny)))
+      e.zenny = dict(map(lambda a : (a, BasicValue()), list(Zenny)))
       return e
 
     def new_totals_entry(current_entry, previous_totals):
@@ -634,16 +641,14 @@ class DataTracker:
       e.party = set(current_entry.party)
       current_gains = current_entry.party_levels
       previous_levels = previous_totals.party_levels
-      e.party_levels = add_dicts(previous_levels, current_gains)
+      e.party_levels = value.add_dicts(previous_levels, current_gains)
       # set skill ink
-      e.skill_ink = add_dicts(previous_totals.skill_ink, current_entry.skill_ink)
+      e.skill_ink = value.add_dicts(previous_totals.skill_ink, current_entry.skill_ink)
       # set zenny
       gain_totals = dict()
-      for k in current_entry.zenny:
-        gain_totals[k] = absolute_value(current_entry.zenny[k])
-      e.zenny = add_dicts(previous_totals.zenny, gain_totals)
+      e.zenny = value.add_dicts(previous_totals.zenny, current_entry.zenny)
       # set weapons
-      e.weapons = add_dicts(previous_totals.weapons, current_entry.weapons)
+      e.weapons = value.add_dicts(previous_totals.weapons, current_entry.weapons)
       # Finalize
       e.finalize()
       return e
@@ -660,8 +665,8 @@ class DataTracker:
 
     def finalize(self):
       """Compute derived fields and finalize."""
-      self.skill_ink[SkillInk.CURRENT] = self.__current_skill_ink()
-      self.zenny[Zenny.ENEMY_DROP] = self.__enemy_drop()
+      self.skill_ink[SkillInk.CURRENT] = BasicValue(self.__current_skill_ink())
+      self.zenny[Zenny.ENEMY_DROP] = BasicValue(self.__enemy_drop())
       self.finalized = True
 
     #
@@ -670,8 +675,6 @@ class DataTracker:
 
     def gain_character(self, c):
       self.party.add(c)
-      if c not in self.party_levels:
-        self.party_levels[c] = DataTracker.STARTING_LEVELS[c]
 
     def lose_character(self, c):
       self.party.remove(c)
@@ -687,22 +690,7 @@ class DataTracker:
         d = self.zenny
       elif isinstance(attribute, Weapon):
         d = self.weapons
-      DataTracker.Entry.add_key_value_to_dict(d, attribute, v)
-
-    def add_key_value_to_dict(d, k, v):
-      new_val = int(v)
-      old_val = 0 if not k in d else d[k]
-      try:
-        d[k] = old_val + new_val
-        return
-      except TypeError:
-        pass
-      try:
-        list(old_val)
-        d[k].append(new_val)
-        return
-      except:
-        raise
+      value.add_key_int_to_dict(d, attribute, v)
 
     def get_name(self):
       return self.name
@@ -711,21 +699,21 @@ class DataTracker:
       return set(self.party)
 
     def get_party_levels(self):
-      return dict(self.party_levels)
+      return value.int_dict(self.party_levels)
 
     def get_weapons(self):
-      return dict(self.weapons)
+      return value.int_dict(self.weapons)
 
     def get(self, attribute):
       """Return the value of an attribute."""
       if isinstance(attribute, SkillInk):
         if attribute == SkillInk.CURRENT:
           return self.__current_skill_ink()
-        return self.skill_ink.get(attribute, 0)
+        return self.skill_ink.get(attribute, 0).value()
       if isinstance(attribute, Zenny):
         if attribute == Zenny.ENEMY_DROP:
           return self.__enemy_drop()
-        return copy(self.zenny[attribute])
+        return self.zenny[attribute].raw()
 
     #
     #
@@ -734,19 +722,19 @@ class DataTracker:
     def __current_skill_ink(self):
       sk = self.skill_ink
       if self.finalized:
-        return sk[SkillInk.CURRENT]
-      return sk[SkillInk.PICK_UP] + sk[SkillInk.BUY] - sk[SkillInk.USE]
+        return sk[SkillInk.CURRENT].value()
+      return sk[SkillInk.PICK_UP].value() + sk[SkillInk.BUY].value() - sk[SkillInk.USE].value()
 
     def __zenny_subtotal(self):
       '''Current Zenny and enemy drops can be computed in terms of one another
       by using this subtotal.
       '''
       z = self.zenny
-      return absolute_value(z[Zenny.PICK_UP]) + absolute_value(z[Zenny.BOSS_DROP]) \
-          + absolute_value(z[Zenny.SALES]) - absolute_value(z[Zenny.BUY])
+      return z[Zenny.PICK_UP].value() + z[Zenny.BOSS_DROP].value() \
+          + z[Zenny.SALES].value() - z[Zenny.BUY].value()
 
     def __enemy_drop(self):
       z = self.zenny
       if self.finalized:
-        return z[Zenny.ENEMY_DROP]
-      return z[Zenny.CURRENT] - self.__zenny_subtotal()
+        return z[Zenny.ENEMY_DROP].value()
+      return z[Zenny.CURRENT].value() - self.__zenny_subtotal()

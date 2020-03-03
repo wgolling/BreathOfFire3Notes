@@ -119,8 +119,9 @@ class TestCharacterInterface(unittest.TestCase):
 
   def test_get_party_levels(self):
     pl = self.dt.get_party_levels()
-    assert(pl[RYU] == 1)
-    assert(not NINA in pl)
+    for c in list(Character):
+      assert(c in pl)
+      assert(pl[c] == DataTracker.STARTING_LEVELS[c])
 
   def test_gain_character(self):
     self.dt.gain_character(NINA)
