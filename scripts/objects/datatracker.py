@@ -1,6 +1,9 @@
 from enum import Enum, auto
 from copy import copy
 
+import value
+from value import BasicValue, ListValue
+
 #
 #
 # Enums
@@ -205,7 +208,7 @@ class DataTracker:
   # Character methods
 
   def gain_character(self, character):
-    """Add character to party.
+    """Add character to party with their starting weapon.
 
     Args:
       character (Character): The character being gained by the party.
@@ -608,12 +611,16 @@ class DataTracker:
       """Construct DataTracker.Entry instance."""
       self.finalized = False
       self.name = None
+      # initialize party variables
       self.party = set()
       self.party_levels = dict()
+      # initialize skill ink variables
       self.skill_ink = dict(map(lambda a : (a, 0), list(SkillInk)))
+      # initialize zenny variables
       self.zenny = dict(map(lambda a : (a, []), list(Zenny)))
       self.zenny[Zenny.CURRENT] = 0
       self.zenny[Zenny.ENEMY_DROP] = 0
+      # initialize weapon variables
       self.weapons = dict(map(lambda a : (a, 0), list(Weapon)))
 
     def empty_totals():
@@ -636,12 +643,7 @@ class DataTracker:
       # set zenny
       gain_totals = dict()
       for k in current_entry.zenny:
-        # gain_totals[k] = current_entry.zenny[k] if k in [Zenny.CURRENT, Zenny.ENEMY_DROP]\
-        #                                 else sum(current_entry.zenny[k])
-        try:
-          gain_totals[k] = int(current_entry.zenny[k])
-        except TypeError:
-          gain_totals[k] = sum(current_entry.zenny[k])
+        gain_totals[k] = absolute_value(current_entry.zenny[k])
       e.zenny = add_dicts(gain_totals, previous_totals.zenny)
       # set weapons
       e.weapons = add_dicts(current_entry.weapons, previous_totals.weapons)
@@ -652,7 +654,7 @@ class DataTracker:
     def new_current_entry(totals_entry):
       """Construct a new current entry from previous totals."""
       e = DataTracker.Entry()
-      e.party = set(totals_entry.party)
+      e.party = set(totals_entry.get_party())
       return e
 
     #
@@ -739,7 +741,7 @@ class DataTracker:
       return sk[SkillInk.PICK_UP] + sk[SkillInk.BUY] - sk[SkillInk.USE]
 
     def __zenny_subtotal(self):
-      '''Current Zenny and enemy urops can be computed in terms of one another
+      '''Current Zenny and enemy drops can be computed in terms of one another
       by using this subtotal.
       '''
       z = self.zenny
