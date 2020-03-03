@@ -32,10 +32,18 @@ def add_key_value_to_dict(d, k, v):
 
 def copy_dict(d):
   '''Copies a dict of cloneable Values.'''
-  d2 = dict()
-  for k in d:
-    d2[k] = d[k].clone()
-  return d2
+  return __dict_mapper(d, lambda v : v.clone())
+
+def int_dict(d):
+  '''Makes a dict with the same keys and whose int values are d[k].value().'''
+  return __dict_mapper(d, lambda v : v.value())
+
+def raw_dict(d):
+  return __dict_mapper(d, lambda v : v.raw())
+
+def __dict_mapper(d, f):
+  return dict(map(lambda k : (k, f(d[k])), d))
+
 
 def add_dicts(d1, d2):
   '''Adds two dicts of Values together.

@@ -52,6 +52,20 @@ class TestStaticMethods(TestCase):
     add_key_int_to_dict(d2, 'a', 10)
     assert(d2 != self.d)
 
+  def test_int_dict(self):
+    d2 = int_dict(self.d)
+    assert(not d2 is self.d)
+    assert(d2['a'] == 0)
+    assert(d2['b'] == 5)
+    assert(d2['c'] == 5)
+
+  def test_raw_dict(self):
+    d2 = raw_dict(self.d)
+    assert(not d2 is self.d)
+    assert(d2['a'] == 0)
+    assert(d2['b'] == 5)
+    assert(d2['c'] == [5])
+
   def test_add_dicts(self):
     d2 = {
       'a': ListValue([1,2,3]),

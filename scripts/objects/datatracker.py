@@ -387,10 +387,7 @@ class DataTracker:
 
   def __get_previous_totals(self):
     """Return the entry containing the totals from the previous split."""
-    if not self.totals:
-      return DataTracker.Entry.empty_totals()
-    else:
-      return self.totals[self.number_of_splits() - 1]
+    return DataTracker.Entry.empty_totals() if not self.totals else self.totals[self.number_of_splits() - 1]
 
   def get_name(self, split):
     """Return the name of a split.
