@@ -81,7 +81,7 @@ FIRE_CHRYSM   = Weapon.FIRE_CHRYSM
 # Helper functions
 
 def add_key_value_to_dict(d, k, v):
-  """Add add a key/value pair to a dict.
+  """Add a key/value pair to a dict.
 
   Args:
     d (dict of ?: int): A dictionary.
@@ -452,7 +452,7 @@ class DataTracker:
     """Return the increase in an attribute during a given split.
 
     Args:
-      attribute ("name" or Character or SkillInk or Zenny or Weapon): The
+      attribute ("name" or SkillInk or Zenny): The
           attribute to retrieve data for.
       split (int): Selects the split to retrive data for.
 
@@ -467,16 +467,18 @@ class DataTracker:
     self.__validate_attribute_type(attribute)
     self.__validate_split_number(split)
     return self.entries[split].get(attribute)
+
   def get_gain_raw(self, attribute, split):
-    """Return the increase in an attribute during a given split.
+    """Return the increase in an attribute during a given split, in int or list form.
 
     Args:
-      attribute ("name" or Character or SkillInk or Zenny or Weapon): The
+      attribute ("name" or SkillInk or Zenny): The
           attribute to retrieve data for.
       split (int): Selects the split to retrive data for.
 
     Returns:
-      The amount gained for a given attribute during the specified split.
+      The amount gained for a given attribute during the specified split. It can
+      be either an int or a list of ints depending on the attribute.
 
     Raises:
       IndexError: If split is negative or at least number_of_splits().
@@ -491,7 +493,7 @@ class DataTracker:
     """Return the total of an attribute.
 
     Args:
-      attribute ("name" or Character or SkillInk or Zenny or Weapon): The
+      attribute ("name" or SkillInk or Zenny): The
           attribute to retrieve data for.
       split (:obj:`int`, optional): Selects the split. Defaults to -1.
           If not specified, returns current total.
@@ -516,7 +518,7 @@ class DataTracker:
     """Return current value of an attribute.
 
     Args:
-      attribute ("name" or Character or SkillInk or Zenny or Weapon): The
+      attribute ("name" or SkillInk or Zenny): The
           attribute to retrieve data for.
 
     Returns:
@@ -530,14 +532,15 @@ class DataTracker:
     return self.current_entry.get(attribute)
 
   def get_current_raw(self, attribute):
-    """Return current value of an attribute.
+    """Return current value of an attribute, in int or list form.
 
     Args:
-      attribute ("name" or Character or SkillInk or Zenny or Weapon): The
+      attribute ("name" or SkillInk or Zenny): The
           attribute to retrieve data for.
 
     Returns:
-      The current amount for a given attribute.
+      The current amount for a given attribute. Can be either an int or a list,
+      depending on the attribute.
 
     Raises:
       KeyError: If attribute is not SkillInk or Zenny type.
@@ -719,25 +722,21 @@ class DataTracker:
 
     def get(self, attribute):
       """Return the value of an attribute."""
-      if isinstance(attribute, SkillInk):
-        if attribute == SkillInk.CURRENT:
-          return self.__current_skill_ink()
-        return self.skill_ink.get(attribute, 0).value()
-      if isinstance(attribute, Zenny):
-        if attribute == Zenny.ENEMY_DROP:
-          return self.__enemy_drop()
-        return self.zenny[attribute].value()
+      return self.__get_helper(attribute, lambda v : v.value())  
 
     def get_raw(self, attribute):
       """Return the value of an attribute."""
+      return self.__get_helper(attribute, lambda v : v.raw())
+
+    def __get_helper(self, attribute, f):
       if isinstance(attribute, SkillInk):
         if attribute == SkillInk.CURRENT:
           return self.__current_skill_ink()
-        return self.skill_ink.get(attribute, 0).value()
+        return f(self.skill_ink.get(attribute, 0))
       if isinstance(attribute, Zenny):
         if attribute == Zenny.ENEMY_DROP:
           return self.__enemy_drop()
-        return self.zenny[attribute].raw()
+        return f(self.zenny[attribute])
 
     #
     #
