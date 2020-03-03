@@ -118,29 +118,6 @@ def add_dicts(d1, d2):
     add_key_value_to_dict(new_dict, k, d2[k])
   return new_dict 
 
-def absolute_value(arg):
-  """Return a numerical value representing the argument.
-
-  Args:
-    arg (int or list of int): Pseudo-numerical input.
-
-  Returns:
-    The value `arg` if `arg` is int, or `sum(arg)` if arg is a summable.
-
-  Raises:
-    TypeError: If `arg` is not int or a summable list.
-
-  """
-  try: 
-    return int(arg)
-  except:
-    pass
-
-  try:
-    return sum(list(arg))
-  except:
-    raise TypeError("Argument must be int or list of int.")
-
 #
 #
 # DataTracker class.
@@ -490,6 +467,25 @@ class DataTracker:
     self.__validate_attribute_type(attribute)
     self.__validate_split_number(split)
     return self.entries[split].get(attribute)
+  def get_gain_raw(self, attribute, split):
+    """Return the increase in an attribute during a given split.
+
+    Args:
+      attribute ("name" or Character or SkillInk or Zenny or Weapon): The
+          attribute to retrieve data for.
+      split (int): Selects the split to retrive data for.
+
+    Returns:
+      The amount gained for a given attribute during the specified split.
+
+    Raises:
+      IndexError: If split is negative or at least number_of_splits().
+      KeyError: If attribute is not SkillInk or Zenny type.
+
+    """ 
+    self.__validate_attribute_type(attribute)
+    self.__validate_split_number(split)
+    return self.entries[split].get_raw(attribute)
 
   def get_total(self, attribute, split=None):
     """Return the total of an attribute.
@@ -512,7 +508,7 @@ class DataTracker:
     if (split == None) or (split == len(self.entries) - 1):
       gain = self.get_current(attribute)
       prev_total = self.__get_previous_totals().get(attribute)
-      return absolute_value(gain) + absolute_value(prev_total)
+      return gain + prev_total
     self.__validate_split_number(split)
     return self.totals[split].get(attribute)
 
@@ -532,6 +528,23 @@ class DataTracker:
     """
     self.__validate_attribute_type(attribute)
     return self.current_entry.get(attribute)
+
+  def get_current_raw(self, attribute):
+    """Return current value of an attribute.
+
+    Args:
+      attribute ("name" or Character or SkillInk or Zenny or Weapon): The
+          attribute to retrieve data for.
+
+    Returns:
+      The current amount for a given attribute.
+
+    Raises:
+      KeyError: If attribute is not SkillInk or Zenny type.
+
+    """
+    self.__validate_attribute_type(attribute)
+    return self.current_entry.get_raw(attribute)
 
   #
   #
@@ -705,6 +718,17 @@ class DataTracker:
       return value.int_dict(self.weapons)
 
     def get(self, attribute):
+      """Return the value of an attribute."""
+      if isinstance(attribute, SkillInk):
+        if attribute == SkillInk.CURRENT:
+          return self.__current_skill_ink()
+        return self.skill_ink.get(attribute, 0).value()
+      if isinstance(attribute, Zenny):
+        if attribute == Zenny.ENEMY_DROP:
+          return self.__enemy_drop()
+        return self.zenny[attribute].value()
+
+    def get_raw(self, attribute):
       """Return the value of an attribute."""
       if isinstance(attribute, SkillInk):
         if attribute == SkillInk.CURRENT:

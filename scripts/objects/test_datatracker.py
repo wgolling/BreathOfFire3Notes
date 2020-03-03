@@ -68,20 +68,6 @@ class TestHelperMethods(unittest.TestCase):
     with self.assertRaises(TypeError):
       add_dicts(dict(), 0)    
 
-  #
-  # Absolute Value
-
-  def test_abolute_value(self):
-    assert(3 == absolute_value(3))
-    assert(3 == absolute_value([1,2]))
-    assert(0 == absolute_value([]))
-
-  def test_abolute_value_wrong_type(self):
-    with self.assertRaises(TypeError):
-      absolute_value("buh")    
-    with self.assertRaises(TypeError):
-      absolute_value(["buh", "foo"])    
-
 #
 # 
 # DataTracker
@@ -210,7 +196,7 @@ class TestZennyInterface(unittest.TestCase):
   def test_pick_up_zenny(self):
     self.dt.pick_up_zenny(100)
     self.dt.pick_up_zenny(50)
-    current_zenny = self.dt.get_current(Zenny.PICK_UP)
+    current_zenny = self.dt.get_current_raw(Zenny.PICK_UP)
     assert(len(current_zenny) == 2)
     assert(current_zenny[0] == 100)
     assert(current_zenny[1] == 50)
@@ -222,7 +208,7 @@ class TestZennyInterface(unittest.TestCase):
   def test_boss_drop_zenny(self):
     self.dt.boss_drop_zenny(100)
     self.dt.boss_drop_zenny(50)
-    current_zenny = self.dt.get_current(Zenny.BOSS_DROP)
+    current_zenny = self.dt.get_current_raw(Zenny.BOSS_DROP)
     assert(len(current_zenny) == 2)
     assert(current_zenny[0] == 100)
     assert(current_zenny[1] == 50)
@@ -235,7 +221,7 @@ class TestZennyInterface(unittest.TestCase):
   def test_sell(self):
     self.dt.sell(100)
     self.dt.sell(50)
-    current_zenny = self.dt.get_current(Zenny.SALES)
+    current_zenny = self.dt.get_current_raw(Zenny.SALES)
     assert(len(current_zenny) == 2)
     assert(current_zenny[0] == 100)
     assert(current_zenny[1] == 50)
@@ -247,7 +233,7 @@ class TestZennyInterface(unittest.TestCase):
   def test_buy(self):
     self.dt.buy(100)
     self.dt.buy(50)
-    current_zenny = self.dt.get_current(Zenny.BUY)
+    current_zenny = self.dt.get_current_raw(Zenny.BUY)
     assert(len(current_zenny) == 2)
     assert(current_zenny[0] == 100)
     assert(current_zenny[1] == 50)
@@ -297,7 +283,8 @@ class TestWeaponInterface(unittest.TestCase):
     dt.buy_weapon(DAGGER, 50)
     weapons = dt.get_weapons()
     assert(weapons[DAGGER] == 2)
-    assert(dt.get_current(Zenny.BUY) == [50])
+    assert(dt.get_current(Zenny.BUY) == 50)
+    assert(dt.get_current_raw(Zenny.BUY) == [50])
 
   def test_buy_weapon_wrong_type(self):
     with self.assertRaises(TypeError):
@@ -407,44 +394,44 @@ class TestSplitting(unittest.TestCase):
     dt.buy(600) # 220
     dt.set_current_zenny(250)
     dt.split("Pick up zenny")
-    assert(dt.get_gain(Zenny.PICK_UP    , 0) == [100, 50])
+    assert(dt.get_gain_raw(Zenny.PICK_UP    , 0) == [100, 50])
     assert(dt.get_total(Zenny.PICK_UP   , 0) == 150)
-    assert(dt.get_gain(Zenny.BOSS_DROP  , 0) == [500])
+    assert(dt.get_gain_raw(Zenny.BOSS_DROP  , 0) == [500])
     assert(dt.get_total(Zenny.BOSS_DROP , 0) == 500)
-    assert(dt.get_gain(Zenny.SALES      , 0) == [120, 50])
+    assert(dt.get_gain_raw(Zenny.SALES      , 0) == [120, 50])
     assert(dt.get_total(Zenny.SALES     , 0) == 170)
-    assert(dt.get_gain(Zenny.BUY        , 0) == [600])
+    assert(dt.get_gain_raw(Zenny.BUY        , 0) == [600])
     assert(dt.get_total(Zenny.BUY       , 0) == 600)
-    assert(dt.get_gain(Zenny.CURRENT    , 0) == 250)
+    assert(dt.get_gain_raw(Zenny.CURRENT    , 0) == 250)
     assert(dt.get_total(Zenny.CURRENT   , 0) == 250)
-    assert(dt.get_gain(Zenny.ENEMY_DROP , 0) == 30)
+    assert(dt.get_gain_raw(Zenny.ENEMY_DROP , 0) == 30)
     assert(dt.get_total(Zenny.ENEMY_DROP, 0) == 30)
 
-    assert(dt.get_current(Zenny.PICK_UP    ) == [])
+    assert(dt.get_current_raw(Zenny.PICK_UP    ) == [])
     assert(dt.get_total(Zenny.PICK_UP   , 1) == 150)
-    assert(dt.get_current(Zenny.BOSS_DROP  ) == [])
+    assert(dt.get_current_raw(Zenny.BOSS_DROP  ) == [])
     assert(dt.get_total(Zenny.BOSS_DROP , 1) == 500)
-    assert(dt.get_current(Zenny.SALES      ) == [])
+    assert(dt.get_current_raw(Zenny.SALES      ) == [])
     assert(dt.get_total(Zenny.SALES     , 1) == 170)
-    assert(dt.get_current(Zenny.BUY        ) == [])
+    assert(dt.get_current_raw(Zenny.BUY        ) == [])
     assert(dt.get_total(Zenny.BUY       , 1) == 600)
-    assert(dt.get_current(Zenny.CURRENT    ) == 0)
+    assert(dt.get_current_raw(Zenny.CURRENT    ) == 0)
     assert(dt.get_total(Zenny.CURRENT   , 1) == 250)
-    assert(dt.get_current(Zenny.ENEMY_DROP ) == 0)
+    assert(dt.get_current_raw(Zenny.ENEMY_DROP ) == 0)
     assert(dt.get_total(Zenny.ENEMY_DROP, 1) == 30)
 
     dt.split("Another split")
-    assert(dt.get_gain(Zenny.PICK_UP    , 1) == [])
+    assert(dt.get_gain_raw(Zenny.PICK_UP    , 1) == [])
     assert(dt.get_total(Zenny.PICK_UP   , 1) == 150)
-    assert(dt.get_gain(Zenny.BOSS_DROP  , 1) == [])
+    assert(dt.get_gain_raw(Zenny.BOSS_DROP  , 1) == [])
     assert(dt.get_total(Zenny.BOSS_DROP , 1) == 500)
-    assert(dt.get_gain(Zenny.SALES      , 1) == [])
+    assert(dt.get_gain_raw(Zenny.SALES      , 1) == [])
     assert(dt.get_total(Zenny.SALES     , 1) == 170)
-    assert(dt.get_gain(Zenny.BUY        , 1) == [])
+    assert(dt.get_gain_raw(Zenny.BUY        , 1) == [])
     assert(dt.get_total(Zenny.BUY       , 1) == 600)
-    assert(dt.get_gain(Zenny.CURRENT    , 1) == 0)
+    assert(dt.get_gain_raw(Zenny.CURRENT    , 1) == 0)
     assert(dt.get_total(Zenny.CURRENT   , 1) == 250)
-    assert(dt.get_gain(Zenny.ENEMY_DROP , 1) == 0)
+    assert(dt.get_gain_raw(Zenny.ENEMY_DROP , 1) == 0)
     assert(dt.get_total(Zenny.ENEMY_DROP, 1) == 30)
   #
   # Test Weapons
