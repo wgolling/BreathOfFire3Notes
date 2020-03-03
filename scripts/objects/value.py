@@ -1,3 +1,55 @@
+def add_key_int_to_dict(d, k, v):
+  '''Adds a (key, int) pair to a dict of Values.
+
+  Assumes k is a key in d. Mutates d.
+
+  Args:
+    d (dict ?: Value): A dictionary whose values respond to .add(int) and .clone().
+    k (?): An arbitrary key (must be hashable).
+    v (int): The int to add to the value
+
+  Raises:
+    KeyError: If k is not in d.
+
+  '''
+  d[k].add(v)
+
+def add_key_value_to_dict(d, k, v):
+  '''Adds a (key, Value) pair to a dict of Values.
+
+  Mutates d.
+
+  Args:
+    d (dict ?: Value): A dictionary whose values respond to .add(int) and .clone().
+    k (?): An arbitrary key (must be hashable).
+    v (Value): The Value object to add to the value in the d.
+
+  '''
+  if k in d:
+    d[k].add(v.value())
+  else:
+    d[k] = v.clone()
+
+def copy_dict(d):
+  '''Copies a dict of cloneable Values.'''
+  d2 = dict()
+  for k in d:
+    d2[k] = d[k].clone()
+  return d2
+
+def add_dicts(d1, d2):
+  '''Adds two dicts of Values together.
+  
+  Makes a copy of the first dict, and adds the values from the second dict.
+
+  '''
+  new_dict = copy_dict(d1)
+  for k in d2:
+    add_key_value_to_dict(new_dict, k, d2[k])
+  return new_dict
+
+
+
 class BasicValue:
   '''A basic value class. The value is represented by an int.'''
 
@@ -12,6 +64,11 @@ class BasicValue:
 
     '''
     self.__value = int(initial_value)
+
+  def __eq__(self, other):
+    if isinstance(other, BasicValue):
+      return self.__value == other.__value
+    return false
 
   def print(self):
     '''Prints value.
@@ -50,8 +107,10 @@ class BasicValue:
       ValueError: If x is not convertible to int.
 
     '''
-
     self.__value += int(x)
+
+  def clone(self):
+    return BasicValue(initial_value=self.__value)
 
 
 class ListValue:
@@ -65,6 +124,11 @@ class ListValue:
 
     '''
     self.__value = [int(x) for x in initial_value]
+
+  def __eq__(self, other):
+    if isinstance(other, ListValue):
+      return self.__value == other.__value
+    return false
 
   def print(self):
     '''Prints value.
@@ -117,3 +181,6 @@ class ListValue:
 
     '''
     self.__value.append(int(x))
+
+  def clone(self):
+    return ListValue(initial_value=self.__value)
