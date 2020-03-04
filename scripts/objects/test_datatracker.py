@@ -517,5 +517,19 @@ class TestGetterMethodErrors(unittest.TestCase):
   def test_get_current_wrong_type(self):
     self.wrong_key_type(self.dt.get_current)
 
+  #
+  # Strings
+
+  def test_get_strings(self):
+    dt = self.dt
+    dt.gain_character(NINA)
+    dt.level_up(RYU)
+    dt.split("First split")
+    strings = dt.get_strings()
+    gains = strings[0]['gain']
+    print(strings)
+    print(gains)
+    assert(gains['party_levels'][RYU] == '2')
+
 if __name__ == "__main__":
   unittest.main()

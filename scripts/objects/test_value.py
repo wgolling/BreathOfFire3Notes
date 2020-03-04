@@ -66,6 +66,17 @@ class TestStaticMethods(TestCase):
     assert(d2['b'] == 5)
     assert(d2['c'] == [5])
 
+  def test_string_dict(self):
+    d2 = string_dict(self.d)
+    assert(not d2 is self.d)
+    assert(d2['a'] == '0')
+    assert(d2['b'] == '5')
+    assert(d2['c'] == '5')
+    self.d['c'].add(2)
+    assert(d2['c'] == '5')
+    d2 = string_dict(self.d)
+    assert(d2['c'] == '5+2=7')
+
   def test_add_dicts(self):
     d2 = {
       'a': ListValue([1,2,3]),

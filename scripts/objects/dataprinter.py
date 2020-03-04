@@ -2,9 +2,10 @@ from datatracker import *
 
 class DataPrinter():
    
-  def __init__(self, name, data_tracker, line_width=60):
+  def __init__(self, name, data_tracker, strings=[], line_width=60):
     self.name = name
     self.dt = data_tracker
+    self.strings = strings
     self.line_width = line_width
 
   def print(self):
@@ -99,7 +100,7 @@ class DataPrinter():
   def __print_zenny(self, i):
     s = 'Zenny:\n'
     for z in list(Zenny):
-      s += self.__print_line(z.name, self.dt.get_gain(z, i), self.dt.get_total(z, split=i))
+      s += self.__print_line(z.name, self.dt.get_gain_raw(z, i), self.dt.get_total(z, split=i))
     return s
 
   def __print_skill_ink(self, i):

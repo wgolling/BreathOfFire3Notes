@@ -549,6 +549,16 @@ class DataTracker:
     self.__validate_attribute_type(attribute)
     return self.current_entry.get_raw(attribute)
 
+  def get_strings(self):
+    strings = []
+    for i in range(len(self.totals)):
+      strings.append({
+        'gain': self.entries[i].get_strings(), 
+        'total': self.totals[i].get_strings(),
+      })
+    return strings
+
+
   #
   #
   # Split
@@ -737,6 +747,15 @@ class DataTracker:
         if attribute == Zenny.ENEMY_DROP:
           return self.__enemy_drop()
         return f(self.zenny[attribute])
+
+    def get_strings(self):
+      '''Returns to string version of each value.'''
+      strings = dict()
+      strings['party_levels'] = value.string_dict(self.party_levels)
+      strings['zenny'] = value.string_dict(self.zenny)
+      strings['skill_ink'] = value.string_dict(self.skill_ink)
+      strings['weapons'] = value.string_dict(self.weapons)
+      return strings
 
     #
     #

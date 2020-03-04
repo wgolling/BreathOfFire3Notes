@@ -41,6 +41,9 @@ def int_dict(d):
 def raw_dict(d):
   return __dict_mapper(d, lambda v : v.raw())
 
+def string_dict(d):
+  return __dict_mapper(d, lambda v : v.print())
+
 def __dict_mapper(d, f):
   return dict(map(lambda k : (k, f(d[k])), d))
 
