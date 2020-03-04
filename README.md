@@ -23,10 +23,11 @@ The second part of the project is the `DataTracker` class in
 `scripts/objects/datatracker.py`. This object tracks several game statistics: 
 the current members of the party, the party's levels, weapon amounts for the 
 [D'Lonzo checklist](https://bof.fandom.com/wiki/D%27Lonzo), and several attributes
-related to Skill Ink and Zenny. This information is organized into time segments, 
-or "splits", and there are public interface methods for accessing the data from 
-a given split. For a given run, the user writes commands in the `data.py` file 
-to input commands to their `DataTracker`'s interface.
+related to Skill Ink and Zenny. Since some attributes are kept track of with ints 
+and others with lists of ints, the annoying type-checking is taken care of with
+`BasicValue` and `ListValue` classes which have the same interface. This information is organized into time segments, or "splits", and there are public interface methods
+for accessing the data from a given split. For a given run, the user writes
+commands in the `data.py` file to input commands to their `DataTracker`'s interface.
 
 The third piece is the `DataPrinter` object, which produces a readable output string
 from the information in a `DataTracker`. It has a `print()` method that outputs
@@ -43,8 +44,7 @@ can't break anything.
 
 ### `DataTracker`
 
-- Write a `Value` class to replace `absolute_value` helper function and some 
-awkward type checking and printing difficulties.
+- Clean up/refactor etc.
 
 ### `DataPrinter`
 
