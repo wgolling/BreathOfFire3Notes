@@ -5,9 +5,6 @@ from datatracker import *
 dt = DataTracker()
 
 # Segement 0: Awakening
-dt.pick_up_weapon(MELTED_BLADE)
-dt.gain_character(REI)
-dt.gain_character(TEEPO)
 dt.split("Awakening")
 
 
@@ -32,5 +29,5 @@ file = Path(path_to_run_folder / (run_name + "_data.txt"))
 # create file
 Path.touch(file)
 # create output and write to file
-dp = DataPrinter(run_name, dt)
+dp = DataPrinter(run_name, dt.get_strings())
 file.write_text(dp.print())
