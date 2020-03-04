@@ -526,10 +526,8 @@ class TestGetterMethodErrors(unittest.TestCase):
     dt.level_up(RYU)
     dt.split("First split")
     strings = dt.get_strings()
-    gains = strings[0]['gain']
-    print(strings)
-    print(gains)
-    assert(gains['party_levels'][RYU] == '2')
+    gains = strings[0]['party_levels']['gain']
+    assert(gains[RYU] == '2')
 
 if __name__ == "__main__":
   unittest.main()

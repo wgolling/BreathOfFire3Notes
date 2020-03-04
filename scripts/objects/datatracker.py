@@ -550,11 +550,34 @@ class DataTracker:
     return self.current_entry.get_raw(attribute)
 
   def get_strings(self):
+    '''Want:
+    list of dicts with attributes a, party_levels....
+    values of the dict are divided into gain/total.
+
+    '''
     strings = []
     for i in range(len(self.totals)):
+      entry_gains = self.entries[i].get_strings()
+      entry_totals = self.totals[i].get_strings()
       strings.append({
-        'gain': self.entries[i].get_strings(), 
-        'total': self.totals[i].get_strings(),
+        'name': self.totals[i].get_name(),
+        'party_levels': {
+          'gain': entry_gains['party_levels'],
+          'total': entry_totals['party_levels'],
+        },
+        'zenny': {
+          'gain': entry_gains['zenny'],
+          'total': entry_totals['zenny'],
+        },
+        'skill_ink': {
+          'gain': entry_gains['skill_ink'],
+          'total': entry_totals['skill_ink'],
+        },
+        'weapon_requirements': dict(map(lambda c : (c, str(self.WEAPON_REQUIREMENTS[c])), list(self.WEAPON_REQUIREMENTS))),
+        'weapons': {
+          'gain': entry_gains['weapons'],
+          'total': entry_totals['weapons'],
+        },
       })
     return strings
 
@@ -751,6 +774,7 @@ class DataTracker:
     def get_strings(self):
       '''Returns to string version of each value.'''
       strings = dict()
+      strings['name'] = self.get_name()
       strings['party_levels'] = value.string_dict(self.party_levels)
       strings['zenny'] = value.string_dict(self.zenny)
       strings['skill_ink'] = value.string_dict(self.skill_ink)

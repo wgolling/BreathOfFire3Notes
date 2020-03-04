@@ -2,15 +2,14 @@ from datatracker import *
 
 class DataPrinter():
    
-  def __init__(self, name, data_tracker, strings=[], line_width=60):
+  def __init__(self, name, strings, line_width=60):
     self.name = name
-    self.dt = data_tracker
     self.strings = strings
     self.line_width = line_width
 
   def print(self):
     s = self.__make_header()
-    for i in range(0, self.dt.number_of_splits()):
+    for i in range(0, len(self.strings)):
       s += self.print_entry(i)
     return s
 
@@ -27,9 +26,9 @@ class DataPrinter():
     return header
 
   def print_entry(self, i):
-    if i < 0 or i >= self.dt.number_of_splits():
+    if i < 0 or i >= len(self.strings):
       raise IndexError("Split index must be nonnegative and less than the number of splits.")
-    s = DataPrinter.__make_entry_header(self.dt.get_name(i))
+    s = DataPrinter.__make_entry_header(self.strings[i]['name'])
     s += self.__print_characters(i) + '\n'
     s += self.__print_zenny(i) + '\n'
     s += self.__print_skill_ink(i) + '\n'
@@ -47,18 +46,20 @@ class DataPrinter():
   def __print_characters(self, i):
     s = ''
     w = 0
+    strings = self.strings[i]['party_levels']
     for c in list(Character):
-      if c in self.dt.get_party(split=i):
-        suf = c.name + ': ' + str(self.dt.get_party_levels(split=i)[c])
+      if c in strings['total']:
+        suf = c.name + ': ' + strings['total'][c]
         s, w = self.__add_to_lined_string(s, w, suf)
     return s + '\n'
 
   def __print_weapon(self, i):
     s = 'Weapon:\n'
     w = 0
-    weapons = self.dt.get_weapons(split=i)
+    strings_dict = self.strings[i]
+    strings = strings_dict['weapons']['total']
     for c in list(Weapon):
-      suf = c.name + ': ' + str(weapons[c]) + '/' + str(self.dt.WEAPON_REQUIREMENTS[c])
+      suf = c.name + ': ' + strings[c] + '/' + strings_dict['weapon_requirements'][c]
       s, w = self.__add_to_lined_string(s, w, suf)
     return s + '\n'
 
@@ -79,32 +80,20 @@ class DataPrinter():
   #
   # Zenny and SkillInk printing
 
-  def __print_list(l):
-    try:
-      int(l)
-    except TypeError:
-      pass
-    else:
-      return str(l)
-    if len(l) == 0:
-      return '0'
-    if len(l) == 1:
-      return str(l[0])
-    return '+'.join(str(i) for i in l) + ' = ' + str(sum(l))
-
   def __print_line(self, att, gain, total):
-    str_gain = DataPrinter.__print_list(gain)
-    padding = self.line_width - len(att) - len(str_gain) - len(str(total)) - 3
-    return att + ':' + padding * '.' + str_gain + '(' + str(total) + ')' + '\n'
+    padding = self.line_width - len(att) - len(gain) - len(total) - 3
+    return att + ':' + padding * '.' + gain + '(' + total + ')' + '\n'
 
   def __print_zenny(self, i):
     s = 'Zenny:\n'
+    strings = self.strings[i]['zenny']
     for z in list(Zenny):
-      s += self.__print_line(z.name, self.dt.get_gain_raw(z, i), self.dt.get_total(z, split=i))
+      s += self.__print_line(z.name, strings['gain'][z], strings['total'][z])
     return s
 
   def __print_skill_ink(self, i):
     s = 'Skill Ink:\n'
+    strings = self.strings[i]['skill_ink']
     for att in list(SkillInk):
-      s += self.__print_line(att.name, self.dt.get_gain(att, i), self.dt.get_total(att, split=i))
+      s += self.__print_line(att.name, strings['gain'][att], strings['total'][att])
     return s
