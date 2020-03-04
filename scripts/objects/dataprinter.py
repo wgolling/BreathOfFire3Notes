@@ -3,11 +3,20 @@ from datatracker import *
 class DataPrinter():
    
   def __init__(self, name, strings, line_width=60):
+    '''A helper object for printing a DataTracker.
+
+    Args:
+      name (str): The name of the DataTracker instance.
+      strings (custom structure): The output of DataTracker.get_strings().
+      line_width (int, optional): The width of any line.
+
+    '''
     self.name = name
     self.strings = strings
     self.line_width = line_width
 
   def print(self):
+    '''Returns a string representing an entire DataTracker.'''
     s = self.__make_header()
     for i in range(0, len(self.strings)):
       s += self.print_entry(i)
@@ -26,6 +35,7 @@ class DataPrinter():
     return header
 
   def print_entry(self, i):
+    '''Returns a string representing a single entry.'''
     if i < 0 or i >= len(self.strings):
       raise IndexError("Split index must be nonnegative and less than the number of splits.")
     s = DataPrinter.__make_entry_header(self.strings[i]['name'])

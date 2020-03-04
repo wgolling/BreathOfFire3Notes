@@ -550,9 +550,16 @@ class DataTracker:
     return self.current_entry.get_raw(attribute)
 
   def get_strings(self):
-    '''Want:
-    list of dicts with attributes a, party_levels....
-    values of the dict are divided into gain/total.
+    '''Returns a structure containing all string values of the attributes.
+    
+    The return value is a list whose length is self.number_of_splits(). For each
+    valid index i, the ith entry is a dict with string keys 'name', 'party_levels', 
+    'zenny', 'skill_ink', 'weapon_requirements', and 'weapons'. The value for
+    'name' is the name of the split, and the value for 'weapon_requirements'
+    is a dict from Character to string, containing the string values of each
+    weapon requirement. Otherwise, the value for a key att will be another dict
+    with keys 'gain' and 'total', and their respective values will be
+    self.entries[i].get_strings()[att] and self.totales[i].get_strings()[att]. 
 
     '''
     strings = []
@@ -758,7 +765,7 @@ class DataTracker:
       return self.__get_helper(attribute, lambda v : v.value())  
 
     def get_raw(self, attribute):
-      """Return the value of an attribute."""
+      """Return raw the value of an attribute."""
       return self.__get_helper(attribute, lambda v : v.raw())
 
     def __get_helper(self, attribute, f):
@@ -772,7 +779,7 @@ class DataTracker:
         return f(self.zenny[attribute])
 
     def get_strings(self):
-      '''Returns to string version of each value.'''
+      '''Returns the string versions of each attribute dict.'''
       strings = dict()
       strings['name'] = self.get_name()
       strings['party_levels'] = value.string_dict(self.party_levels)
