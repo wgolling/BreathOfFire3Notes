@@ -126,6 +126,9 @@ class RunFolderMaker:
       copyfile(f, new_folder / new_file_name)
     # The default template has extra setup.
     if self.default_template:
+      # Make an init file because the data_printer script will import it as a module.
+      init_file = new_folder / '__init__.py'
+      init_file.touch(exist_ok=True)
       self.__setup_notes_file(new_folder, new_run_name, copy_suffix)
       self.__setup_data_file(new_folder, new_run_name)
 
@@ -148,13 +151,11 @@ class RunFolderMaker:
     new_notes.write_text(content)
 
   def __setup_data_file(self, new_folder, new_run_name):
-    first_line = "run_name = '" + new_run_name + "'"
     template_file = self.template_path / "data.py"
     assert(template_file.exists())
     template_content = template_file.read_text()
-    content = first_line + '\n' + template_content
     new_file = new_folder / (new_run_name + '_data.py')
-    new_file.write_text(content)
+    new_file.write_text(template_content)
 
   def __make_header(self, run_suffix):
     title = "Notes " + run_suffix
