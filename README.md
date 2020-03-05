@@ -23,15 +23,28 @@ The second part of the project is the `DataTracker` class in
 `scripts/objects/datatracker.py`. This object tracks several game statistics: 
 the current members of the party, the party's levels, weapon amounts for the 
 [D'Lonzo checklist](https://bof.fandom.com/wiki/D%27Lonzo), and several attributes
-related to Skill Ink and Zenny. Since some attributes are kept track of with ints 
-and others with lists of ints, the annoying type-checking is taken care of with
-`BasicValue` and `ListValue` classes which have the same interface. This information is organized into time segments, or "splits", and there are public interface methods
-for accessing the data from a given split. For a given run, the user writes
-commands in the `data.py` file to input commands to their `DataTracker`'s interface.
+related to Skill Ink and Zenny. This information is organized into time segments, 
+or "splits", and there are public interface methods for accessing the data from 
+a given split. Some attributes are tracked using a simple int value, but others
+are tracked with a list of ints (such as Zenny pick-ups). In order to avoid 
+annoying type-checking there are BasicValue and ListValue classes with the same
+interface, and the complicated logic is taken care of by choosing the appropriate
+type. 
 
-The third piece is the `DataPrinter` object, which produces a readable output string
+For a given run, the user writes commands in the `<run_name>_data.py`
+file to input commands to their `DataTracker`'s interface. The data file consists
+of a single defition for a function called `track_data`, which takes a
+`DataTracker` instance and applies a sequence of commands as written by the user.
+
+The third part is the `DataPrinter` object, which produces a readable output string
 from the information in a `DataTracker`. It has a `print()` method that outputs
 the string, and the line width is an optional parameter that defaults to 60.
+
+The final part is the `print_data` script. It take a single command line 
+argument which is the name of the run, and imports `track_data` from the run's
+`<run_name>_data.py` file. It constructs a fresh `DataTracker` object and passes
+it to `track_data`, and then passes the string data to a `DataPrinter` object and 
+writes the output to `<run_name>/<run_name>_data.txt`.
 
 ## TODO
 
@@ -44,16 +57,16 @@ can't break anything.
 
 ### `DataTracker`
 
-- Clean up/refactor etc.
+- Cleanup/refactor.
 
 ### `DataPrinter`
 
-- Polish output string.
+- Polish output string/debug.
 
 - Documentation.
 
 ### At some point, down the road, eventually, etc., etc....
 
-- Make a GUI for the `DataTracker` object.
+- Make a CLI or GUI for the `DataTracker` object.
 
 - Serialize `DataTracker` information.
