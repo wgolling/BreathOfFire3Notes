@@ -782,7 +782,12 @@ class DataTracker:
       '''Returns the string versions of each attribute dict.'''
       strings = dict()
       strings['name'] = self.get_name()
-      strings['party_levels'] = value.string_dict(self.party_levels)
+      full_party_levels = value.string_dict(self.party_levels)
+      party_levels = dict()
+      for (c, l) in full_party_levels.items():
+        if c in self.party:
+          party_levels[c] = l
+      strings['party_levels'] = party_levels
       strings['zenny'] = value.string_dict(self.zenny)
       strings['skill_ink'] = value.string_dict(self.skill_ink)
       strings['weapons'] = value.string_dict(self.weapons)
