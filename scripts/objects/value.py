@@ -32,19 +32,19 @@ def add_key_value_to_dict(d, k, v):
 
 def copy_dict(d):
   '''Copies a dict of cloneable Values.'''
-  return __dict_mapper(d, lambda v : v.clone())
+  return _dict_mapper(d, lambda v : v.clone())
 
 def int_dict(d):
   '''Makes a dict with the same keys and whose int values are d[k].value().'''
-  return __dict_mapper(d, lambda v : v.value())
+  return _dict_mapper(d, lambda v : v.value())
 
 def raw_dict(d):
-  return __dict_mapper(d, lambda v : v.raw())
+  return _dict_mapper(d, lambda v : v.raw())
 
 def string_dict(d):
-  return __dict_mapper(d, lambda v : v.print())
+  return _dict_mapper(d, lambda v : v.print())
 
-def __dict_mapper(d, f):
+def _dict_mapper(d, f):
   return dict(map(lambda k : (k, f(d[k])), d))
 
 
@@ -74,11 +74,11 @@ class BasicValue:
       ValueError: If initial_value is not convertible to int.
 
     '''
-    self.__value = int(initial_value)
+    self._value = int(initial_value)
 
   def __eq__(self, other):
     if isinstance(other, BasicValue):
-      return self.__value == other.__value
+      return self._value == other._value
     return false
 
   def print(self):
@@ -88,7 +88,7 @@ class BasicValue:
       The string version of the int value.
 
     '''
-    return str(self.__value)
+    return str(self._value)
 
   def raw(self):
     '''Returns the raw value.
@@ -106,7 +106,7 @@ class BasicValue:
       The int value.  This function is the same as BasicValue.raw().
 
     '''
-    return self.__value
+    return self._value
 
   def add(self, x):
     '''Adds an int to the value.
@@ -118,10 +118,10 @@ class BasicValue:
       ValueError: If x is not convertible to int.
 
     '''
-    self.__value += int(x)
+    self._value += int(x)
 
   def clone(self):
-    return BasicValue(initial_value=self.__value)
+    return BasicValue(initial_value=self._value)
 
 
 class ListValue:
@@ -134,11 +134,11 @@ class ListValue:
       initial_value (list of int, optional): Initial value. Defaults to empty list.
 
     '''
-    self.__value = [int(x) for x in initial_value]
+    self._value = [int(x) for x in initial_value]
 
   def __eq__(self, other):
     if isinstance(other, ListValue):
-      return self.__value == other.__value
+      return self._value == other._value
     return false
 
   def print(self):
@@ -151,11 +151,11 @@ class ListValue:
         sign and the sum of the list.
 
     '''
-    if len(self.__value) == 0:
+    if len(self._value) == 0:
       return '0'
-    if len(self.__value) == 1:
-      return str(self.__value[0])
-    ints = list(self.__value)
+    if len(self._value) == 1:
+      return str(self._value[0])
+    ints = list(self._value)
     s = str(ints.pop(0))
     for i in ints:
       (op, n) = ('+', str(i)) if i >= 0 else ('-', str(-i))
@@ -170,7 +170,7 @@ class ListValue:
       The sum of the elements in the list.
 
     '''
-    return sum(self.__value)
+    return sum(self._value)
 
   def raw(self):
     '''Returns the raw value.
@@ -179,7 +179,7 @@ class ListValue:
       A copy of the list value.
 
     '''
-    return list(self.__value)
+    return list(self._value)
     
   def add(self, x):
     '''Adds an int to the value.
@@ -191,7 +191,7 @@ class ListValue:
       ValueError: If x is not convertible to int.
 
     '''
-    self.__value.append(int(x))
+    self._value.append(int(x))
 
   def clone(self):
-    return ListValue(initial_value=self.__value)
+    return ListValue(initial_value=self._value)

@@ -92,7 +92,7 @@ class RunFolderMaker:
     wishes to copy from. It is only used for the default template.
     '''
     # Find the largest integer suffix, or 0.
-    max_suffix = get_largest_int(self.__folder_suffixes()) or 0
+    max_suffix = get_largest_int(self._folder_suffixes()) or 0
 
     # Create new name and new folder.
     new_run_name = self.prefix + str(max_suffix + 1)
@@ -103,20 +103,20 @@ class RunFolderMaker:
 
     # Copy template files.
     print("Copying template files to new folder...")
-    self.__copy_template(new_folder, new_run_name, copy_suffix or max_suffix)
+    self._copy_template(new_folder, new_run_name, copy_suffix or max_suffix)
     print("Template files copied. Setup of folder " + new_run_name + " is complete.")
 
     # Finish.
     print("Have fun!")
 
-  def __folder_suffixes(self):
+  def _folder_suffixes(self):
     '''
     Finds all folders begining with self.prefix, and returns their suffixes.
     '''
     return [last_element(x.parts)[len(self.prefix):] \
             for x in self.base_path.glob(self.prefix + '*') if x.is_dir()]
 
-  def __copy_template(self, new_folder, new_run_name, copy_suffix):
+  def _copy_template(self, new_folder, new_run_name, copy_suffix):
     '''
     Copies all the files from the template folder, but prepends new_run_name.
     Does not recursive copy, in case the template folder is huge.
@@ -129,35 +129,35 @@ class RunFolderMaker:
       # Make an init file because the data_printer script will import it as a module.
       init_file = new_folder / '__init__.py'
       init_file.touch(exist_ok=True)
-      self.__setup_notes_file(new_folder, new_run_name, copy_suffix)
-      self.__setup_data_file(new_folder, new_run_name)
+      self._setup_notes_file(new_folder, new_run_name, copy_suffix)
+      self._setup_data_file(new_folder, new_run_name)
 
-  def __setup_notes_file(self, new_folder, new_run_name, copy_suffix):
+  def _setup_notes_file(self, new_folder, new_run_name, copy_suffix):
     '''
     Makes a header out of the new run's suffix, and copies TODO list from
     the run with suffix copy_suffix, if one exists.
     '''
     # Make header.
     run_suffix = new_run_name[len(self.prefix):]
-    content = self.__make_header(run_suffix)
+    content = self._make_header(run_suffix)
     # Make TODO list.
     if copy_suffix > 0:
       old_run = self.prefix + str(copy_suffix)
       old_notes = self.base_path / old_run / (old_run + '_notes.txt')
       if old_notes.exists():
-        content = content + self.__make_todo(old_notes)
+        content = content + self._make_todo(old_notes)
     # Write content to new file.
     new_notes =  new_folder / (new_run_name + '_notes.txt')
     new_notes.write_text(content)
 
-  def __setup_data_file(self, new_folder, new_run_name):
+  def _setup_data_file(self, new_folder, new_run_name):
     template_file = self.template_path / "data.py"
     assert(template_file.exists())
     template_content = template_file.read_text()
     new_file = new_folder / (new_run_name + '_data.py')
     new_file.write_text(template_content)
 
-  def __make_header(self, run_suffix):
+  def _make_header(self, run_suffix):
     title = "Notes " + run_suffix
     padding = ' '
     line_width = len(title) + 2 * len(padding) + len('||||||||')
@@ -169,7 +169,7 @@ class RunFolderMaker:
             '\n'
     return header
 
-  def __make_todo(self, old_notes):
+  def _make_todo(self, old_notes):
     tag = '*NEXT'
     new_tag = '*THIS'
     todo = ''

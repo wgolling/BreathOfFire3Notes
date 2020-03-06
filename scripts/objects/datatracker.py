@@ -157,10 +157,10 @@ class DataTracker:
   }
 
   # Weapon requirments for D'Lonzo
-  def __make_weapon_requirements():
+  def _make_weapon_requirements():
     duplicates = [DAGGER, BALLOCK_KNIFE, BENT_SWORD, POINTED_STICK]
     return dict(map(lambda w: (w, 2 if w in duplicates else 1), list(Weapon)))
-  WEAPON_REQUIREMENTS = __make_weapon_requirements()
+  WEAPON_REQUIREMENTS = _make_weapon_requirements()
 
   #
   #
@@ -195,7 +195,7 @@ class DataTracker:
       AssertionError: If character is already in the party.
 
     """
-    self.__validate_character_for_add(character)
+    self._validate_character_for_add(character)
     self.current_entry.gain_character(character)
     weapon = self.STARTING_EQUIPMENT[character]
     if weapon:
@@ -212,7 +212,7 @@ class DataTracker:
       KeyError: If character is not in the party.
 
     """
-    self.__validate_character_for_modify(character)
+    self._validate_character_for_modify(character)
     self.current_entry.lose_character(character)
 
   def level_up(self, character, levels=1):
@@ -228,8 +228,8 @@ class DataTracker:
       ValueError: If levels is nonpositive.  
 
     """
-    self.__validate_character_for_modify(character)
-    self.__validate_positive_input(levels, "Levels gained")
+    self._validate_character_for_modify(character)
+    self._validate_positive_input(levels, "Levels gained")
     self.current_entry.add(character, levels)
 
   # Skill Ink methods
@@ -248,7 +248,7 @@ class DataTracker:
       ValueError: If amt is nonpositive.
 
     """
-    self.__validate_positive_input(amt, "Skill Ink amount")
+    self._validate_positive_input(amt, "Skill Ink amount")
     self.current_entry.add(SkillInk.BUY, amt)
 
   def use_skill_ink(self):
@@ -267,7 +267,7 @@ class DataTracker:
       ValueError: If amt is nonpositive.
 
     """
-    self.__validate_positive_input(amt, "Picked up Zenny amount")
+    self._validate_positive_input(amt, "Picked up Zenny amount")
     self.current_entry.add(Zenny.PICK_UP, amt)
 
   def boss_drop_zenny(self, amt):
@@ -280,7 +280,7 @@ class DataTracker:
       ValueError: If amt is nonpositive.
 
     """
-    self.__validate_positive_input(amt, "Zenny dropped by Boss")
+    self._validate_positive_input(amt, "Zenny dropped by Boss")
     self.current_entry.add(Zenny.BOSS_DROP, amt)
 
   def sell(self, amt):
@@ -293,7 +293,7 @@ class DataTracker:
       ValueError: If amt is nonpositive.
 
     """
-    self.__validate_positive_input(amt, "Zenny from sale")
+    self._validate_positive_input(amt, "Zenny from sale")
     self.current_entry.add(Zenny.SALES, amt)
 
   def buy(self, amt):
@@ -306,7 +306,7 @@ class DataTracker:
       ValueError: If amt is nonpositive.
 
     """
-    self.__validate_positive_input(amt, "Zenny spent")
+    self._validate_positive_input(amt, "Zenny spent")
     self.current_entry.add(Zenny.BUY, amt)
 
   def set_current_zenny(self, amt):
@@ -319,8 +319,8 @@ class DataTracker:
       ValueError: If amt is nonnegative.
 
     """
-    self.__validate_nonnegative_input(amt, "Current Zenny amount")
-    old_total = self.__get_previous_totals().get(Zenny.CURRENT)
+    self._validate_nonnegative_input(amt, "Current Zenny amount")
+    old_total = self._get_previous_totals().get(Zenny.CURRENT)
     self.current_entry.add(Zenny.CURRENT, amt - old_total)
 
   # Weapon methods
@@ -335,7 +335,7 @@ class DataTracker:
       TypeError: If weapon is not Weapon type.
 
     """
-    self.__validate_weapon_for_add(weapon)
+    self._validate_weapon_for_add(weapon)
     self.current_entry.add(weapon, 1)
 
   def buy_weapon(self, weapon, cost):
@@ -350,8 +350,8 @@ class DataTracker:
       ValueError: If cost is nonpositive.
 
     """
-    self.__validate_weapon_for_add(weapon)
-    self.__validate_positive_input(cost, "Cost")
+    self._validate_weapon_for_add(weapon)
+    self._validate_positive_input(cost, "Cost")
     self.pick_up_weapon(weapon)
     self.buy(cost)
 
@@ -362,7 +362,7 @@ class DataTracker:
     """Return the number of splits so far."""
     return len(self.totals)
 
-  def __get_previous_totals(self):
+  def _get_previous_totals(self):
     """Return the entry containing the totals from the previous split."""
     return DataTracker.Entry.empty_totals() if not self.totals else self.totals[self.number_of_splits() - 1]
 
@@ -379,7 +379,7 @@ class DataTracker:
       IndexError: If split is negative or at least number_of_splits().
 
     """
-    self.__validate_split_number(split)
+    self._validate_split_number(split)
     return self.totals[split].get_name()
 
   def get_party(self, split=None):
@@ -413,7 +413,7 @@ class DataTracker:
       IndexError: If split is negative or at least number_of_splits().
 
     """
-    return self.__get_dict(split, lambda e : e.get_party_levels())
+    return self._get_dict(split, lambda e : e.get_party_levels())
 
   def get_weapons(self, split=None):
     """Return the weapons in inventory.
@@ -429,14 +429,14 @@ class DataTracker:
       IndexError: If split is negative or at least number_of_splits().
 
     """
-    return self.__get_dict(split, lambda e : e.get_weapons())
+    return self._get_dict(split, lambda e : e.get_weapons())
 
-  def __get_dict(self, split, dict_getter):
+  def _get_dict(self, split, dict_getter):
     if not split == None:
-      self.__validate_split_number(split)
+      self._validate_split_number(split)
       return dict_getter(self.totals[split])
     return add_dicts(
-        dict_getter(self.__get_previous_totals()), 
+        dict_getter(self._get_previous_totals()), 
         dict_getter(self.current_entry))
 
   def have_all_weapons(self):
@@ -464,8 +464,8 @@ class DataTracker:
       KeyError: If attribute is not SkillInk or Zenny type.
 
     """ 
-    self.__validate_attribute_type(attribute)
-    self.__validate_split_number(split)
+    self._validate_attribute_type(attribute)
+    self._validate_split_number(split)
     return self.entries[split].get(attribute)
 
   def get_gain_raw(self, attribute, split):
@@ -485,8 +485,8 @@ class DataTracker:
       KeyError: If attribute is not SkillInk or Zenny type.
 
     """ 
-    self.__validate_attribute_type(attribute)
-    self.__validate_split_number(split)
+    self._validate_attribute_type(attribute)
+    self._validate_split_number(split)
     return self.entries[split].get_raw(attribute)
 
   def get_total(self, attribute, split=None):
@@ -506,12 +506,12 @@ class DataTracker:
       KeyError: If attribute is not SkillInk or Zenny type.
 
     """
-    self.__validate_attribute_type(attribute)
+    self._validate_attribute_type(attribute)
     if (split == None) or (split == len(self.entries) - 1):
       gain = self.get_current(attribute)
-      prev_total = self.__get_previous_totals().get(attribute)
+      prev_total = self._get_previous_totals().get(attribute)
       return gain + prev_total
-    self.__validate_split_number(split)
+    self._validate_split_number(split)
     return self.totals[split].get(attribute)
 
   def get_current(self, attribute):
@@ -528,7 +528,7 @@ class DataTracker:
       KeyError: If attribute is not SkillInk or Zenny type.
 
     """
-    self.__validate_attribute_type(attribute)
+    self._validate_attribute_type(attribute)
     return self.current_entry.get(attribute)
 
   def get_current_raw(self, attribute):
@@ -546,7 +546,7 @@ class DataTracker:
       KeyError: If attribute is not SkillInk or Zenny type.
 
     """
-    self.__validate_attribute_type(attribute)
+    self._validate_attribute_type(attribute)
     return self.current_entry.get_raw(attribute)
 
   def get_strings(self):
@@ -604,7 +604,7 @@ class DataTracker:
     self.current_entry.name = str(name)
     self.current_entry.finalize()
     # Compute totals
-    previous_totals = self.__get_previous_totals()
+    previous_totals = self._get_previous_totals()
     totals_entry = DataTracker.Entry.new_totals_entry(self.current_entry, previous_totals)
     self.totals.append(totals_entry)
     # Make new entry
@@ -615,37 +615,37 @@ class DataTracker:
   #
   # Input validation
 
-  def __validate_character_for_add(self, character):
-    self.__validate_character_type(character)
+  def _validate_character_for_add(self, character):
+    self._validate_character_type(character)
     if character in self.current_entry.party:
       raise KeyError("Character already in party.")
 
-  def __validate_character_for_modify(self, character):
-    self.__validate_character_type(character)
+  def _validate_character_for_modify(self, character):
+    self._validate_character_type(character)
     if character not in self.current_entry.party:
       raise KeyError("Character not in party.")
 
-  def __validate_character_type(self, character):
+  def _validate_character_type(self, character):
     if not isinstance(character, Character):
       raise TypeError("Input must be Character type.")
 
-  def __validate_positive_input(self, x, argname):
+  def _validate_positive_input(self, x, argname):
     if x < 1:
       raise ValueError(argname + " must be positive.")
 
-  def __validate_nonnegative_input(self, x, argname):
+  def _validate_nonnegative_input(self, x, argname):
     if x < 0:
       raise ValueError(argname + " must be nonnegative.")
 
-  def __validate_weapon_for_add(self, weapon):
+  def _validate_weapon_for_add(self, weapon):
     if not isinstance(weapon, Weapon):
       raise TypeError("Input must be Weapon type.")
 
-  def __validate_split_number(self, split):
+  def _validate_split_number(self, split):
     if split < 0 or split >= self.number_of_splits():
       raise IndexError("Split index must be nonnegative and less than the number of splits.")
 
-  def __validate_attribute_type(self, attribute):
+  def _validate_attribute_type(self, attribute):
     if not isinstance(attribute, Zenny) and not isinstance(attribute, SkillInk):
       raise KeyError("Attribute must be Zenny or SkillInk type.")
 
@@ -721,8 +721,8 @@ class DataTracker:
 
     def finalize(self):
       """Compute derived fields and finalize."""
-      self.skill_ink[SkillInk.CURRENT] = BasicValue(self.__current_skill_ink())
-      self.zenny[Zenny.ENEMY_DROP] = BasicValue(self.__enemy_drop())
+      self.skill_ink[SkillInk.CURRENT] = BasicValue(self._current_skill_ink())
+      self.zenny[Zenny.ENEMY_DROP] = BasicValue(self._enemy_drop())
       self.finalized = True
 
     #
@@ -762,20 +762,20 @@ class DataTracker:
 
     def get(self, attribute):
       """Return the value of an attribute."""
-      return self.__get_helper(attribute, lambda v : v.value())  
+      return self._get_helper(attribute, lambda v : v.value())  
 
     def get_raw(self, attribute):
       """Return raw the value of an attribute."""
-      return self.__get_helper(attribute, lambda v : v.raw())
+      return self._get_helper(attribute, lambda v : v.raw())
 
-    def __get_helper(self, attribute, f):
+    def _get_helper(self, attribute, f):
       if isinstance(attribute, SkillInk):
         if attribute == SkillInk.CURRENT:
-          return self.__current_skill_ink()
+          return self._current_skill_ink()
         return f(self.skill_ink.get(attribute, 0))
       if isinstance(attribute, Zenny):
         if attribute == Zenny.ENEMY_DROP:
-          return self.__enemy_drop()
+          return self._enemy_drop()
         return f(self.zenny[attribute])
 
     def get_strings(self):
@@ -797,13 +797,13 @@ class DataTracker:
     #
     # Derived fields
 
-    def __current_skill_ink(self):
+    def _current_skill_ink(self):
       sk = self.skill_ink
       if self.finalized:
         return sk[SkillInk.CURRENT].value()
       return sk[SkillInk.PICK_UP].value() + sk[SkillInk.BUY].value() - sk[SkillInk.USE].value()
 
-    def __zenny_subtotal(self):
+    def _zenny_subtotal(self):
       '''Current Zenny and enemy drops can be computed in terms of one another
       by using this subtotal.
       '''
@@ -811,8 +811,8 @@ class DataTracker:
       return z[Zenny.PICK_UP].value() + z[Zenny.BOSS_DROP].value() \
           + z[Zenny.SALES].value() - z[Zenny.BUY].value()
 
-    def __enemy_drop(self):
+    def _enemy_drop(self):
       z = self.zenny
       if self.finalized:
         return z[Zenny.ENEMY_DROP].value()
-      return z[Zenny.CURRENT].value() - self.__zenny_subtotal()
+      return z[Zenny.CURRENT].value() - self._zenny_subtotal()
