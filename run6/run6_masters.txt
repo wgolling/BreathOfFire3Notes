@@ -1,0 +1,14 @@
+Character | Level Range | Master    | Levels needed | Time Unlocked 
+-------------------------------------------------------------------
+Ryu         1  - 9        *Mygas      8               After Nue
+            9  -           Bunyan     10
+
+Nina        5  -     
+
+Momo        10 -   
+
+Peco        1  -   
+
+Garr        13 - 
+
+Rei         20 -

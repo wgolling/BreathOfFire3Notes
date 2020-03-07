@@ -1,0 +1,119 @@
+===============||
+||===========||||
+|||| Notes 6 ||||
+||||===========||
+||===============
+
+Awakening:
+---------
+- try to damage self as much as possible
+- *Weapon Route: grab unique item Melted Blade on Mogu's corpse (right)
+
+==================
+|| Yrall Region ||
+==================
+-- Pilfer: 
+  - *Weapon Route: Pointed Sticks from ManTrap (need 2 before Fire House or else you need drops)
+  - Waistcloth from Boss Goblin
+-- Examine: 
+  - Blind from Ripper
+  - Influence from Boss Goblin
+  - Burn from Mage Goo (if Ryu learns Burn you can comfortably avoid using a Skill Ink until Monopolize)
+
+Order of places: Village, run through ?, Bunyan's, Mt. Glauss, Mygas, ? for items/skills, McNeil Manor
+
+
+Second Awakening:
+-----------------
+- Treehouse: get Vitamin and Worm in drawers (can't get to basement yet)
+- Cedar Woods: get *Skill Ink in chest and Ammonia in hidden sack, while there are no encounters
+- McNeil Village: - Antidote in house closest to NE entrance
+                  - Healing Herb in neighbour
+                  - Vitamin in house in front of Manor (save for later?)
+- Yrall Road: walk as far as stone posts, THEN get 40z in sack
+- ?: - run through, gaining skills and items from enemies, avoiding getting exp with Ryu 
+     - Waistclothes will be helpful 
+     - come back after Migas to get items (mostly money) (maybe get Weather Vane?)
+Bunyan's Cabin: - find Beef Jerky in basement
+                - he REALLY MEANS triangle, no matter what you set the button to.
+                - HP is NOT restored.
+
+
+Work, Teepo:
+-----------
+- Mt. Glaus: 
+    - on the ground, there is an Antidote
+    - on the slope, there are Heavy Caro and Cloth Shield
+    - try to pilfer Power Food from first Nue fight
+    - get Vitamins on upper slope
+- Caverns: - *Weapon Route: Bent Sword (+Molotov?) in first cave, story event + 200z in second
+           - *Weapon Route: take right branches to get BallockKnife and Talisman on skeleta
+- Nu: 285HP, 96exp, 50z,
+    - try to steal Power Food but not important
+    - don't let Ryu get experience.
+- get Healing Herb in basement
+- in Village talk to Loki, but wait until later to meet him in the hut
+- Money Dump: - *Weapon Route: Bronze Sword and fishing gear
+              - set Ryu to Mygas
+- get all the money and items in ? (Weather Vane, Vitamin, 120z, Coin, 80z)
+- fishing: - at least 3 trout and 3 rainbow trout
+           - didn't catch puffers or jellyfish, got rodman
+           - *Weapon Route: buy a Silver Knife
+           - *Skill Ink: buy Skill Ink
+
+
+Heist:
+-----
+- outside: 
+    - get 50z from guy skulking to bribe guard with
+    - grab Vitamin from hut if you haven't already
+    - give Silver Knife to Rei for Pooch and Rocky fights
+    - Pooch: 260hp, 55exp, 10z  (could steal a Vitamin)
+    - GOT CAUGHT! lol oops.
+    - Rockey: 280hp, 85exp, 0z 
+        - use Firecracker on this very annoying and dangerous fight (could steal Life Shard)
+    - DON'T FORGET to transfer silver knife to teepo
+- inside:
+    - Torast: 115ph, 32exp, 8z.  
+        - Try to outpace with Teepo, Sleep suuuuucks.
+    - get Vitamin, 120z, Magic Shard, (Eye Drops, Taser) in area past the portraits
+    - go through door on left side of main room to get Life Shard
+    - can get 40z to the right of Big Stairs (maybe don't?)
+    - going left at big stairs, head down hall.  In second rooms on left and right can find Gems and Vitamin
+    - Kassen: 62hp, 37exp, 20z
+    - grab Panacea from drawers
+    - Galtel: 145hp, 35exp, 4z
+        - just casts debuffing spells
+    - grab multivitamin past beds
+    - healing herb in kitchen, 600z upstairs
+    - Doksen: 140hp, 46exp, 24z
+        - will use the same element as the last spell cast on him, including healing
+- roof:
+    - on other side grab *Weapon Route: Broad Sword, then Vitamin from bathroom, then Swallow Eye
+    - Amalgam: 520hp, 210exp, 200z (can steal Magic Shard)
+- post:
+    - grab Healing Herb from basement if you haven't already
+    - take equipment off Rei and Teepo, WEAPON ROUTE: give them a Dagger and Ballock Knife
+    - go to farm to confront Loki
+    - game takes Skills off of Rei and Teepo automatically!
+    - learn (at least) Frost from Mygas
+
+
+Eastward Bound:
+--------------
+- if not done with Mygas yet, get Frost from Mygas and do a loop of Mount Mynerg until you are (want to be high 9)
+- apprentice Ryu to Bunyan
+- Mt. Mynerg: - can find Icicle, Protein, Bat Amulet, 200z
+              - learn Double Blow if you can
+              (- *Gene: automatically get Flame gene)
+
+
+.........
+
+*THIS TIME give Typhoon to Nina at first?
+*THIS TIME pickup 200z + Antidote at Checkpoint before getting passport
+*THIS TIME Check Contest of Champions locker rooms at each stage
+*THIS TIME Get a better (faster) sword for Ryu before Myria Station (Like make sure you get the Royal sword)
+*THIS TIME give someone Charm in Myria Station?
+*THIS TIME route path to Eden
+*THIS TIME route refights
