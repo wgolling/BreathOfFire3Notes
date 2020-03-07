@@ -1,3 +1,7 @@
+#
+#
+# Utility functions
+
 def add_key_int_to_dict(d, k, v):
   '''Adds a (key, int) pair to a dict of Values.
 
@@ -59,7 +63,9 @@ def add_dicts(d1, d2):
     add_key_value_to_dict(new_dict, k, d2[k])
   return new_dict
 
-
+#
+#
+# Value classes
 
 class BasicValue:
   '''A basic value class. The value is represented by an int.'''
@@ -122,7 +128,6 @@ class BasicValue:
 
   def clone(self):
     return BasicValue(initial_value=self._value)
-
 
 class ListValue:
   '''A value class where the value is a represented by a list of ints.'''

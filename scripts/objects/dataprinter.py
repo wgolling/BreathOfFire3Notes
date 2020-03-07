@@ -1,6 +1,13 @@
 from datatracker import *
 
 class DataPrinter():
+  '''Prints a DataTracker's data.
+
+  Takes a structure containing strings representing data from a DataTracker
+  (specificaly, the output of DataTracker.get_strings()) and produces a readable
+  string output.
+
+  '''
    
   def __init__(self, name, strings, line_width=60):
     '''A helper object for printing a DataTracker.

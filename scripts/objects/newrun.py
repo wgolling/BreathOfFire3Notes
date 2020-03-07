@@ -1,28 +1,33 @@
 from pathlib import Path
 from shutil import copyfile
-import os
 
 #
-# Helper functions for lists.
-#
+# 
+# Utility functions for lists.
 
 def last_element(lst):
-  '''
-  Returns the last element of a list, or None if it is empty.
-  '''
+  '''Returns the last element of a list, or None if it is empty.'''
   if not lst:
     return None
   return lst[-1]
 
 def get_largest_int(obj_list):
-  '''
-  Tries to convert the elements of obj_list to ints, and retuns the largest.
-  Returns None if obj_list doesn't contain anything int-able.
+  '''Returns the largest integer value in a list, if there is one.
+
+  Args:
+    obj_list (list)
+
+  Returns: The largest int value derived from elements in obj_list, or None
+    if none of the elements in obj_list are convertible to int.
+
+  Raises:
+    ValueError: If obj_list is not convertible to int.
+
   '''
   try:
     new_list = list(obj_list)
   except Exception:
-    raise ValueError('input must be convertible to list')
+    raise ValueError('Input must be convertible to list.')
     
   max_int = None
   for x in new_list:
@@ -35,23 +40,39 @@ def get_largest_int(obj_list):
       max_int = int_x
   return max_int
 
-
 #
-# Helper class for setting up a new run folder.
-#
+# 
+# Class for setting up a new run folder.
 
 class RunFolderMaker:
-  '''
-  Constructor assumes base_path and template_path are pathlib objects.
-  In particular it assumes they have exists() and is_dir() methods which
-  both return true.
-  The constructor also assumes prefix is a string
+  '''RunFolderMaker sets up a new new run folder.
+
+  It can create a new run folder in the directory specified in its constructor,
+  which will contain files copied from a template. The default template includes
+  notes.txt, masters.txt, data.py, and __init__.py files, and will set up the
+  notes.txt file with a TODO list based on the previous run's notes.txt.
+
   '''
   def __init__(self, base_path, prefix="run", template_path=None):
+    '''Constructs a new RunFolderMaker instance.
+    
+    Args:
+      base_path (str or pathlib.Path): The path to the folder where the new run
+        folder will be created.
+      prefix (str, optional): The desired prefix for the run name. Defaults to "run".
+      template_path (str or pathlib.Path, optional): The path to custom template
+        files, if specified. Defaults to <base_path>/scripts/template.
+
+    Raises:
+      TypeError: If base_path or template_path are not convertible to pathlib.Path.
+      ValueError: If base_path or template_path does not exist.
+      ValueError: If base_path or template_path is not a directory.
+
+    '''
     # TODO: make sure input doesn't have any special characters
     #       maybe this is handled already by checking exists()?
 
-    # initialize and validate self.base_path
+    # Initialize and validate self.base_path.
     self.base_path = None
     try:
       self.base_path = Path(base_path)
@@ -62,10 +83,10 @@ class RunFolderMaker:
     if not self.base_path.is_dir():
       raise ValueError("base_path must be a directory")
 
-    # initialize self.prefix (str(o) will never throw an exception)
+    # Initialize self.prefix (str(o) will never throw an exception).
     self.prefix = str(prefix)  
 
-    # initialize and validate self.template_path and self.default_template
+    # Initialize and validate self.template_path and self.default_template.
     self.template_path = None
     self.default_template = True
     if template_path:
@@ -80,16 +101,18 @@ class RunFolderMaker:
       raise ValueError("template_path does not exist")
     if not self.template_path.is_dir():
       raise ValueError("template_path must be a directory")
-
  
   def setup_folder(self, copy_suffix=None):
     '''
-    Creates a new folder (with template) in self.base_path with prefix self.prefix.
+    Creates a new run folder according to a template. 
+
+    Creats folder in self.base_path with prefix self.prefix, using self.template_path.
     If no template was specified in the constructor, uses the default template setup.
     If any folders exist with integer suffixes the new suffix will be one 
     larger than the maximum existing suffix, and 1 otherwise.
     The optional parameter copy_suffix is the suffix of the folder the client 
     wishes to copy from. It is only used for the default template.
+
     '''
     # Find the largest integer suffix, or 0.
     max_suffix = get_largest_int(self._folder_suffixes()) or 0
@@ -110,16 +133,15 @@ class RunFolderMaker:
     print("Have fun!")
 
   def _folder_suffixes(self):
-    '''
-    Finds all folders begining with self.prefix, and returns their suffixes.
-    '''
+    '''Finds all folders begining with self.prefix, and returns their suffixes.'''
     return [last_element(x.parts)[len(self.prefix):] \
             for x in self.base_path.glob(self.prefix + '*') if x.is_dir()]
 
   def _copy_template(self, new_folder, new_run_name, copy_suffix):
-    '''
-    Copies all the files from the template folder, but prepends new_run_name.
+    '''Copies all the files from the template folder, but prepends new_run_name.
+
     Does not recursive copy, in case the template folder is huge.
+
     '''
     for f in [x for x in self.template_path.iterdir()]:
       new_file_name = new_run_name + "_" + last_element(f.parts)
@@ -133,8 +155,7 @@ class RunFolderMaker:
       self._setup_data_file(new_folder, new_run_name)
 
   def _setup_notes_file(self, new_folder, new_run_name, copy_suffix):
-    '''
-    Makes a header out of the new run's suffix, and copies TODO list from
+    '''Makes a header out of the new run's suffix, and copies TODO list from
     the run with suffix copy_suffix, if one exists.
     '''
     # Make header.
