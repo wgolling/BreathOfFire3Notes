@@ -4,9 +4,10 @@ Run `python3 <path_to_scripts>/new_run.py` to create a new run folder.
 
 The default template contains text files for notes and masters, and a python
 file for entering commands to a DataTracker (the API for a DataTracker is
-listed below). If there was a revious run folder containing a notes.txt file, 
+listed below). If there was a previous run folder containing a notes.txt file, 
 it will scan the file for lines starting with `*NEXT TIME` and complile a 
 TODO list.
+
 
 print_data.py
 -------------
@@ -15,9 +16,10 @@ DataTracker data to the file `<run_name>/<run_name>_data.txt`.
 
 Looks in your runs folder for a directory called `<run_name>`. If there is, it
 checks for `<run_name>/<run_name>_data.py` and `<run_name>/__init__.py`, and if
-they both exists it tries to import the `track_data(dt)` function from the 
+they both exist it tries to import the `track_data(dt)` function from the 
 `<run_name>_data` module. Then it runs the `tack_data` function on a new 
 DataTracker instance, and produces a readable string output in the file.
+
 
 <run_name>/<run_name>_data.py
 -----------------------------
@@ -44,12 +46,12 @@ SILVER_KNIFE, BROAD_SWORD, OAKEN_STAFF, MACE, SCRAMASAX, MAGICIAN_ROD, RIPPERS
 AMMO, ICE_CHRYSM, FIRE_CHRYSM
 
 # There are also `datatracker.SkillInk` and `datatracker.Zenny` enums, but there
-# is no need to reference these directly from the data.py file. As they are 
+# is no need to reference these directly from the data.py file, as they are 
 # modified through API methods. These enums keep track of things like picking up, 
-# buying, selling, getting zenny from bosses, etc. Two particular attributes, 
-# the current Skill Ink and the amount of zenny gain from enemy encounters, are 
+# buying, selling, getting Zenny from bosses, etc. Two particular attributes, 
+# the current Skill Ink and the amount of Zenny gained from enemy encounters, are 
 # derived from the other attributes and are not manually set. On the other hand,
-# the party's current zenny level is used to derive enemy encounter zenny and 
+# the party's current Zenny level is used to derive enemy encounter Zenny and 
 # *MUST BE SET* prior to splitting.
 
 #
@@ -186,7 +188,7 @@ BOSS_DROP:..............................................0(0)
 ENEMY_DROP:.............................................0(0)
 SALES:..................................................0(0)
 BUY:....................................................0(0)
-CURRENT:................................................0(0)
+CURRENT:...............................................0(+0)
 
 Skill Ink:
 PICK_UP:................................................0(0)
@@ -213,7 +215,7 @@ BOSS_DROP:............................................50(50)
 ENEMY_DROP:...........................................15(15)
 SALES:..................................................0(0)
 BUY:....................................................0(0)
-CURRENT:............................................305(305)
+CURRENT:...........................................305(+305)
 
 Skill Ink:
 PICK_UP:................................................1(1)
@@ -239,7 +241,7 @@ BOSS_DROP:.............................................0(50)
 ENEMY_DROP:.........................................192(207)
 SALES:..................................................0(0)
 BUY:......................................240+40+20=300(300)
-CURRENT:.............................................92(397)
+CURRENT:............................................397(+92)
 
 Skill Ink:
 PICK_UP:................................................1(2)

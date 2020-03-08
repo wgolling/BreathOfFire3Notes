@@ -2,8 +2,10 @@ import sys
 from pathlib import Path
 from importlib import import_module
 
-root_folder = Path(__file__).absolute().parents[1]
-sys.path.insert(1, str(root_folder) + '/scripts/objects')
+script_location = Path(__file__).absolute()
+root_folder = script_location.parents[1]
+objects_folder = root_folder / 'scripts/objects'
+sys.path.insert(1, str(objects_folder))
 from datatracker import DataTracker
 from dataprinter import DataPrinter
 

@@ -105,7 +105,10 @@ class DataPrinter():
     s = 'Zenny:\n'
     strings = self.strings[i]['zenny']
     for z in list(Zenny):
-      s += self._print_line(z.name, strings['gain'][z], strings['total'][z])
+      if z == Zenny.CURRENT:
+        s += self._print_line(z.name, strings['total'][z], "+" + strings['gain'][z])
+      else:
+        s += self._print_line(z.name, strings['gain'][z], strings['total'][z])
     return s
 
   def _print_skill_ink(self, i):
