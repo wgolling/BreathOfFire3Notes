@@ -1,0 +1,256 @@
+new_run.py
+----------
+Run `python3 <path_to_scripts>/new_run.py` to create a new run folder.
+
+The default template contains text files for notes and masters, and a python
+file for entering commands to a DataTracker (the API for a DataTracker is
+listed below). If there was a revious run folder containing a notes.txt file, 
+it will scan the file for lines starting with `*NEXT TIME` and complile a 
+TODO list.
+
+print_data.py
+-------------
+Run `python3 <path_to_scripts>/print_data.py <run_name>` to print `<run_name>`'s
+DataTracker data to the file `<run_name>/<run_name>_data.txt`.
+
+Looks in your runs folder for a directory called `<run_name>`. If there is, it
+checks for `<run_name>/<run_name>_data.py` and `<run_name>/__init__.py`, and if
+they both exists it tries to import the `track_data(dt)` function from the 
+`<run_name>_data` module. Then it runs the `tack_data` function on a new 
+DataTracker instance, and produces a readable string output in the file.
+
+<run_name>/<run_name>_data.py
+-----------------------------
+This is where you input commands corresponding to events in `<run_name>`. The 
+following is a list of valid methods for a DataTracker object and the enums to use
+as keys (see the source code/documentation in `scripts/objects/datatracker.py` 
+for more information):
+
+#
+# Enums
+
+# To keep track of all of the data, the datatracker module includes several enums.
+# Two enums are relevant to the user in <run_name>/data.py: Character and Weapon.
+
+# The `datatracker.Character` enum is used to track current party members and their
+# levels, and the variants have the following abbreviations:
+RYU, REI, TEEPO, NINA, MOMO, PECO, GARR
+
+# The `datatracker.Weapon` enum is used for a checklist of weapons that the player
+# needs in order to unlock the master D'Lonzo as soon as they reach her. Its 
+# variants have the following abbreviations:
+MELTED_BLADE, DAGGER, BALLOCK_KNIFE, BENT_SWORD, BRONZE_SWORD, POINTED_STICK,
+SILVER_KNIFE, BROAD_SWORD, OAKEN_STAFF, MACE, SCRAMASAX, MAGICIAN_ROD, RIPPERS
+AMMO, ICE_CHRYSM, FIRE_CHRYSM
+
+# There are also `datatracker.SkillInk` and `datatracker.Zenny` enums, but there
+# is no need to reference these directly from the data.py file. As they are 
+# modified through API methods. These enums keep track of things like picking up, 
+# buying, selling, getting zenny from bosses, etc. Two particular attributes, 
+# the current Skill Ink and the amount of zenny gain from enemy encounters, are 
+# derived from the other attributes and are not manually set. On the other hand,
+# the party's current zenny level is used to derive enemy encounter zenny and 
+# *MUST BE SET* prior to splitting.
+
+#
+# The spliting method
+
+split(name)
+  Finalize the current split, with a name.
+  Computes the totals of all of the attributes in terms of the gains accumulated
+  over the split and the previous totals, and then zeros the gain accumulators.
+  ** The method set_zenny(amt) should always be called immediately prior to spliting **.
+
+#
+# Character increment methods
+
+# For the character methods, the argument `character` is an instance of 
+# `datatracker.Character`.
+
+gain_character(character)
+  Add character to party with their starting weapon.
+
+lose_character(character)
+  Lose character from party, but retains their associated information.
+
+level_up(character, levels=1)
+  Level up character. Optionally you can specify the number of levels.
+
+#
+# Skill Ink increment methods
+
+pick_up_skill_ink()
+  Pick up a Skill Ink. 
+
+buy_skill_ink(amt=1)
+  Purchase a Skill Ink. Optionally you can specify the amount.
+
+use_skill_ink()
+  Use a Skill Ink
+
+#
+# Zenny increment methods
+
+pick_up_zenny(amt)
+  Pick up some Zenny.
+
+boss_drop_zenny(amt)
+  Gain Zenny from a boss fight.
+
+sell(amt)
+  Gain Zenny from a sale.
+
+buy(amt)
+  Spend Zenny.
+
+set_current_zenny(amt)
+  Set current Zenny.
+  ** Call this method before every split! **
+
+#
+# Weapon increment methods
+
+# For the weapon methods, the weapon argument is an instance of datatracker.Weapon.
+
+pick_up_weapon(weapon)
+  Pick up a weapon. 
+  Starting equipment is added automatically, and should not be manually adjusted.
+
+buy_weapon(weapon, cost)
+  Buy a weapon.
+
+#
+# Getting methods
+
+# There are also a number of getting methods for DataTracker information, but 
+# these never need to be used in the data.py file. See the datatracker module
+# for more information.
+
+
+Example:
+-------
+
+Suppose your `<run_name>/<run_name>_data.py`'s track_data method has the following 
+body:
+
+  dt.pick_up_weapon(MELTED_BLADE)
+  dt.gain_character(REI)
+  dt.gain_character(TEEPO)
+  dt.set_current_zenny(0)
+  dt.split("Awakening")
+
+  dt.pick_up_skill_ink()
+  dt.pick_up_zenny(40)
+  dt.pick_up_weapon(BENT_SWORD)
+  dt.pick_up_zenny(200)
+  dt.pick_up_weapon(BALLOCK_KNIFE)
+  dt.level_up(REI)
+  dt.boss_drop_zenny(50)
+  dt.set_current_zenny(305)
+  dt.split("Nu")
+
+  dt.buy_weapon(BRONZE_SWORD, 240)
+  dt.buy(40) # Wodden Rod
+  dt.buy(2 * 10)  # Herbs
+  dt.level_up(TEEPO)
+  dt.level_up(RYU)
+  dt.pick_up_weapon(POINTED_STICK)
+  dt.pick_up_weapon(POINTED_STICK)
+  dt.level_up(REI)
+  dt.level_up(TEEPO)
+  dt.level_up(RYU)
+  dt.pick_up_zenny(80)
+  dt.pick_up_zenny(120)
+  dt.pick_up_weapon(SILVER_KNIFE)
+  dt.pick_up_skill_ink()
+  dt.set_current_zenny(397)
+  dt.split("Pre-Manor")
+
+After running `python3 print_data <run_name>`, the contents of 
+`<run_name>/<run_name>_data.txt` will be
+
+===========================||
+||=======================||||
+|||| Data for <run_name> ||||
+||||=======================||
+||===========================
+
+
+Awakening
+---------
+RYU: 1     REI: 5     TEEPO: 1
+
+Zenny:
+PICK_UP:................................................0(0)
+BOSS_DROP:..............................................0(0)
+ENEMY_DROP:.............................................0(0)
+SALES:..................................................0(0)
+BUY:....................................................0(0)
+CURRENT:................................................0(0)
+
+Skill Ink:
+PICK_UP:................................................0(0)
+BUY:....................................................0(0)
+USE:....................................................0(0)
+CURRENT:................................................0(0)
+
+Weapon:
+MELTED_BLADE: 1/1     DAGGER: 2/2     BALLOCK_KNIFE: 1/2
+BENT_SWORD: 0/2     BRONZE_SWORD: 0/1     POINTED_STICK: 0/2
+SILVER_KNIFE: 0/1     BROAD_SWORD: 0/1     OAKEN_STAFF: 0/1
+MACE: 0/1     SCRAMASAX: 0/1     MAGICIAN_ROD: 0/1
+RIPPERS: 0/1     AMMO: 0/1     ICE_CHRYSM: 0/1
+FIRE_CHRYSM: 0/1
+
+
+Nu
+--
+RYU: 1     REI: 6     TEEPO: 1
+
+Zenny:
+PICK_UP:.....................................40+200=240(240)
+BOSS_DROP:............................................50(50)
+ENEMY_DROP:...........................................15(15)
+SALES:..................................................0(0)
+BUY:....................................................0(0)
+CURRENT:............................................305(305)
+
+Skill Ink:
+PICK_UP:................................................1(1)
+BUY:....................................................0(0)
+USE:....................................................0(0)
+CURRENT:................................................1(1)
+
+Weapon:
+MELTED_BLADE: 1/1     DAGGER: 2/2     BALLOCK_KNIFE: 2/2
+BENT_SWORD: 1/2     BRONZE_SWORD: 0/1     POINTED_STICK: 0/2
+SILVER_KNIFE: 0/1     BROAD_SWORD: 0/1     OAKEN_STAFF: 0/1
+MACE: 0/1     SCRAMASAX: 0/1     MAGICIAN_ROD: 0/1
+RIPPERS: 0/1     AMMO: 0/1     ICE_CHRYSM: 0/1
+FIRE_CHRYSM: 0/1
+
+Pre-Manor
+---------
+RYU: 3     REI: 7     TEEPO: 3
+
+Zenny:
+PICK_UP:.....................................80+120=200(440)
+BOSS_DROP:.............................................0(50)
+ENEMY_DROP:.........................................192(207)
+SALES:..................................................0(0)
+BUY:......................................240+40+20=300(300)
+CURRENT:.............................................92(397)
+
+Skill Ink:
+PICK_UP:................................................1(2)
+BUY:....................................................0(0)
+USE:....................................................0(0)
+CURRENT:................................................1(2)
+
+Weapon:
+MELTED_BLADE: 1/1     DAGGER: 2/2     BALLOCK_KNIFE: 2/2
+BENT_SWORD: 1/2     BRONZE_SWORD: 1/1     POINTED_STICK: 2/2
+SILVER_KNIFE: 1/1     BROAD_SWORD: 0/1     OAKEN_STAFF: 0/1
+MACE: 0/1     SCRAMASAX: 0/1     MAGICIAN_ROD: 0/1
+RIPPERS: 0/1     AMMO: 0/1     ICE_CHRYSM: 0/1
+FIRE_CHRYSM: 0/1
