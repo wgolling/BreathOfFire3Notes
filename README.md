@@ -1,6 +1,13 @@
 # Breath of Fire III Notes
 
-This is a project to help me take notes when doing runs for Breath Of Fire III.
+This is a project to help me take notes when doing runs for Breath Of Fire III. 
+I want to keep track of things like character levels, various attributes related
+to the game's Zenny currency (Zenny that is picked up, gotten from boss drops,
+spent, etc.), current Skill Ink amounts, and a checklist for the weapons that are
+needed to unlock the master D'Lonzo as soon as the player reaches her. These
+attributes are tracked over time in segments called "splits", and the project
+contains objects and scripts for tracking and printing this data, as well as
+setting up new run folders. For more information, see `manual.txt`.
 
 Note: this project uses the pathlib library and so requires Python 3.4 or higher.
 
@@ -52,8 +59,6 @@ writes the output to `<run_name>/<run_name>_data.txt`.
 
 - Make prefix and template path into command line arguments. Make sure the user 
 can't break anything.
-
-- Make a demonstration folder.
 
 ### `DataTracker`
 
