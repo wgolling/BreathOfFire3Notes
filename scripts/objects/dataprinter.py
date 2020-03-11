@@ -97,16 +97,25 @@ class DataPrinter():
   #
   # Zenny and SkillInk printing
 
+  def _print_general_line(self, name, val1, val2):
+    padding = self.line_width - len(name) - len(val1) - len(val2) - 3
+    return name + ':' + padding * '.' + val1 + ' (' + val2 + ')' + '\n'
+
   def _print_line(self, att, gain, total):
-    padding = self.line_width - len(att) - len(gain) - len(total) - 3
-    return att + ':' + padding * '.' + gain + '(' + total + ')' + '\n'
+    return self._print_general_line(att, gain, '/' + total)
+
+  def _print_current(self, att, strings):
+    total, gain = strings['total'][att], strings['gain'][att]
+    if int(gain) > 0:
+      gain = '+' + gain
+    return self._print_general_line(att.name, total, gain)
 
   def _print_zenny(self, i):
     s = 'Zenny:\n'
     strings = self.strings[i]['zenny']
     for z in list(Zenny):
       if z == Zenny.CURRENT:
-        s += self._print_line(z.name, strings['total'][z], "+" + strings['gain'][z])
+        s += self._print_current(z, strings)
       else:
         s += self._print_line(z.name, strings['gain'][z], strings['total'][z])
     return s
@@ -115,5 +124,8 @@ class DataPrinter():
     s = 'Skill Ink:\n'
     strings = self.strings[i]['skill_ink']
     for att in list(SkillInk):
-      s += self._print_line(att.name, strings['gain'][att], strings['total'][att])
+      if att == SkillInk.CURRENT:
+        s += self._print_current(att, strings)
+      else:
+        s += self._print_line(att.name, strings['gain'][att], strings['total'][att])
     return s
