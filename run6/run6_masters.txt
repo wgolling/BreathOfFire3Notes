@@ -1,11 +1,12 @@
 Character | Level Range | Master    | Levels needed | Time Unlocked 
 -------------------------------------------------------------------
-Ryu         1  - 9        *Mygas      8               After Nue
-            9  -           Bunyan     10
+Ryu         1  -  9       *Mygas      8               After Nue
+            9  - 19       *Bunyan     10              After House burns
 
-Nina        5  -     
+Nina        5  -  8       *Durandal   3               Escape Wyndia  
+            8  -           Yggdrasil  8
 
-Momo        10 -   
+Momo        10 -           D'lonzo    4               After Scramasax
 
 Peco        1  -   
 

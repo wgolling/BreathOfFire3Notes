@@ -108,6 +108,154 @@ Eastward Bound:
               (- *Gene: automatically get Flame gene)
 
 
+
+===================
+|| Wyndia Region ||
+===================
+Skills: Bone Dart?
+
+Warm Welcome:
+------------
+- Dungeon: - get Skill Ink
+- (*Weapon Route: Nina comes with Oaken Staff)
+- REMOVE SOUL GEM FROM NINA
+- Catacombs: 
+    - items you can get: Light Bangle, Glass Domino, Wisdom Fruit
+    - get some exp on Ryu, but keep Nina's down
+*NEXT TIME route tombstones
+    - push all 7 of the green words in counter-clockwise order, picking up Panacea (don't do second tombstone on hill)
+    - go to Big Tombstone to get Light Bangle and Glass Domino
+    - back at tombstone on the hill, push these: Red, Climbing, I, Is, Look, Beneath, This
+         or, 1 1 1 3 2 2 2
+    - don't forget Wisdom Fruit for Yggdrasil!
+- Wyndia City: - get Moxa in left windmill, Bread in others
+               - Ammonia in house at top of stairs (robbed house)
+               - Healing Herb in right Weapon shop
+               - Hide and Seek: upper right corner, behind tree in table area, past hobo, left of entrance
+- put Durandal on Nina
+- old folks just have Clothes
+*NEXT TIME split here
+
+
+Escape:
+------
+- Genmel: - get Flyer
+          - *Weapon Route: buy Mace, Magician rod, and Rippers  (have 11 now)
+          - 80z in Inn
+- could catch a Bass for a Chain Cap later (drag a worm over it) (rodman+)
+- Mt. Boumore:
+    - grab Panacea by not going up ramp
+    - keep going left until you get 400z
+    - go up the little ramp and the ladder... jump down to get Buckler
+    - DO NOT FORGET *Weapon Route grab Bent Sword from shelves ASAP (12)
+    - take lower path for Life Shard
+    (- *Gene: automatically get Defender)
+    - *Gene: get Reverse
+Tower:
+    - items you can get:
+        - Ring of Ice/Wisdom Fruit/MultiVitamin
+        - Skill Ink, Ice Chrysm, Fire Chrysm
+        - 800z, Moon Tears
+        - Breastplate, Ivory Dice
+        - Bamboo Rod
+        - Panacea, 40z
+    - buy Toad and Old Popper from merchant if you didn't in Yrall.
+    - Chrystal race: > 6 seconds left: Ring of Ice  (definitely go for this one)
+                     5 - 5.99 seconds: Wisdom Fruit
+                     < 5 seconds left: MultiVitamin
+    (- *Weapon Route: Momo comes with Ammo)
+    - let Momo get experience, but don't level up until she gets to D'Lonzo
+    - for floo puzzle start with (4, 4), (3, 4), (3, 3), (2,3), (2, 4)  
+    - get Skill Ink, *Weapon Route: Ice and Fire Chrysms in room beside Momo's lab (14)
+    - Cube Puzzle: pick the second and fourth
+    - Switch platforms: - right door is 800z
+                        - left door is Moon Tears
+                        - stairs at top are exit
+      - first hit SE blue switch, then hit NW blue and red
+    - Chrysm platforms: - 2 charges: Breastplate
+                        - 6 charges: Ivory Dice 
+    - get Bamboo Rod through that one door
+    - in library grab Panacea and 40z
+- *Gene: get Thorn in Crash Site
+
+
+Coffee Break:
+------------
+- fishing: - 4 or 8 Flying fish (float), a bunch of Black Porgi (Frog), 3 blowfish (float), octopi for points (rodmaster)
+           - get 1 or 2 Crepe Cape, got Chain Cap (maybe don't?)
+- *Weapon Route: find Scramasax in Faery Pond
+- Cafe: - put D'Lonzo on Momo
+        - buy all types of bait, grab Vitamin
+        (- cheaper to rest at Plant, 30z)
+- Plant: - can get Vodka Shot and Healing Herb in inner building
+         - can get 80z and Healing Herb above inn
+         - rest at Inn (won't teleport you upstairs)
+- Dump:
+    - get two levels with Momo, then get Monopolize from D'Lonzo
+    - Rank Weed is Weak vs Fire, Pain Weed absorbs Ice, Wind (all magic?)
+    - BOMBERS CAN DROP IVORY DICE
+    - go straight for the boss, grabbing Artemis Cap on the way (just go to boss? Flame claw is already SUPER strong.)
+    - hit first blue switch twice to pass through and/or get other items
+    - hit red switch 7 times for Artemis Cap
+    - Mutant: - 500hp, 600exp, 300z 
+              - loses regeneration after two hits
+              - Flame+Thorn works
+    - DON'T MASH you will hit the blue switch
+    - after Character select screen, formation is reset to Normal
+    - grab Magic Shard
+    - blue switch twice for High Boots and 1200z
+- *SKILL INK (1): Give Monopolize to Ryu, Blind and Burn to Momo, Typhoon to Nina
+    - If Ryu is high level, try giving Monopolize to Momo so she can finish D'Lonzo sooner          
+- Plant:
+    - when you return to the Plant you can't leave before going to the inn
+
+
+Oh No... Not Again...:
+----------------------
+- BE CAREFUL WITH MENUS. If you mash:
+    - you will leave Momo behind instead of Peco
+    - you will have to listen to Hall of Fire instructions
+- YOU CAN GET THE FLOWER JEWEL ALREADY but don't, wait until you come back for Fahl
+- Room Contents:
+  - Hall of Fire:
+    - Room 1: Coin
+    - Room 2: Healing Herb
+  - Hall of Nullmagic:
+    - Room 1: Nothing
+    - Room 2: 40z
+  - Hall of Kings:
+    - Room 1: Nothing
+    - Room 2: Bandana
+- don't buy Moon Sword, imo. Save money and get it later through Boyd
+- first fight, Dodai: 2000hp, 3000exp, 0z
+    - put Momo first, Ryu second
+    - give Momo Ice Crysm and stuff that prevents blindness/increases accuracy (maybe High Boots)
+    - Have Momo shoot the enemy Dodai until it starts to sink
+    - swap in Ryu, who uses Ivory Dice, uses Flame+Reverse(+Whatever), and finishes Dodai off with Ice Claw
+  - for me Ryu went from lvl 13  - 18
+- spent 100z at the Inn
+- second fight, Emitai: 600hp, Golems: 750hp each, 600exp, 340z
+    - Ryu uses Flame + Thorn/Defender, might not need to monopolize (maybe Defender for Breath)
+- third fight: die
+- go back to Ballio and Sunder's office
+- if you leave and come back in you can talk to Fahl already
+- Thugs: 180exp, 350z
+    - guy in trenchcoat casts Flare and is annoying
+- Stallion: 1500hp, 800exp, 500z
+    - give Momo High Boots, Crepe Cape, Buckler
+    - take Titan Belt off Garr, equip on Ryu
+    - Ryu starts with Shield, then uses Flame + Thorn, regular attack
+    - Garr does regular attack
+    - Momo heals, casts Protect
+    - if Ryu runs ouf of AP Stallion might be almost dead anyway
+    - Garr can stay alive and not level up
+- *GENE pick up Frost across the bridge
+- 400z in artists drawers
+- my ryu is 19 so he can finish with Bunyan
+- caught Martian Squid to get rodmaster (E. of Mt. Mynerg, Heavy Caro)
+- talk to Fahl, get Flower Jewel and Wisdom Fruit
+- Nina finish with Durandel, set to Yggdrasil
+
 .........
 
 *THIS TIME give Typhoon to Nina at first?
