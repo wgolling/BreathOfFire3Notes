@@ -2,7 +2,7 @@ from datatracker import *
 
 def track_data(dt):
   # Segement 0: Awakening
-  dt.split("Awakening")
+  dt.split("Awakening", 0)
 
 
   ### START OF USER COMMANDS ###
@@ -10,7 +10,7 @@ def track_data(dt):
   dt.pick_up_weapon(MELTED_BLADE) # From Mogu's body
   dt.gain_character(REI)
   dt.gain_character(TEEPO)
-  dt.split("Second Awakening")
+  dt.split("Second Awakening", 0)
 
   dt.pick_up_skill_ink() 
   dt.pick_up_zenny(40)
@@ -19,8 +19,7 @@ def track_data(dt):
   dt.pick_up_weapon(BALLOCK_KNIFE)
   dt.level_up(REI)
   dt.boss_drop_zenny(50) # Second Nu fight
-  dt.set_current_zenny(305)
-  dt.split("Nu")
+  dt.split("Nu", 305)
 
   dt.buy_weapon(BRONZE_SWORD, 240)
   dt.buy(40) # Wooden Rod
@@ -36,8 +35,7 @@ def track_data(dt):
   dt.pick_up_zenny(120)
   dt.pick_up_weapon(SILVER_KNIFE)
   dt.pick_up_skill_ink()
-  dt.set_current_zenny(397)
-  dt.split("Pre-Manor")
+  dt.split("Pre-Manor", 397)
 
   dt.level_up(TEEPO)
   dt.level_up(RYU)
@@ -62,13 +60,11 @@ def track_data(dt):
   dt.boss_drop_zenny(200) # Amalgam
   dt.lose_character(REI)
   dt.lose_character(TEEPO)
-  dt.set_current_zenny(1674)
-  dt.split("After Manor")
+  dt.split("After Manor", 1674)
 
   dt.pick_up_zenny(200)
   dt.level_up(RYU)
-  dt.set_current_zenny(2068)
-  dt.split("Wake up in a cell")
+  dt.split("Wake up in a cell", 2068)
 
   dt.pick_up_skill_ink()
   dt.gain_character(NINA)
@@ -81,8 +77,7 @@ def track_data(dt):
   dt.level_up(NINA)
   dt.pick_up_zenny(400)
   dt.pick_up_weapon(BENT_SWORD)
-  dt.set_current_zenny(1632)
-  dt.split("Across Mr. Boumore")
+  dt.split("Across Mr. Boumore", 1632)
 
   dt.buy(2 * 20) # Toad and Old Popper from Merchant outside
   dt.level_up(NINA)
@@ -94,8 +89,7 @@ def track_data(dt):
   dt.pick_up_zenny(800)
   dt.level_up(RYU)
   dt.pick_up_zenny(40)
-  dt.set_current_zenny(2841)
-  dt.split("Tower")
+  dt.split("Tower", 2841)
 
   dt.pick_up_weapon(SCRAMASAX)
   dt.pick_up_zenny(80)
@@ -106,8 +100,7 @@ def track_data(dt):
   dt.level_up(MOMO)
   dt.boss_drop_zenny(300)
   dt.use_skill_ink()
-  dt.set_current_zenny(4832)
-  dt.split("Clean The Dump")
+  dt.split("Clean The Dump", 4832)
 
   dt.pick_up_zenny(40)
   dt.level_up(RYU, levels=5)
@@ -120,7 +113,6 @@ def track_data(dt):
   dt.level_up(MOMO)
   dt.pick_up_zenny(400)
   dt.pick_up_zenny(200)
-  dt.set_current_zenny(6562)
-  dt.split("Champion")
+  dt.split("Champion", 6562)
 
 ### END OF USER COMMANDS ###

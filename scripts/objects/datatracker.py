@@ -592,7 +592,7 @@ class DataTracker:
   #
   # Split
 
-  def split(self, name):
+  def split(self, name, current_zenny):
     """Split the DataTracker.
 
     Args:
@@ -600,6 +600,7 @@ class DataTracker:
 
     """
     # Finalize current entry
+    self.set_current_zenny(current_zenny)
     self.current_entry.name = str(name)
     self.current_entry.finalize()
     # Compute totals

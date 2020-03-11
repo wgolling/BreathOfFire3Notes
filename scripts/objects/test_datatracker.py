@@ -311,12 +311,12 @@ class TestSplitting(unittest.TestCase):
   def test_number_of_splits(self):
     for x in range(10):
       assert(self.dt.number_of_splits() == x)
-      self.dt.split(str(x))
+      self.dt.split(str(x), 0)
     assert(self.dt.number_of_splits() == 10)
 
   def test_split_name(self):
     dt = self.dt
-    dt.split("Test split")
+    dt.split("Test split", 0)
     assert(dt.get_name(0) == "Test split")
 
   def test_party_levels(self):
@@ -324,7 +324,7 @@ class TestSplitting(unittest.TestCase):
     assert(RYU in dt.current_entry.party)
     dt.level_up(RYU)
     assert(dt.get_party_levels()[RYU] == 2)
-    dt.split("Level Up Ryu")
+    dt.split("Level Up Ryu", 0)
     assert(RYU in dt.current_entry.party)
     assert(dt.get_party_levels()[RYU] == 2)
     dt.level_up(RYU)
@@ -361,19 +361,19 @@ class TestSplitting(unittest.TestCase):
     dt.pick_up_skill_ink()
     self.skill_ink_helper(cc=1, tc=1, cp=1, tp=1)
     # Split 1.
-    dt.split("Pick Up Skill Ink")
+    dt.split("Pick Up Skill Ink", 0)
     self.skill_ink_helper(tc=1, tp=1)
     # Buy skill ink
     dt.buy_skill_ink()
     self.skill_ink_helper(cc=1, tc=2, tp=1, cb=1, tb=1)
     # Split 2
-    dt.split("Buy Skill Ink")
+    dt.split("Buy Skill Ink", 0)
     self.skill_ink_helper(tc=2, tp=1, tb=1)
     # Use skill ink
     dt.use_skill_ink()
     self.skill_ink_helper(cc=-1, tc=1, tp=1, tb=1, cu=1, tu=1)
     # Split
-    dt.split("Use Skill Ink")
+    dt.split("Use Skill Ink", 0)
     self.skill_ink_helper(tc=1, tp=1, tb=1, tu=1)
 
     # Check previous splits
@@ -392,8 +392,7 @@ class TestSplitting(unittest.TestCase):
     dt.sell(120) 
     dt.sell(50) # 820
     dt.buy(600) # 220
-    dt.set_current_zenny(250)
-    dt.split("Pick up zenny")
+    dt.split("Pick up zenny", 250)
     assert(dt.get_gain_raw(Zenny.PICK_UP    , 0) == [100, 50])
     assert(dt.get_total(Zenny.PICK_UP   , 0) == 150)
     assert(dt.get_gain_raw(Zenny.BOSS_DROP  , 0) == [500])
@@ -420,7 +419,7 @@ class TestSplitting(unittest.TestCase):
     assert(dt.get_current_raw(Zenny.ENEMY_DROP ) == 0)
     assert(dt.get_total(Zenny.ENEMY_DROP, 1) == 30)
 
-    dt.split("Another split")
+    dt.split("Another split", 250)
     assert(dt.get_gain_raw(Zenny.PICK_UP    , 1) == [])
     assert(dt.get_total(Zenny.PICK_UP   , 1) == 150)
     assert(dt.get_gain_raw(Zenny.BOSS_DROP  , 1) == [])
@@ -440,7 +439,7 @@ class TestSplitting(unittest.TestCase):
     dt = self.dt
     dt.pick_up_weapon(DAGGER)
     dt.buy_weapon(BALLOCK_KNIFE, 50)
-    dt.split("Get stuff")
+    dt.split("Get stuff", 0)
     dt.pick_up_weapon(DAGGER)
     weapons = dt.get_weapons()
     assert(weapons[DAGGER] == 3)
@@ -460,7 +459,7 @@ class TestGetterMethodErrors(unittest.TestCase):
       function(-1)
     with self.assertRaises(IndexError):
       function(0)
-    self.dt.split("Test split")
+    self.dt.split("Test split", 0)
     with self.assertRaises(IndexError):
       function(1)
 
@@ -493,7 +492,7 @@ class TestGetterMethodErrors(unittest.TestCase):
     self.out_of_bounds(lambda split: self.dt.get_gain(Zenny.PICK_UP, split))
 
   def test_get_gain_wrong_type(self):
-    self.dt.split("Test")
+    self.dt.split("Test", 0)
     self.wrong_key_type(lambda att: self.dt.get_gain(att, 0))
 
   #
@@ -504,7 +503,7 @@ class TestGetterMethodErrors(unittest.TestCase):
       self.dt.get_total(Zenny.PICK_UP, -1)
     with self.assertRaises(IndexError):
       self.dt.get_total(Zenny.PICK_UP, 1)
-    self.dt.split("Test split")
+    self.dt.split("Test split", 0)
     with self.assertRaises(IndexError):
       self.dt.get_total(Zenny.PICK_UP, 2)
 
@@ -524,7 +523,7 @@ class TestGetterMethodErrors(unittest.TestCase):
     dt = self.dt
     dt.gain_character(NINA)
     dt.level_up(RYU)
-    dt.split("First split")
+    dt.split("First split", 0)
     strings = dt.get_strings()
     gains = strings[0]['party_levels']['gain']
     assert(gains[RYU] == '2')

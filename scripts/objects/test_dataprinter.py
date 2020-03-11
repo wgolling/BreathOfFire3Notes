@@ -13,7 +13,7 @@ class TestOutput(unittest.TestCase):
 
   def test_print_entry(self):
     dt = DataTracker()
-    dt.split("Test")
+    dt.split("Test", 0)
     dp = DataPrinter("Test", dt.get_strings())
     with self.assertRaises(IndexError):
       dp.print_entry(-1)
