@@ -52,16 +52,15 @@ AMMO, ICE_CHRYSM, FIRE_CHRYSM
 # the current Skill Ink and the amount of Zenny gained from enemy encounters, are 
 # derived from the other attributes and are not manually set. On the other hand,
 # the party's current Zenny level is used to derive enemy encounter Zenny and 
-# *MUST BE SET* prior to splitting.
+# is set with the splitting method.
 
 #
 # The spliting method
 
-split(name)
-  Finalize the current split, with a name.
+split(name, current_zenny)
+  Finalize the current split, with a name and the current Zenny.
   Computes the totals of all of the attributes in terms of the gains accumulated
   over the split and the previous totals, and then zeros the gain accumulators.
-  ** The method set_zenny(amt) should always be called immediately prior to spliting **.
 
 #
 # Character increment methods
@@ -73,7 +72,7 @@ gain_character(character)
   Add character to party with their starting weapon.
 
 lose_character(character)
-  Lose character from party, but retains their associated information.
+  Lose character from party, but retain their associated information.
 
 level_up(character, levels=1)
   Level up character. Optionally you can specify the number of levels.
@@ -105,9 +104,8 @@ sell(amt)
 buy(amt)
   Spend Zenny.
 
-set_current_zenny(amt)
-  Set current Zenny.
-  ** Call this method before every split! **
+# Note: the datatracker class has a set_current_zenny method, but since it is
+# set automatically by the splitting method there is no reason to call it directly.
 
 #
 # Weapon increment methods
@@ -135,24 +133,22 @@ Example:
 Suppose your `<run_name>/<run_name>_data.py`'s track_data method has the following 
 body:
 
-  dt.pick_up_weapon(MELTED_BLADE)
+  dt.pick_up_weapon(MELTED_BLADE) # From Mogu's body
   dt.gain_character(REI)
   dt.gain_character(TEEPO)
-  dt.set_current_zenny(0)
-  dt.split("Awakening")
+  dt.split("Awakening", 0)
 
-  dt.pick_up_skill_ink()
+  dt.pick_up_skill_ink() 
   dt.pick_up_zenny(40)
   dt.pick_up_weapon(BENT_SWORD)
   dt.pick_up_zenny(200)
   dt.pick_up_weapon(BALLOCK_KNIFE)
   dt.level_up(REI)
-  dt.boss_drop_zenny(50)
-  dt.set_current_zenny(305)
-  dt.split("Nu")
+  dt.boss_drop_zenny(50) # Second Nu fight
+  dt.split("Nu", 305)
 
   dt.buy_weapon(BRONZE_SWORD, 240)
-  dt.buy(40) # Wodden Rod
+  dt.buy(40) # Wooden Rod
   dt.buy(2 * 10)  # Herbs
   dt.level_up(TEEPO)
   dt.level_up(RYU)
@@ -165,8 +161,7 @@ body:
   dt.pick_up_zenny(120)
   dt.pick_up_weapon(SILVER_KNIFE)
   dt.pick_up_skill_ink()
-  dt.set_current_zenny(397)
-  dt.split("Pre-Manor")
+  dt.split("Pre-Manor", 397)
 
 After running `python3 print_data <run_name>`, the contents of 
 `<run_name>/<run_name>_data.txt` will be
@@ -183,18 +178,18 @@ Awakening
 RYU: 1     REI: 5     TEEPO: 1
 
 Zenny:
-PICK_UP:................................................0(0)
-BOSS_DROP:..............................................0(0)
-ENEMY_DROP:.............................................0(0)
-SALES:..................................................0(0)
-BUY:....................................................0(0)
-CURRENT:...............................................0(+0)
+PICK_UP...............................................0 (/0)
+BOSS_DROP.............................................0 (/0)
+ENEMY_DROP............................................0 (/0)
+SALES.................................................0 (/0)
+BUY...................................................0 (/0)
+CURRENT...............................................0 (+0)
 
 Skill Ink:
-PICK_UP:................................................0(0)
-BUY:....................................................0(0)
-USE:....................................................0(0)
-CURRENT:................................................0(0)
+PICK_UP...............................................0 (/0)
+BUY...................................................0 (/0)
+USE...................................................0 (/0)
+CURRENT...............................................0 (+0)
 
 Weapon:
 MELTED_BLADE: 1/1     DAGGER: 2/2     BALLOCK_KNIFE: 1/2
@@ -210,18 +205,18 @@ Nu
 RYU: 1     REI: 6     TEEPO: 1
 
 Zenny:
-PICK_UP:.....................................40+200=240(240)
-BOSS_DROP:............................................50(50)
-ENEMY_DROP:...........................................15(15)
-SALES:..................................................0(0)
-BUY:....................................................0(0)
-CURRENT:...........................................305(+305)
+PICK_UP....................................40+200=240 (/240)
+BOSS_DROP..........................................50  (/50)
+ENEMY_DROP.........................................15  (/15)
+SALES...............................................0   (/0)
+BUY.................................................0   (/0)
+CURRENT...........................................305 (+305)
 
 Skill Ink:
-PICK_UP:................................................1(1)
-BUY:....................................................0(0)
-USE:....................................................0(0)
-CURRENT:................................................1(1)
+PICK_UP...............................................1 (/1)
+BUY...................................................0 (/0)
+USE...................................................0 (/0)
+CURRENT...............................................1 (+1)
 
 Weapon:
 MELTED_BLADE: 1/1     DAGGER: 2/2     BALLOCK_KNIFE: 2/2
@@ -231,23 +226,24 @@ MACE: 0/1     SCRAMASAX: 0/1     MAGICIAN_ROD: 0/1
 RIPPERS: 0/1     AMMO: 0/1     ICE_CHRYSM: 0/1
 FIRE_CHRYSM: 0/1
 
+
 Pre-Manor
 ---------
 RYU: 3     REI: 7     TEEPO: 3
 
 Zenny:
-PICK_UP:.....................................80+120=200(440)
-BOSS_DROP:.............................................0(50)
-ENEMY_DROP:.........................................192(207)
-SALES:..................................................0(0)
-BUY:......................................240+40+20=300(300)
-CURRENT:............................................397(+92)
+PICK_UP....................................80+120=200 (/440)
+BOSS_DROP...........................................0  (/50)
+ENEMY_DROP........................................192 (/207)
+SALES...............................................0   (/0)
+BUY.....................................240+40+20=300 (/300)
+CURRENT...........................................397  (+92)
 
 Skill Ink:
-PICK_UP:................................................1(2)
-BUY:....................................................0(0)
-USE:....................................................0(0)
-CURRENT:................................................1(2)
+PICK_UP...............................................1 (/2)
+BUY...................................................0 (/0)
+USE...................................................0 (/0)
+CURRENT...............................................2 (+1)
 
 Weapon:
 MELTED_BLADE: 1/1     DAGGER: 2/2     BALLOCK_KNIFE: 2/2
