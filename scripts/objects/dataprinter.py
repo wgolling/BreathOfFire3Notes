@@ -97,35 +97,45 @@ class DataPrinter():
   #
   # Zenny and SkillInk printing
 
-  def _print_general_line(self, name, val1, val2):
-    padding = self.line_width - len(name) - len(val1) - len(val2) - 3
-    return name + ':' + padding * '.' + val1 + ' (' + val2 + ')' + '\n'
-
-  def _print_line(self, att, gain, total):
-    return self._print_general_line(att, gain, '/' + total)
-
-  def _print_current(self, att, strings):
-    total, gain = strings['total'][att], strings['gain'][att]
-    if int(gain) > 0:
-      gain = '+' + gain
-    return self._print_general_line(att.name, total, gain)
-
   def _print_zenny(self, i):
-    s = 'Zenny:\n'
-    strings = self.strings[i]['zenny']
-    for z in list(Zenny):
-      if z == Zenny.CURRENT:
-        s += self._print_current(z, strings)
-      else:
-        s += self._print_line(z.name, strings['gain'][z], strings['total'][z])
-    return s
+    return self._print_enum(i, Zenny)
 
   def _print_skill_ink(self, i):
-    s = 'Skill Ink:\n'
-    strings = self.strings[i]['skill_ink']
-    for att in list(SkillInk):
-      if att == SkillInk.CURRENT:
-        s += self._print_current(att, strings)
-      else:
-        s += self._print_line(att.name, strings['gain'][att], strings['total'][att])
+    return self._print_enum(i, SkillInk)
+
+  def _print_enum(self, i, enum):
+    if enum == Zenny:
+      s, key = 'Zenny:\n', 'zenny'
+    elif enum == SkillInk:
+      s, key = 'Skill Ink:\n', 'skill_ink'
+    else:
+      raise ValueError("enum must be Zenny or SkillInk")
+    strings = self.strings[i][key]
+    val1s, val2s, max_val2_length = self._pre_process(strings, enum)
+    for att in list(enum):
+      s += self._print_line(att.name, val1s[att], val2s[att], max_val2_length)
     return s
+
+  def _pre_process(self, strings, enum):
+    max_val2_length = 0
+    val1s, val2s = dict(), dict()
+    for att in list(enum):
+      v1, v2 = '', ''
+      if att == enum.CURRENT:
+        v1 = strings['total'][att]
+        v2 = strings['gain'][att]
+        if int(v2) >= 0: v2 = '+' + v2
+        v2 = ' (' + v2 + ')'
+      else:
+        v1 = strings['gain'][att]
+        v2 = strings['total'][att]
+        v2 = ' (/' + v2 + ')'
+      val1s[att], val2s[att] = v1, v2
+      if len(v2) > max_val2_length: max_val2_length = len(v2)
+    return val1s, val2s, max_val2_length
+
+  def _print_line(self, name, val1, val2, max_val2_length):
+    title = name + ':'
+    val2 = (max_val2_length - len(val2)) * ' ' + val2
+    dots = (self.line_width - len(name) - len(val1) - len(val2)) * '.'
+    return name + dots + val1 + val2 + '\n'
