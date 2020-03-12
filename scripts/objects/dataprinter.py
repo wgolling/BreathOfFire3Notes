@@ -64,10 +64,11 @@ class DataPrinter():
     s = ''
     w = 0
     strings = self.strings[i]['party_levels']
-    for c in list(Character):
-      if c in strings['total']:
-        suf = c.name + ': ' + strings['total'][c]
-        s, w = self._add_to_lined_string(s, w, suf)
+    for c in strings['total']:
+      suf = c.name + ': ' + strings['total'][c]
+      v = strings['gain'][c]
+      if int(v) > 0: suf = suf + ' (+' + v + ')'
+      s, w = self._add_to_lined_string(s, w, suf)
     return s + '\n'
 
   def _print_weapon(self, i):

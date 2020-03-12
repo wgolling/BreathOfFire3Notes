@@ -6,7 +6,7 @@
 
 Awakening
 ---------
-RYU: 1
+RYU: 1 (+1)
 
 Zenny:
 PICK_UP...............................................0 (/0)
@@ -59,7 +59,7 @@ AMMO: 0/1     ICE_CHRYSM: 0/1     FIRE_CHRYSM: 0/1
 
 Nu
 --
-RYU: 1     REI: 6     TEEPO: 1
+RYU: 1     REI: 6 (+1)     TEEPO: 1
 
 Zenny:
 PICK_UP....................................40+200=240 (/240)
@@ -85,7 +85,7 @@ FIRE_CHRYSM: 0/1
 
 Pre-Manor
 ---------
-RYU: 3     REI: 7     TEEPO: 3
+RYU: 3 (+2)     REI: 7 (+1)     TEEPO: 3 (+2)
 
 Zenny:
 PICK_UP....................................80+120=200 (/440)
@@ -110,7 +110,7 @@ FIRE_CHRYSM: 0/1
 
 After Manor
 -----------
-RYU: 8
+RYU: 8 (+5)
 
 Zenny:
 PICK_UP...............................120+40+600=760 (/1200)
@@ -134,7 +134,7 @@ AMMO: 0/1     ICE_CHRYSM: 0/1     FIRE_CHRYSM: 0/1
 
 Wake up in a cell
 -----------------
-RYU: 9
+RYU: 9 (+1)
 
 Zenny:
 PICK_UP..........................................200 (/1400)
@@ -158,7 +158,7 @@ AMMO: 0/1     ICE_CHRYSM: 0/1     FIRE_CHRYSM: 0/1
 
 Across Mr. Boumore
 ------------------
-RYU: 11     NINA: 6
+RYU: 11 (+2)     NINA: 6 (+1)
 
 Zenny:
 PICK_UP...................................80+400=480 (/1880)
@@ -181,7 +181,7 @@ FIRE_CHRYSM: 0/1
 
 Tower
 -----
-RYU: 12     NINA: 8     MOMO: 10
+RYU: 12 (+1)     NINA: 8 (+2)     MOMO: 10
 
 Zenny:
 PICK_UP...................................800+40=840 (/2720)
@@ -203,7 +203,7 @@ SCRAMASAX: 0/1
 
 Clean The Dump
 --------------
-RYU: 13     NINA: 8     MOMO: 12
+RYU: 13 (+1)     NINA: 8     MOMO: 12 (+2)
 
 Zenny:
 PICK_UP.................................80+1200=1280 (/4000)
@@ -225,7 +225,7 @@ Completed!
 
 Champion
 --------
-RYU: 19     NINA: 8     MOMO: 14
+RYU: 19 (+6)     NINA: 8     MOMO: 14 (+2)
 
 Zenny:
 PICK_UP...............................40+400+200=640 (/4640)
