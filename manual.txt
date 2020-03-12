@@ -192,12 +192,11 @@ USE...................................................0 (/0)
 CURRENT...............................................0 (+0)
 
 Weapon:
-MELTED_BLADE: 1/1     DAGGER: 2/2     BALLOCK_KNIFE: 1/2
-BENT_SWORD: 0/2     BRONZE_SWORD: 0/1     POINTED_STICK: 0/2
-SILVER_KNIFE: 0/1     BROAD_SWORD: 0/1     OAKEN_STAFF: 0/1
-MACE: 0/1     SCRAMASAX: 0/1     MAGICIAN_ROD: 0/1
-RIPPERS: 0/1     AMMO: 0/1     ICE_CHRYSM: 0/1
-FIRE_CHRYSM: 0/1
+BALLOCK_KNIFE: 1/2     BENT_SWORD: 0/2     BRONZE_SWORD: 0/1
+POINTED_STICK: 0/2     SILVER_KNIFE: 0/1
+BROAD_SWORD: 0/1     OAKEN_STAFF: 0/1     MACE: 0/1
+SCRAMASAX: 0/1     MAGICIAN_ROD: 0/1     RIPPERS: 0/1
+AMMO: 0/1     ICE_CHRYSM: 0/1     FIRE_CHRYSM: 0/1
 
 
 Nu
@@ -219,7 +218,6 @@ USE...................................................0 (/0)
 CURRENT...............................................1 (+1)
 
 Weapon:
-MELTED_BLADE: 1/1     DAGGER: 2/2     BALLOCK_KNIFE: 2/2
 BENT_SWORD: 1/2     BRONZE_SWORD: 0/1     POINTED_STICK: 0/2
 SILVER_KNIFE: 0/1     BROAD_SWORD: 0/1     OAKEN_STAFF: 0/1
 MACE: 0/1     SCRAMASAX: 0/1     MAGICIAN_ROD: 0/1
@@ -246,9 +244,7 @@ USE...................................................0 (/0)
 CURRENT...............................................2 (+1)
 
 Weapon:
-MELTED_BLADE: 1/1     DAGGER: 2/2     BALLOCK_KNIFE: 2/2
-BENT_SWORD: 1/2     BRONZE_SWORD: 1/1     POINTED_STICK: 2/2
-SILVER_KNIFE: 1/1     BROAD_SWORD: 0/1     OAKEN_STAFF: 0/1
+BENT_SWORD: 1/2     BROAD_SWORD: 0/1     OAKEN_STAFF: 0/1
 MACE: 0/1     SCRAMASAX: 0/1     MAGICIAN_ROD: 0/1
 RIPPERS: 0/1     AMMO: 0/1     ICE_CHRYSM: 0/1
 FIRE_CHRYSM: 0/1

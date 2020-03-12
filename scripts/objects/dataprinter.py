@@ -74,10 +74,17 @@ class DataPrinter():
     s = 'Weapon:\n'
     w = 0
     strings_dict = self.strings[i]
-    strings = strings_dict['weapons']['total']
+    amts = strings_dict['weapons']['total']
+    reqs = strings_dict['weapon_requirements']
+    printed = False
     for c in list(Weapon):
-      suf = c.name + ': ' + strings[c] + '/' + strings_dict['weapon_requirements'][c]
+      if int(amts[c]) >= int(reqs[c]):
+        continue
+      suf = c.name + ': ' + amts[c] + '/' + reqs[c]
       s, w = self._add_to_lined_string(s, w, suf)
+      printed = True
+    if not printed:
+      s += 'Completed!'
     return s + '\n'
 
   def _add_to_lined_string(self, s, used, suf):

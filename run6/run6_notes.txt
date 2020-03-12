@@ -256,6 +256,42 @@ Oh No... Not Again...:
 - talk to Fahl, get Flower Jewel and Wisdom Fruit
 - Nina finish with Durandel, set to Yggdrasil
 
+
+================
+|| Going East ||
+================
+
+Visit Rhapala!:
+---------------
+- castle Wyndia:
+    - items you can get: - Vitamin in prison
+                    - Panacea in kitchen
+                    - Gemsx2 in dining room
+                    - Panacea in guard's room
+                    - Healing Herb, Coin in mom's room
+                    - Healing Herb in King's room
+    - talk to lady by broken plate, then find honey in wine cellar, then go to balcony
+- Checkpoint has 200z, Antidote *DO THIS EARLIER
+- ? has Thunder Gene and Life Shard
+- set Ryu to Giotto
+- Rhapala:
+    - items you can find:
+            - Molotov in weapon store
+            - Panacea in depths of Inn
+    - buy Float
+    - talk to Sinkar in his hotel, then Shadis, go back to entrance to find Shadis, then Sinkar, 
+        leave town (there's a cutscene), talk to Beyd twice with Nina
+    - Beyd gives you 1000z
+    - don't mash at "I can use whatever Ryu can" or "training?"
+    - training: - give Beyd your best equipment 
+                - preferably Scramasax=>Moonsword
+                - need at least one combat
+    - *SKILL INK (2) - gave Monopolize and Blind to Nina, and Super Combo to Momo
+    - Zig fight:  (- 7 hit super-combo w/ lvl 19, Titan Belt(!) and Scramasax (8 hit with Broad Sword))
+                  - super combo on Momo seems to work really well, 6-hit was enough at level 13 w Titan Belt
+                  - make sure Super Comboer can outpace Zig
+    - talk to Beyd to get Guild Badge, then talk to sailor guarding bridge
+
 .........
 
 *THIS TIME give Typhoon to Nina at first?
