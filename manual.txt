@@ -201,7 +201,7 @@ AMMO: 0/1     ICE_CHRYSM: 0/1     FIRE_CHRYSM: 0/1
 
 Nu
 --
-RYU: 1     REI: 6     TEEPO: 1
+RYU: 1     REI: 6 (+1)     TEEPO: 1
 
 Zenny:
 PICK_UP....................................40+200=240 (/240)
@@ -227,7 +227,7 @@ FIRE_CHRYSM: 0/1
 
 Pre-Manor
 ---------
-RYU: 3     REI: 7     TEEPO: 3
+RYU: 3 (+2)     REI: 7 (+1)     TEEPO: 3 (+2)
 
 Zenny:
 PICK_UP....................................80+120=200 (/440)
