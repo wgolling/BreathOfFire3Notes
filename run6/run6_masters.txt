@@ -1,15 +1,27 @@
-Character | Level Range | Master    | Levels needed | Time Unlocked 
+Character | Level Range | Master    | Levels needed | Apprenticed 
 -------------------------------------------------------------------
 Ryu         1  -  9       *Mygas      8               After Nue
             9  - 19       *Bunyan     10              After House burns
+            19 - 27       *Giotto     8               ASAP
+            27 - 30       *Lang       3               After freeing Deis
+            30 -           Deis                       After fixing Antenna
 
 Nina        5  -  8       *Durandal   3               Escape Wyndia  
-            8  -           Yggdrasil  8
+            8  - 16       *Yggdrasil  8
+            16 - 20       *Bais       3(+1)           After freeing Deis
+            20 - 23       *Lee        3               After fixing Antenna
 
-Momo        10 -           D'lonzo    4               After Scramasax
+Momo        10 - 14       *D'lonzo    4               After Scramasax
+            14 - 20       *Emitai     6               After getting Momo at the plant
+            20 - 35       *Deis       15              After fixing Antenna
+            35 -           Hachio                     After desert
 
-Peco        1  -   
+Peco        1  -  9       *Hondara    8               ASAP 
+            9  - 17       *Meryleep   8               After finishing Hondara 
+            17 - 26       *Ladon      9               After Elder
 
-Garr        13 - 
+Garr        13 - 19       *Fahl       6               After Grind
+            19 - 22       *Wynn       3               After freeing Deis
 
-Rei         20 -
+Rei         20 - 28       *Hachio     4               After freeing Deis
+            28 -           Meryleep                   After desert
