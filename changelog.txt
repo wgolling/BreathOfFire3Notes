@@ -1,0 +1,8 @@
+current:
+-------
+- finished run 6
+- added resources directory
+
+v0.11:
+-----
+- I forget.
