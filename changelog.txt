@@ -1,8 +1,17 @@
-current:
--------
+### current
+
 - finished run 6
+
 - added resources directory
 
-v0.11:
------
-- I forget.
+### v0.11
+
+- Correct printing error with "CURRENT" attributes.
+
+- Refactor DataPrinter's Zenny and Skill Ink printing, and greatly improve presentation.
+
+- Change DataTracker.split so it now requires the current Zenny as an argument.
+
+### v0.10 
+
+- It works.
