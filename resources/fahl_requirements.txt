@@ -1,0 +1,65 @@
+I tested the Fahl requirements to determine EXACTLY what the conditions are.
+
+The general instruction is "fight 30 fights without resting" but it's not explicit what's allowed an what is not.
+
+I found that:
+- You MUST talk to Fahl after Contest of Champions and before the 30 fights begin, and it doesn't matter how you answer his question.
+- You can change regions, enter towns, enter camp, use restorative items/spells.
+- The only thing that invalidates the streak is using Rest somewhere.
+
+
+Test 1:
+------
+- rested first, then ran from 30 fights in an area in Yrall region, did not talk to Fahl first.
+Result: NO
+
+Test 2:
+------
+- spoke to Fahl, then ran Test 1. (Saved state at 29 battles.)
+Result: YES
+Conclusions: - you MUST talk to Fahl first
+						 - you CAN rest after talking to Fahl
+						 - you CAN run from fights
+
+Test 3:
+------
+- same as Test 2, but fought the 30th fight in Central Wyndia.
+Result: YES
+Conclusion: - you CAN fight in multiple areas
+
+Test 4:
+------
+- same as Test 2, but entered camp, changed party members, and changed skills
+Result: YES
+Conclusions: - you CAN enter camp, change party memebers, change skills.
+
+Test 5:
+------
+- same as Test 2, but changed masters and bought items in Wyndia
+Result: YES
+Conclusions: - you CAN change master, enter towns, and buy items
+
+Test 6:
+------
+- talked to Fahl but said "No", then ran from 30 fights in Central Wyndia, used healing spells and items
+Result: YES
+Conclusions: - don't have to say "Yes" to Fahl
+						 - you can use restorative spells and items
+
+Test 7:
+------
+- went to Mt Zublo, gained 8 levels with Peco, learned all of Hondara's skills
+- changed Peco's master to Maryleep
+- went back to Mt Zublo, gained 8 levels with Peco
+- changed Monopolize to Ryu
+- did the rest of the 30 battles in Mt Zublo
+- learned all of Meryleep's skills
+- swapped Peco for Garr
+Result: YES
+
+
+Conclusions:
+-----------
+- You MUST talk to Fahl after CoC and before the 30 fights begin, and it doesn't matter how you answer his question.
+- You can change regions, enter towns, enter camp, use restorative items/spells.
+- The only thing that invalidates the streak is using Rest somewhere.

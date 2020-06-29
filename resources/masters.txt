@@ -1,0 +1,116 @@
+Mygas:  -1 Pwr, -1 Def, +2 Int, +1 AP     (give him all your money)
+-----
+lvl 1  - Frost
+lvl 4  - Meditation
+lvl 6  - Magic Ball
+lvl 8  - Typhoon
+
+
+Bunyan: +2 Pwr, +1 Def, -3 Int, +2 HP, -2 AP (available after Balio + Sunder, just re-enter forest)
+------
+lvl 2  - Risky Blow
+lvl 5  - Focus
+lvl 8  - Super Combo
+lvl 10 - Disembowel
+
+
+Durandal:
+--------
+lvl 1  - Unmotivate
+lvl 2  - Feign Swing
+lvl 3  - Backhand
+
+
+D'lonzo:  +1 Pwr, +1 Agl, -1 HP, -2 AP, Accuracy up      (have 15 distinct unequipped weapons)
+-------
+lvl 2  - Monopolize
+lvl 3  - Intimidate
+lvl 4  - Steal
+
+
+Yggdrasil:  -2 Pwr, +1 Def, +2 Int, -1 HP, +1 AP, Weak vs Fire (need Peco, give Wisdom fruit)
+---------
+lvl 2  - Sanctuary
+lvl 5  - Recall
+lvl 8  - Shield
+
+
+Giotto:  -1 Pwr, -1 Def, -1 Int, -1 Agl, +4 HP, +3 AP (Rodmaster)
+------
+lvl 2  - Trump
+lvl 5  - Berserk
+lvl 8  - Sudden Death
+
+
+Meryleep: -1 Pwr, -1 Def, +2 Agl, -1 HP
+--------
+lvl 2  - Charm
+lvl 5  - Shadowwalk
+lvl 8  - War Shout
+
+
+Hondara:  -2 Pwr, +1 Int, +1 AP, Holy property up  (learn Backhand from Dunrandal)
+-------
+lvl 2  - Purify
+lvl 5  - Kyrie
+lvl 8  - Benediction
+
+
+Fahl: +1 Pwr, +3 Def, -3 Int, -3 Agl, +4 HP  (end 30 battles without resting, running counts)
+----
+lvl 2  - Charge
+lvl 4  - Counter
+lvl 6  - Resist
+
+
+Emitai: -2 Pwr, -2 Def, +4 Int, +4 AP   (pay 10000z)
+------ 
+lvl 2  - Barrier
+lvl 4  - Mind Sword
+lvl 6  - Enlighten
+
+
+Hachio: +2 Pwr, +1 Def, -1 Int, -1 Agl, +2 HP, -2 AP  (Swallow Eye, Beef Jerky, Angler, Martian Squid)
+------                                                (After Deis)
+lvl 2  - Mighty Chop
+lvl 4  - Demonbane
+
+
+from https://gamefaqs.gamespot.com/ps/196817-breath-of-fire-iii/faqs/17594
+
+
+Bais: +1 Pwr   (Hide & Seek, come back to Wyndia after Gaist) (Bald guy)
+----
+lvl 3  - Chain Formation
+
+
+Lang: +1 Def (Fat guy)
+----
+lvl 3  - Cupid's Lyre
+
+
+Lee: +1 Int  (Dress)
+----
+lvl 3  - Magic Formation
+
+
+Wynn: +1 HP  (Mushroom cut)
+----
+lvl 3  - Refuge Formation
+
+
+Deis: +1 Pwr, -3 Def, +3 Int, +1 Agl, -3 HP, +3 AP    (Tell her "I like you this way", call her "Ma'am".)
+----                                                  (After Parch)
+lvl 2  - Inferno
+lvl 5  - Blizzard
+lvl 8  - Myollnir
+lvl 11 - Sirocco
+lvl 15 - Celerity
+
+
+Ladon: +2 Pwr, +2 Def, +2 Int, +1 Agl, -6 HP, -6 AP    (Have all 18 dragon genes)
+-----
+lvl 3  - Mind's Eye
+lvl 5  - Holy Strike
+lvl 7  - Ward of Light
+lvl 9  - Aura

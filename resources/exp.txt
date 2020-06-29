@@ -1,0 +1,138 @@
+Experience Cap:
+--------------
+
+The most experience you can receive in a single fight is 65,535.
+For example, Elder normally gives 6000 exp, so with 3 Ivory Dice he gives 48,000.
+However, with 4 Iovry Dice he gives 65,535, not 96,000.
+Therefore, try not to waste Ivory Dice by using too many.
+
+Elder: still worth it to use 4 => 65,535
+Dragon Lord: gives 15000, so use 2 for 60000 (get the extra 5,535 if you REALLY want)
+Chimera: gives 9000, so 2 gives 36000 and 3 already gives 65535.
+
+Use as many Ivory Dice against Chimera as you can, but save 2 for Dragon Lord.
+
+
+--------------------------------------------------------------------------------
+
+
+Ryu's Bunyan experience:
+-----------------------
+
+- Mutant: 600
+- Dodai w/ Ivory Dice: 6000
+- Emitai: 600
+- Stallion: 800
+========
+8000exp
+
+maybe don't monopolize Mutant, and Dodai exp should be enough and not too much
+
+=> want to have [28000, 36000), i.e. almost level 19
+
+
+
+https://gamefaqs.gamespot.com/ps/196817-breath-of-fire-iii/answers/284626-exp-tables:
+**** I think these numbers are wrong, I have a level 19 ryu whose exp is ~10000
+
+LV Ryu 
+-------------
+2 10 
+3 25 
+4 62 
+5 155 
+6 370 
+7 610 
+8 800 
+9 1400 
+10 2300 
+11 3600 
+12 5600 
+13 8000 
+14 10700 
+15 14000 
+16 18000 
+17 23000 
+18 29000 
+19 36000 
+20 44000 
+21 53000 
+22 63000 
+23 74000 
+24 86000
+25 99000 
+26 113000
+27 128000 
+28 144000 
+29 161000 
+30 179000 
+31 198000 
+32 218000 
+33 239000 
+34 261000 
+35 284000 
+36 309000 
+37 336000 
+38 365000 
+39 396000 
+40 429000 
+41 464000 
+42 501000 
+43 540000 
+44 581000 
+45 624000 
+46 669000 
+47 716000 
+48 765000 
+49 817000 
+50 870000 
+51 920000 
+52 970000 
+53 1020000
+54 1070000 
+55 1120000 
+56 1170000 
+57 1220000 
+58 1270000 
+59 1320000 
+60 1370000 
+61 1420000 
+62 1470000 
+63 1520000 
+64 1570000 
+65 1620000 
+66 1670000 
+67 1720000 
+68 1770000 
+69 1820000 
+70 1870000 
+71 1920000 
+72 1970000 
+73 2020000 
+74 2070000 
+75 2120000 
+76 2170000 
+77 2220000 
+78 2270000 
+79 2320000 
+80 2370000 
+81 2420000 
+82 2470000 
+83 2520000 
+84 2570000 
+85 2620000 
+86 2670000 
+87 2720000 
+88 2770000 
+89 2820000 
+90 2870000 
+91 2920000 
+92 2970000 
+93 3020000 
+94 3070000 
+95 3120000 
+96 3170000 
+97 3220000 
+98 3270000 
+99 3320000
+hairybear1982 	- 6 years ago

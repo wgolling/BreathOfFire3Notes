@@ -1,0 +1,51 @@
+ElectroSpectre has a very comprehensive fishing guide https://gamefaqs.gamespot.com/ps/196817-breath-of-fire-iii/faqs/40847
+
+
+Route Overview:
+--------------
+There are 3 main fishing goals for this route:
+1) get the Holy Knife and a Skill Ink early on
+  - catch 3 Trout and 3 Rainbow Trout in Yrall
+2) accumulate enough points for Giotto
+  - catch fish in Yrall and Momo's tower, catch Martian Squid, make up any missing points in Rhapalla
+3) get some of Hachio's required items
+  - Martian Squid E of Mt. Mynerg, catch with Heavy Caro before Rhapalla
+  - Angler SE of Mt. Zublo, catch with Float just before Tidal Caves
+
+
+Poles:
+-----
+- buy Wooden Rod during Mygas money-dump, use in Yrall region
+- find Bampoo Rod in Tower, use to fish up Black Porgies and get points
+- get Deluxe Rod in Northern Checkpoint after Mikba, use for any remaining fish
+
+
+What to buy at Manillo Shops:
+----------------------------
+Yrall Manillo: - Silver Knife (2 Trout, 2 Rainbow Trout)
+							 - Skill Ink if you want (1 Trout, 1 Rainbow Trout)
+							  (use extra Piranha and Puffers on new bait)
+
+Momo's Tower:  - Chain Cap (1 Bass, 3 Blowfish) kind of not worth it
+							 - Crepe Cape (1 Black Porgi, 4 Flying Fish) *MAYBE get 2
+
+
+Hachio requirements:
+-------------------
+- Angler         (SE of Mt. Zublo, Spot 16, Southern Rhapala Region near Cliff)
+- Martian Squid  (E of Mt. Mynerg, next to Maykees George central Wyndia, SE of Dauna Mine) Heavy Caro
+
+
+THE FISH LIST:
+-------------
+Piranha:       bait   (worm)
+Puffers:       bait   (popper?)
+Trout:         2 + #Skill Inks  (worm)
+Rainbow Trout: 2 + #Skill Inks  (worm)
+Bass:          1  (E of Stone Bridge)  (worm, won't go after techs, just drag over)
+Blowfish:      3   (float)
+Black Porgi:   #Crepe Capes  (frog)
+Flying Fish:   4x#CrepeCapes  (float)
+Angler:        1  (SE of Mt. Zublo, Float)
+Martian Squid: 1  (E of Mt. Mynerg, Heavy Caro)
+Makerel:       68-70cm (Maykees gorge, Worm)

@@ -1,0 +1,163 @@
+The weapon/armor that you give to Beyd during his combat with Zig will be upgraded.
+The equipment you receive will have IDs one larger than the ones you give him.
+For example, giving him Scramasax and Scale Mail gives Moon Sword and Crepe Cape.
+
+Here are the item IDs, found at a GameFAQs forum discussion https://gamefaqs.gamespot.com/boards/196817-breath-of-fire-iii/69678137
+Obviously many of these items are not feasible to posesses at this point in the game.
+
+
+Weapons:
+0001 Nothing
+0101 Dagger
+0201 BallockKnife
+0301 Bronze Sword
+0401 Broad Sword
+0501 Silver Knife
+0601 Scramasax
+0701 Moon Sword
+0801 Claymore
+0901 Flare Sword
+0A01 Feather Sword
+0B01 Royal Dagger
+0C01 Baselard
+0D01 Deadly Blade
+0E01 Heavy Dagger
+0F01 Ascension
+1001 Heat Shotel
+1101 Barbarossa
+1201 PiercingEdge
+1301 Demonsbane
+1401 DamascusSwd
+1501 SeekingSword
+1601 Dragon Blade
+1701 Holy Avenger
+1801 Royal Sword
+1901 Goo KingSword (censorship, go fudge yourself)
+1A01 AshurasSword
+1B01 HiddenDagger
+1C01 Bent Sword
+1D01 PointedStick
+1E01 Oaken Staff
+1F01 Mace
+2001 Magician Rod
+2101 QuarterStaff
+2201 WindCutter
+2301 Ruby Scepter
+2401 LacquerStaff
+2501 Beryl Rod
+2601 Thunder Rod
+2701 BlessedStaff
+2801 Ouroboros
+2901 Spear
+2A01 Long Spear
+2B01 Halbred
+2C01 Rood Spear
+2D01 Flame Spear
+2E01 Flying Spear
+2F01 PiercingPike
+3001 Gigantess
+3101 Gale Javelin
+3201 Ice Halberd
+3301 Aries Spear
+3401 Gunginir
+3501 Dragon Spear
+3601 Rufad'sSpear
+3701 Claws
+3801 Rippers
+3901 Spiked Claws
+3A01 Flame Talons
+3B01 Tiger Claws
+3C01 Raptor Claws
+3D01 Rockbreaker
+3E01 Brass Claws
+3F01 Death Claws
+4001 Dragonfang
+4101 ThievesKnife
+4201 Katzbalger
+4301 Slicer
+4401 Lifestealer
+4501 Melted Blade
+4601 Ammo
+4701 Flame Chrysm
+4801 Ice Chrysm
+4901 ShotgunShell
+4A01 Sleep Shells
+4B01 HE Shells
+4C01 Flash Shells
+4D01 Homing Bomb
+4E01 AP Shells
+4F01 Gas Shells
+5001 Atomic Bomb
+5101 Ghostbuster
+5201 Beast Spear
+
+
+Armor:
+0002 Nothing
+0102 Clothing
+0202 LeatherArmor
+0302 Waistcloth
+0402 Ranger Garb
+0502 LeatherApron
+0602 Mage's Robes
+0702 Cuirass
+0802 Breastplate
+0902 Chain Cap
+0A02 Scale Mail
+0B02 Crepe Cape
+0C02 AsbestosArmr
+0D02 MithrilArmor
+0E02 Lgt.Clothing
+0F02 Magma Armor
+1002 Silver Mail
+1102 Robe of Wind
+1202 Amber BPlate
+1302 PhantomDress
+1402 BlizzardMail
+1502 Laquer Armor
+1602 Sage's Frock
+1702 DamascusMail
+1802 Holy Robe
+1902 Burglar Garb
+1A02 Royal Armor
+1B02 Force Armor
+1C02 Gideon'sGarb
+1D02 Diana'sDress
+1E02 Dragon Armor
+1F02 Life Armor
+2002 Mist Armor
+2102 Bandana
+2202 Hairband
+2302 Brass Helm
+2402 Iron Helm
+2502 Knight'sHelm
+2602 Glass Domino
+2702 Mithril Helm
+2802 Laurel
+2902 Gold Hairpin
+2A02 PlatinumHelm
+2B02 UV Glasses
+2C02 Tiger's Cap
+2D02 Sun Mask
+2E02 Laquer Helm
+2F02 Silver Tiara
+3002 Divine Helm
+3102 Dragon Helm
+3202 Bracers
+3302 Cloth Shield
+3402 Gauntlet
+3502 BronzeShield
+3602 Buckler
+3702 MithrlShield
+3802 SteelGntlets
+3902 Flame Shield
+3A02 Kite Shield
+3B02 Ice Shield
+3C02 SpikedGntlts
+3D02 LaquerShield
+3E02 Protectors
+3F02 GiantShield
+4002 Mind Shield
+4102 DragonShield
+4202 Aries Gloves
+4302 ManlyClothes

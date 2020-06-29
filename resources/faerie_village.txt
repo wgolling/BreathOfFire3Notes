@@ -1,0 +1,54 @@
+for a more in-depth guide see Thundercleese https://gamefaqs.gamespot.com/ps/196817-breath-of-fire-iii/faqs/3739
+
+
+Relevant mechanics:
+------------------
+- Faeries are born EVERY 10 LEVELS unless not enough food (it counts if you only enter)
+- should keep about a third of the population in food production to keep it healthy
+- Culture determines how fast stores gain stock, and goes up to 7
+
+
+Overall strategy:
+----------------
+- the goal for this route is to be able to buy Protectors and Soul Gems.
+- put everyone in Food right at the start to buff up the population
+- go full steam into Culture and Job Scholar, then Weapon (ability) and Handyman (ability)
+- you probably won't get any store fully stocked before the end of the game.
+
+
+Shops:
+-----
+
+WEAPON (SPEED)            ITEM (SPEED)            HANDYMAN (SPEED) 
+--------------            ------------            ----------------
+Pointed Stick-   10       Green Apple-     5      Berries-         5 
+Waistcloth-     210       Vitamin-        50      Beef Jerky-     50 
+Bronze Sword-   240       Panacea-       100      Clothing-       50 
+Buckler-       1100       MultiVitamin-  300      Flame Chrysm-  500 
+Wind Cutter-   2200       Ammonia-       200      Napalm-        800 
+Crepe Cape-    1300       Talisman-      500      Bell Collar- 10000 
+Flame Talons-  3300       Life Sandals-  500      Angling Rod-  2000 
+Laurel-        1800       High Boots-   3000      Belladonna-    200 
+Royal Dagger-  6200       Titan Belt-   3000      Royal Dagger- 6200 
+Spiked Gntlts- 6800       Dream Ring-   1000      Holy Mantle- 10000 
+Ice Halberd-  12500       Balance Ring- 1000      Soul Gem-     3000 
+
+WEAPON (ABILITY)          ITEM (ABILITY)          HANDYMAN (ABILITY) 
+----------------          --------------          ------------------
+Pointed Stick-   10       Green Apple-     5      Berries-         5 
+Waistcloth-     210       Vitamin-        50      Beef Jerky-     50 
+Bronze Sword-   240       Panacea-       100      Taser-         200 
+Crepe Cape-    1300       Ammonia-       200      Tiger Claws-  3800 
+Flame Talons-  3300       High Boots-   3000      Angling Rod-  2000 
+Amber BPlate-  6100       Lion's Belt-  3000      Lion's Belt-  3000 
+Piercing Pike- 7400       Napalm-        800      Bell Collar- 10000 
+Katzbalger-    9200       Dream Ring-   1000      Soul Gem-     3000 
+Protectors-   11000       Balance Ring- 1000      Holy Mantle- 10000 
+Tiger's Cap-   5300       Barrier Ring- 3000      Molotov-        10 
+Ouroboros-    22000       Diamond Ring- 3000      HiddenDagger- 7000 
+
+
+- Weapon (ability) gets you Protectors.
+- both Handymen get you Soul Gem, but (ability) gets it faster
+
+
