@@ -3,7 +3,7 @@ from datatracker import *
 
 def track_data(dt):
   # Segement 0: Awakening
-  dt.split("Awakening")
+  dt.split("Awakening", 0)
 
 
   ### START OF USER COMMANDS ###
