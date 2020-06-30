@@ -40,7 +40,7 @@ def track_data(dt):
   dt.buy_skill_ink()
   dt.split("Pre-Manor", 397)
 
-  # After Manor
+  # Manor
   dt.level_up(TEEPO)
   dt.level_up(RYU)
   dt.boss_drop_zenny(10) # Pooch
@@ -62,16 +62,18 @@ def track_data(dt):
   dt.level_up(TEEPO)
   dt.level_up(RYU)
   dt.boss_drop_zenny(200) # Amalgam
-  dt.split("After Manor", 1674)
+  dt.split("Manor", 1674)
 
-  # Wake Up In A Cell
+  # Mt. Mynerg
   dt.pick_up_zenny(200)
   dt.lose_character(REI)
   dt.lose_character(TEEPO)
   dt.level_up(RYU)
-  dt.split("Wake up in a cell", 2068)
+  dt.split("Mt. Mynerg", 2068)
 
-  # Across Mr. Boumore
+  # NEXT TIME split after Wyndia
+
+  # Escape
   dt.pick_up_skill_ink()
   dt.gain_character(NINA)
   dt.level_up(RYU)
@@ -83,7 +85,7 @@ def track_data(dt):
   dt.level_up(NINA)
   dt.pick_up_zenny(400)
   dt.pick_up_weapon(BENT_SWORD)
-  dt.split("Across Mr. Boumore", 1632)
+  dt.split("Escape", 1632)
 
   # Tower
   dt.buy(2 * 20) # Toad and Old Popper from Merchant outside
@@ -98,7 +100,7 @@ def track_data(dt):
   dt.pick_up_zenny(40)
   dt.split("Tower", 2841)
 
-  # Clean The Dump
+  # Coffee Break
   dt.pick_up_weapon(SCRAMASAX)
   dt.pick_up_zenny(80)
   dt.buy(30) # Inn at Plant
@@ -108,7 +110,7 @@ def track_data(dt):
   dt.boss_drop_zenny(300)
   dt.use_skill_ink()
   dt.gain_character(PECO)
-  dt.split("Clean The Dump", 4832)
+  dt.split("Coffee Break", 4832)
 
   # Champion
   dt.pick_up_zenny(40)
@@ -135,12 +137,12 @@ def track_data(dt):
   dt.use_skill_ink()
   dt.split("Fix the Lighthouse", 9495)
 
-  # Through the Volcano
+  # Mt. Zublo
   dt.level_up(RYU)
   dt.level_up(MOMO)
   dt.level_up(RYU)
   dt.boss_drop_zenny(1000)
-  dt.split("Through the Volcano", 12205)
+  dt.split("Mt. Zublo", 12205)
 
   # The Grind
   dt.buy(12000) # Barbarossa
@@ -160,12 +162,12 @@ def track_data(dt):
   dt.level_up(RYU)
   dt.split("The Grind", 6402)
 
-  # Childhood Ends
+  # Angel Tower
   dt.level_up(RYU)
   dt.pick_up_skill_ink()
-  dt.split("Childhood Ends", 7538)
+  dt.split("Angel Tower", 7538)
 
-  # Out of Mine
+  # Third Awakening
   dt.lose_character(NINA)
   dt.lose_character(MOMO)
   dt.lose_character(PECO)
@@ -173,7 +175,7 @@ def track_data(dt):
   dt.boss_drop_zenny(300)
   dt.level_up(GARR)
   dt.pick_up_zenny(3000)
-  dt.split("Out of Mine", 12384)
+  dt.split("Third Awakening", 12384)
 
   # Revenge
   dt.buy(4 * 4000) # Manly clothes
@@ -188,7 +190,7 @@ def track_data(dt):
   dt.pick_up_zenny(80)
   dt.split("Revenge", 13479)
 
-  # After Plant
+  # Plant
   dt.gain_character(MOMO)
   dt.gain_character(PECO)
   dt.buy(10000) # Emitai
@@ -205,7 +207,7 @@ def track_data(dt):
   dt.level_up(MOMO)
   dt.boss_drop_zenny(300)
   dt.pick_up_zenny(400)
-  dt.split("After Plant", 10304)
+  dt.split("Plant", 10304)
 
   # Free Deis
   dt.use_skill_ink()
@@ -220,7 +222,7 @@ def track_data(dt):
   dt.level_up(RYU)
   dt.split("Minigame Hell", 13442)
 
-  # Across the Sea
+  # The Black Ship
   dt.pick_up_skill_ink()
   dt.level_up(NINA)
   dt.pick_up_zenny(2400)
@@ -228,9 +230,9 @@ def track_data(dt):
   dt.level_up(NINA, levels=2)
   dt.level_up(GARR, levels=2)
   dt.boss_drop_zenny(1000)
-  dt.split("Across the Sea", 19817)
+  dt.split("The Black Ship", 19817)
 
-  # Fixed the Antenna
+  # Back Across The Ocean
   dt.buy(10 * 10 + 16 * 4) # 10 Vitamins, 16 Healing Herbs
   dt.buy(8000) # AP Shells
   dt.level_up(RYU)
@@ -241,7 +243,7 @@ def track_data(dt):
   dt.pick_up_zenny(4000)
   dt.pick_up_skill_ink()
   dt.level_up(RYU)
-  dt.split("Fixed the Antenna", 21584)
+  dt.split("Back Across The Ocean", 21584)
 
   # Elder
   dt.pick_up_skill_ink()
@@ -249,12 +251,12 @@ def track_data(dt):
   dt.level_up(MOMO, levels=14)
   dt.split("Elder", 21584)
 
-  # After Factory
+  # Factory
   dt.buy_skill_ink(amt=2)
   dt.pick_up_skill_ink()
   dt.level_up(NINA)
   dt.level_up(NINA)
-  dt.split("After Factory", 28234)
+  dt.split("Factory", 28234)
 
   # Desert
   dt.level_up(RYU)
@@ -284,7 +286,9 @@ def track_data(dt):
   dt.use_skill_ink()
   dt.split("Desert", 54124)
 
-  # After Lab
+  # NEXT TIME split when entering the station proper
+
+  # Lab
   dt.buy(24000) # 10 soul gems
   dt.buy(17600) # 2 Protectors
   dt.buy(5760)  # Sun Mask
@@ -303,9 +307,9 @@ def track_data(dt):
   dt.level_up(REI)
   dt.level_up(RYU)
   dt.boss_drop_zenny(2000)
-  dt.split("After Lab", 48056)
+  dt.split("Lab", 48056)
 
-  # Dragon Lord
+  # Eden
   dt.level_up(REI)
   dt.level_up(MOMO)
   dt.level_up(RYU)
@@ -314,13 +318,13 @@ def track_data(dt):
   dt.level_up(MOMO)
   dt.level_up(RYU, levels=2)
   dt.boss_drop_zenny(3000)
-  dt.split("Dragon Lord", 62305)
+  dt.split("Eden", 62305)
 
   # Myria
   dt.level_up(REI)
   dt.split("Myria", 68574)
 
-  # Kerserkr & Archmage
+  # Berserkr & Archmage
   dt.buy(30000) # 10 Soul gems
   dt.level_up(REI)
   dt.level_up(MOMO)

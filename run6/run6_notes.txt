@@ -7,23 +7,11 @@
 ||||===========||
 ||===============
 
+
 Awakening:
 ---------
 - *WEAPON: grab unique item Melted Blade on Mogu's corpse (right)
 - try to damage self as much as possible
-
-==================
-|| Yrall Region ||
-==================
--- Pilfer: 
-  - *WEAPON: Pointed Sticks from ManTrap (steal 2 before Fire House or else you need drops)
-  - Waistcloth from Boss Goblin
--- Examine: 
-  - Blind from Ripper
-  - Influence from Boss Goblin
-  - Burn from Mage Goo (if Ryu learns Burn you can comfortably avoid using a Skill Ink until Monopolize)
-
-Order of places: Village, run through ?, Bunyan's, Mt. Glauss, Mygas, ? for items/skills, McNeil Manor
 
 
 Second Awakening:
@@ -34,19 +22,26 @@ Second Awakening:
     - Antidote in house closest to NE entrance
     - Healing Herb in neighbour
     - Vitamin in house in front of Manor (save for later?)
+
+
+Nu:
+--
+- general enemy stuff: 
+    - examine Boss Goblin for Influence
+    - try to steal Waistcloth for any Boss Goblin encountered
+    - examine Ripper for Blind
+    - examine Mage Goo for Burn
+    - *WEAPON: steal 2 Pointed Sticks from ManTraps
 - Yrall Road: walk as far as stone posts, THEN get 40z in sack
 - ?: 
     - run through, gaining skills and items from enemies, avoiding getting exp with Ryu 
-    - Waistclothes will be helpful 
-    - come back after Migas to get items (mostly money) (maybe get Weather Vane?)
+    - try to steal 2 Pointed Sticks
+    - Waistclothes (from Boss Goblins) would be helpful 
+    - come back after Migas to get items (mostly money)
 Bunyan's Cabin: 
     - find Beef Jerky in basement
     - he REALLY MEANS triangle, no matter what you set the button to.
     - HP is NOT restored.
-
-
-Work, Teepo:
------------
 - Mt. Glaus: 
     - on the ground, there is an Antidote
     - on the slope, there are Heavy Caro and Cloth Shield
@@ -58,6 +53,10 @@ Work, Teepo:
 - Nu: 285HP, 96exp, 50z
     - try to steal Power Food but not important
     - don't let Ryu get experience.
+
+
+Pre-Manor:
+---------
 - get Healing Herb in basement
 - in Village talk to Loki, but wait until later to meet him in the hut
 - Money Dump: 
@@ -71,7 +70,7 @@ Work, Teepo:
     - buy Skill Ink
 
 
-Heist:
+Manor:
 -----
 - outside: 
     - get 50z from guy skulking to bribe guard with
@@ -100,16 +99,16 @@ Heist:
 - roof:
     - on other side grab *WEAPON: Broad Sword, then Vitamin from bathroom, then Swallow Eye
     - Amalgam: 520hp, 210exp, 200z (can steal Magic Shard)
-- post:
+
+
+Mt. Mynerg:
+----------
+- post-manor:
     - grab Healing Herb from basement if you haven't already
-    - take equipment off Rei and Teepo, WEAPON ROUTE: give them a Dagger and Ballock Knife
+    - take equipment off Rei and Teepo, *WEAPON ROUTE: give them a Dagger and Ballock Knife
     - go to farm to confront Loki
     - game takes Skills off of Rei and Teepo automatically!
     - learn (at least) Frost from Mygas
-
-
-Eastward Bound:
---------------
 - if not done with Mygas yet, get Frost from Mygas and do a loop of Mount Mynerg until you are (want to be high 9)
 - apprentice Ryu to Bunyan
 - Mt. Mynerg: 
@@ -118,15 +117,10 @@ Eastward Bound:
     - *GENE: automatically get Flame gene
 
 
-
-===================
-|| Wyndia Region ||
-===================
-Skills: Bone Dart?
-
 Warm Welcome:
 ------------
-- Dungeon: - get Skill Ink
+- Dungeon: 
+    - get Skill Ink
 - (*WEAPON: Nina comes with Oaken Staff)
 - REMOVE SOUL GEM FROM NINA
 - Catacombs: 
@@ -163,34 +157,36 @@ Escape:
     - take lower path for Life Shard
     (- *Gene: automatically get Defender)
     - *Gene: get Reverse
+
 Tower:
-    - items you can get:
-        - Ring of Ice/Wisdom Fruit/MultiVitamin
-        - Skill Ink, Ice Chrysm, Fire Chrysm
-        - 800z, Moon Tears
-        - Breastplate, Ivory Dice
-        - Bamboo Rod
-        - Panacea, 40z
-    - buy Toad and Old Popper from merchant if you didn't in Yrall.
-    - Chrystal race: 
-        > 6 seconds left: Ring of Ice  (definitely go for this one)
-        5 - 5.99 seconds: Wisdom Fruit
-        < 5 seconds left: MultiVitamin
-    (- *WEAPON: Momo comes with Ammo)
-    - let Momo get experience, but don't level up until she gets to D'Lonzo
-    - for floo puzzle start with (4, 4), (3, 4), (3, 3), (2,3), (2, 4)  
-    - get Skill Ink, *WEAPON: Ice and Fire Chrysms in room beside Momo's lab (14)
-    - Cube Puzzle: pick the second and fourth
-    - Switch platforms: 
-        - right door is 800z
-        - left door is Moon Tears
-        - stairs at top are exit
-        - first hit SE blue switch, then hit NW blue and red
-    - Chrysm platforms: 
-        - 2 charges: Breastplate
-        - 6 charges: Ivory Dice 
-    - get Bamboo Rod through that one door
-    - in library grab Panacea and 40z
+-----
+- items you can get:
+    - Ring of Ice/Wisdom Fruit/MultiVitamin
+    - Skill Ink, Ice Chrysm, Fire Chrysm
+    - 800z, Moon Tears
+    - Breastplate, Ivory Dice
+    - Bamboo Rod
+    - Panacea, 40z
+- buy Toad and Old Popper from merchant if you didn't in Yrall.
+- Chrystal race: 
+    > 6 seconds left: Ring of Ice  (definitely go for this one)
+    5 - 5.99 seconds: Wisdom Fruit
+    < 5 seconds left: MultiVitamin
+(- *WEAPON: Momo comes with Ammo)
+- let Momo get experience, but don't level up until she gets to D'Lonzo
+- for floo puzzle start with (4, 4), (3, 4), (3, 3), (2,3), (2, 4)  
+- get Skill Ink, *WEAPON: Ice and Fire Chrysms in room beside Momo's lab (14)
+- Cube Puzzle: pick the second and fourth
+- Switch platforms: 
+    - right door is 800z
+    - left door is Moon Tears
+    - stairs at top are exit
+    - first hit SE blue switch, then hit NW blue and red
+- Chrysm platforms: 
+    - 2 charges: Breastplate
+    - 6 charges: Ivory Dice 
+- get Bamboo Rod through that one door
+- in library grab Panacea and 40z
 - *Gene: get Thorn in Crash Site
 
 
@@ -228,8 +224,8 @@ Coffee Break:
     - when you return to the Plant you can't leave before going to the inn
 
 
-Oh No... Not Again...:
-----------------------
+Champion:
+--------
 - BE CAREFUL WITH MENUS. If you mash:
     - you will leave Momo behind instead of Peco
     - you will have to listen to Hall of Fire instructions
@@ -275,12 +271,8 @@ Oh No... Not Again...:
 - Nina finish with Durandel, set to Yggdrasil
 
 
-================
-|| Going East ||
-================
-
-Visit Rhapala!:
----------------
+Fix the Lighthouse:
+------------------
 - castle Wyndia:
     - items you can get: 
         - Vitamin in prison
@@ -312,9 +304,6 @@ Visit Rhapala!:
         - make sure Super Comboer can outpace Zig
     - talk to Beyd to get Guild Badge, then talk to sailor guarding bridge
     - MAKE SURE YOU GIVE RYU A GOOD SWORD
-
-Fixing the Lighthouse:
-----------------------
 - Lighthouse: (need Momo to interact with puzzle)
 *NEXT TIME rewrite Lighthouse routing
     - items you can get:
@@ -347,9 +336,8 @@ Fixing the Lighthouse:
 - put Momo and Garr in your party
 
 
-Going Farther East:
--------------------
-
+Mt. Zublo:
+---------
 - Mt. Zublo: 
     - finish up Momo's exp route, Ryu Monopolizes everything after that
     - items you can get:
@@ -368,20 +356,17 @@ Going Farther East:
         - alternative: Trigon with Ryu, spam Frost Breath; Momo use ice Chrysm, support; Momo and Garr go after Gisshan
 
 
-The East:
-----------
-
+The Grind:
+---------
 - Junktown:
     - items you can find:
         - MultiVitamin in southernmost building
         - greenapple upstairs in guild building
     - buy Barbarossa (12000z, I had 12205z when I got here)
-
 - Urkan Tapa (bring Peco and Garr)
     - Give Hondara to Peco
     - talk to Elder
     - bought healing items: 2 Vitamin, 10 Healing Herb = 2x50z + 10x10z = 200z
-
 - THE GRIND: win 30 fights without resting
     - YOU HAVE TO TALK TO FAHL FIRST. (doesn't matter wether you answer "Yes" or "No")
     - *SKILL INK (4) give Monopolize to Peco
@@ -400,27 +385,29 @@ The East:
     - finish grind with Ryu (lvl 23 is typical)
     - set Garr to Fahl
 
-- Angel Tower (bring Garr for story, Momo to blast a wall)
-    -items you can find:
-        - Ivory Dice and Wisdom Seed on stairs outside
-        - Diamond Ring, Moon Tears behind blast wall
-        - Mithril Helm for block moving 
-        - Soul Gem just past big room with stairs in middle
-        - Napalm nestled in some stairs 
-    - go clockwise in big-ass room to set up blocks and get skill ink
+
+Angel Tower:
+-----------
+- bring Garr for story, Momo to blast a wall
+- items you can find:
+    - Ivory Dice and Wisdom Seed on stairs outside
+    - Diamond Ring, Moon Tears behind blast wall
+    - Mithril Helm for block moving 
+    - Soul Gem just past big room with stairs in middle
+    - Napalm nestled in some stairs 
+- go clockwise in big-ass room to set up blocks and get skill ink
 *NEXT TIME Route Angel Tower block puzzle
-    - make sure to unequip Momo before heading downstairs
-    - only need to talk to Garr's stone
-    - Garr: 380hp, 400exp
-        - use Miracle gene, it's trivial
-        - don't use Blitz, just use regular attacks
+- make sure to unequip Momo before heading downstairs
+- only need to talk to Garr's stone
+- Garr: 380hp, 400exp
+    - use Miracle gene, it's trivial
+    - don't use Blitz, just use regular attacks
 
 NOTE: game does NOT automatically remove skills from other party members at this point!
 
 
-Some Time Later:
+Third Awakening:
 ---------------
-
 -Dauna Mine:
     - items you can find:
         - Vitamin, Life Shard, Magic Shard: far left of Green Skull room
@@ -437,7 +424,6 @@ Some Time Later:
     - turn right at first junction
     - for the plaform, pull switch 3 times
     - don't forget to get the 3000z reward
-
 - Dauna Region:
     - go to Farie Village, put all faeries in Hunting (maybe re-load if they're not good)
     - leave Emitai alone for now, will come back with Momo before going into the Lab
@@ -445,20 +431,20 @@ Some Time Later:
         - Only chance to buy Manly Clothes for now, which are 1000z each (I bought 4)
         - don't bother with Gold Earring, you're about to get one on Mt Levit
 
+
+Revenge:
+-------
 - Ogre Road:
     - don't forget to pre-emptively harvest 7 Horseradish
     - after Horseradish go straight down, and go up ramp for Hourglass
     - Weretiger fight is not complicated
-
 - Mt. Levit:
     - slide down left slope first to get 800z
     - drop down hole for Gold Hairpin (do this on the way back with Nina)
     - Healing Herb in shack with teleporter
-
 - Yrall:
     - you must sleep at the Inn before going to see Rei
     - you can then go directly to the manor to find Nina
-
 - Checkpoint:
     - go to Syn City first (can get Old Painting)
     - Mikba: 2400hp, 3000exp, 1500z
@@ -468,8 +454,8 @@ Some Time Later:
     - Healing Herb, 80z, Deluxe Rod, Vodka Shot (DavidK519 says Ginsing), Ammonia
 
 
-Going East Again:
-----------------
+Plant:
+-----
 - catch Martian Squid if you haven't yet (E. of Mt. Mynerg, use Heavy Caro)
 - start Hide-and-Seek: 
     - Bais: near dragon skull
@@ -481,7 +467,6 @@ Going East Again:
 - take Peco back to plant to clear out the greenhouses
 - set Momo to Emitai
 - go back for Bais and Coupons in Dauna mine
-
 - The Plant: (need Momo)
     - resting in the bed past the terminal room recovers max hp
     - items you can find: 
@@ -516,8 +501,8 @@ Going East Again:
         - Use Force+Thorn, if your equipment is light enough you should get an extra turn
 
 
-Going Farther East Again:
-------------------------
+Free Deis:
+---------
 -Wyndia Region:
     - Wyndia Castle:
         - entering Wyndia sets up the appropriate party for you, no need to change members
@@ -525,28 +510,23 @@ Going Farther East Again:
         - get Laurel in Wyndia dungeon
         - after finding Honey, return to main area
     - Garr was level 19, finish off with Fahl
-
 - Checkpoint
     - find Lee
     - can exit to the left instead of walking across the whole bridge
     - Ryu was level 27, finished with Giotto
-
 - *SKILL INK (6): (do later if Ryu still needs to monopolize)
     - clean up menus 
     - give Shadowwalk, Influence to Ryu
     - give Monopolize, Typhoon to Momo
-
 - Rhapala Region:
     - can walk around the volcano without talking to anyone
     - pretty sure no need to talk to Shadys or beyd right now
-
 - Urkan Region:
     - find Wynn in Junktown (can't get back into Wyndia yet)
     - go to Angel Tower with Garr in the lead
     - talk to Sudama with Garr
     (- cannot go straight to Gaist)
     - catch an Angler just east of Tidal Caves (use Float)
-
 - Tidal Caves:
     - items you can find:
         - Fish-head Coin in first sub-cave 
@@ -559,18 +539,15 @@ Going Farther East Again:
     - need water level to be down when you go leave the first subcave
     - find Hawk's Ring first, or just take raft
     - find Gross *GENE outside
-
 - Cliff:
     - no items but Beast Spear
     - Gaist: 2500, 1000exp, 500z
         - equip flame protection
         - use Frost+Force+Gross. Spam Frost Claw (better than Aura) with your extra turns.
-
 - Freeing Deis:
     - go to the pyramid in Angel Tower (need Garr) 
         - got Ryu to level 27 with the encounters I naturally came across
     - go to Mt. Zublo, DON'T MASH answer "I like you better this way"
-
 - masters stuff:
     - can enter Wyndia and apprentice under The Gang and Hacchio
         - need the Swallow Eye past Junk Town if you don't have one
@@ -583,8 +560,8 @@ Going Farther East Again:
     - set Rei to Hachio. 
 
 
-Getting A Boat:
---------------
+Minigame Hell:
+-------------
 - Junk Town:
     - Beyd will already be there, don't have to talk to Shadys
     - talk to Beyd at Dock with Momo, take Garr and Nina
@@ -607,13 +584,11 @@ Getting A Boat:
             - 3 before blue switches 
             - 6 after
         - Robe of Wind
-
 - Boat:
     - give parts to Momo. Should have 2 of everything except 3 Part Cs and 1 part E
     - talk to Nina on the deck, watch scene, arrive in Rhapala
     - get back on boat, talk to Zig, then to everyone
     - TRY to go into the ocean
-
 - The Quest for Sishu:
     - talk to Mayor of Parch (can also find Coin and 400z)
     - _can_ get *MASTER Deis now! say "yes ma'am" (mash), assign to Momo later
@@ -629,13 +604,15 @@ Getting A Boat:
     - recipe: use quantities listed above, knead twice
     - get reward from Aide, want to get Shaman's Ring
 
+
+The Black Ship:
+--------------
 - Shoals:
     - Heaver Dagger and Blizzard Mail are to the right
     - Ice Shield is beyond Mariner's shack
     - after visiting Mariner and are back on the boat, talk to at least Momo to progress
     - visit Mariner again to get Protein
     - after ramming black ship, talk to Momo
-
 - Black Ship: *TO DO find out how much you need Momo
     - focused on Nina and Garr, they finished their masters (Nina over-leveled)
     - items you can find:
@@ -666,14 +643,13 @@ Getting A Boat:
         - Ryu use Miracle+Shadow+Thorn, Blitz
 
 
-Across The Ocean:
-----------------
+Back Across The Ocean:
+---------------------
 - Kombinat:
     - get Homing Bomb by answering "Vuguguuoubidea"
     - maybe buy some nice stuff with Coupon
         - got 10 Vitamins, 16 Healing Herbs, AP Shells
     - get Trance *GENE at Yggdrasil tree
-
 - Steel Grave: 
     - brought Nina and Garr, both finished their masters
     - items you can find:
@@ -682,7 +658,6 @@ Across The Ocean:
     - climb a ladder to the SE, slide down ramp to find Speed Boots
     - walk right until down ladder, use Momo to get Spanner
     - south through floor openings, and north east
-
 - Colony:
     - brought Momo and Rei, Momo finished her master
     - items you can find:
@@ -694,9 +669,7 @@ Across The Ocean:
     - climb stairs to right and find Wisdom Fruit at end
     - jump through window
     - mirror puzzle: S twice, E twice, W thrice
-
 - *SKILL INK (8): give Monopolize to Ryu, Charm to Rei
-
 - Antenna: (Don't actually need Momo)
     - kept Momo and Rei, Ryu finished his master with Monopolize
     - items you can find:
@@ -716,17 +689,17 @@ Across The Ocean:
     - then take 2nd stairs, go right if you want Barbarossa, left to continue
     - go left, then two the stairs for Skill Ink, then out the door.
     - aim antenna WNW
-
 - Master stuff:
     - Momo learn all of Emitai's Skills
     - Ryu, Garr, Nina learn all of their Gang stuff, Nina gets Lee (dress)
     - Momo and Ryu get Deis
-
 - Faerie:
     - General store and weapon don't have much. Low culture?
-
 - Radiance *GENE in container yard
 
+
+Elder:
+-----
 - Dragonir:
     - items you can find:
         - Skill Ink in left shelf
@@ -747,71 +720,74 @@ Across The Ocean:
     - Should be able to get *MASTER Ladon now (put on Peco)
     - tell Horice "Let's go"
 
-- Factory:
-    - brought Momo and Nina (looking for Nina 23)
-    - items you can find:
-        - Wisdom Seed, Artemis' Cap, Skill Ink, Ammonia, Rockbreaker,
-           Aries Spear (need Momo), Fish-head, Sage's Frock, Homing Bomb, Hourglass
-    - Egg Gang sometimes drops Ivory Dice!!!!!!!!!! (I found none :()
-    - if you find Hobgoblin + Boss Goblin, Hob will kill Boss
-    Outside:
-        - at first junction, Wisdom Seed is up
-        - at second junction go right 
-        - at third junction go up for Artemis' Cap 
-        - at fourth junction go west for Skill Ink
-        - go back to junction and head right until in Factory
-    Inside:
-        - go up the stairs for Ammonia 
-        - go through doorway at the end of the hall, and climb down the hidden ladder for Rockbreaker i
-        - follow path until junction, go left for Aries Spear (need Momo) 
-        - go back to junction, go right, head up stairs 
-        - go up northwest stairs for Fish-head
-        - don't hit blue switch, go through door
-    Factory Proper:
-        - blue switch puzzle
-        - go through the door on the left
-        - take first side-door for Sage's Frock
-        - go through the next doorway at the bend
-        - do workbot puzzle
-        - head left and climb up the ladder 
-        - grab Homing Bomb
-        - pass floor wires, get Hourglass to right
-        - break panel to left of exit door (Ryu can do this, need to be back a step)
 
-- Desert:
-    - get water, save and whatever, then head out
-    - items you can possibly find: Healing Herb, MultiVitamin, Swallow Eye, Ivory Dice (I found 1), Wisdom Seed, Fish-Head
-    - to learn Cure from Drak use Remedy spell
-    - Magmaites are weak vs earth, not ice.
-    - desert rules:
-        - 2HP loss from thirst blip
-        - ~21 steps between thirst blips
-        - can thirst blip 4 times before Max HP goes down
-        - the True North star is the red star to the left
-    - Life Armor + Royal Sword in one trip:
-        Night 1-3:        NW (2 turns left of north), until Evening Star moves off screen
-        Night 3-4:        W until Life Armor
-        Rest of Night 4:  E
-        Night 5-6:        ENE (3 turns right of north)
-        Night 7:          N until Royal Sword
-        Rest of Night 7:  E
-        Night 8-10 or 11: ENE until Evening Star drops below horizon
-        Rest of trek:     E (DEFINITELY NOT N)
-        (mega props to DavidK5, specifically for these directions, but also just in general)
-    - Exp: 
-        - start with Momo, Nina
-        - Nina finish (lvl 23) on first night, take Momo, Peco
-        - *SKILL INK (10) give Monopolize to Peco
-        - During 5th night Momo finished (lvl 35), Peco started Monopolizing
-        - During 8th night Peco finished (lvl 26)
-        - changed to Momo, Rei for rest of desert, *SKILL INK (11) give Monolopize to Rei so he can catch up
-        - During 11th night found Manmo when going ENE
-    - Manmo: 3200hp, 6000xp, 1000z
-        - Momo spam sheild
-        - Used Miracle (should also use with Shadow b/c Howling)
+Factory:
+-------
+- brought Momo and Nina (looking for Nina 23)
+- items you can find:
+    - Wisdom Seed, Artemis' Cap, Skill Ink, Ammonia, Rockbreaker,
+       Aries Spear (need Momo), Fish-head, Sage's Frock, Homing Bomb, Hourglass
+- Egg Gang sometimes drops Ivory Dice!!!!!!!!!! (I found none :()
+- if you find Hobgoblin + Boss Goblin, Hob will kill Boss
+- Outside:
+    - at first junction, Wisdom Seed is up
+    - at second junction go right 
+    - at third junction go up for Artemis' Cap 
+    - at fourth junction go west for Skill Ink
+    - go back to junction and head right until in Factory
+- Inside:
+    - go up the stairs for Ammonia 
+    - go through doorway at the end of the hall, and climb down the hidden ladder for Rockbreaker i
+    - follow path until junction, go left for Aries Spear (need Momo) 
+    - go back to junction, go right, head up stairs 
+    - go up northwest stairs for Fish-head
+    - don't hit blue switch, go through door
+- Factory Proper:
+    - blue switch puzzle
+    - go through the door on the left
+    - take first side-door for Sage's Frock
+    - go through the next doorway at the bend
+    - do workbot puzzle
+    - head left and climb up the ladder 
+    - grab Homing Bomb
+    - pass floor wires, get Hourglass to right
+    - break panel to left of exit door (Ryu can do this, need to be back a step)
+
+
+Desert:
+------
+- get water, save and whatever, then head out
+- items you can possibly find: Healing Herb, MultiVitamin, Swallow Eye, Ivory Dice (I found 1), Wisdom Seed, Fish-Head
+- to learn Cure from Drak use Remedy spell
+- Magmaites are weak vs earth, not ice.
+- desert rules:
+    - 2HP loss from thirst blip
+    - ~21 steps between thirst blips
+    - can thirst blip 4 times before Max HP goes down
+    - the True North star is the red star to the left
+- Life Armor + Royal Sword in one trip:
+    Night 1-3:        NW (2 turns left of north), until Evening Star moves off screen
+    Night 3-4:        W until Life Armor
+    Rest of Night 4:  E
+    Night 5-6:        ENE (3 turns right of north)
+    Night 7:          N until Royal Sword
+    Rest of Night 7:  E
+    Night 8-10 or 11: ENE until Evening Star drops below horizon
+    Rest of trek:     E (DEFINITELY NOT N)
+    (mega props to DavidK5, specifically for these directions, but also just in general)
+- Exp: 
+    - start with Momo, Nina
+    - Nina finish (lvl 23) on first night, take Momo, Peco
+    - *SKILL INK (10) give Monopolize to Peco
+    - During 5th night Momo finished (lvl 35), Peco started Monopolizing
+    - During 8th night Peco finished (lvl 26)
+    - changed to Momo, Rei for rest of desert, *SKILL INK (11) give Monolopize to Rei so he can catch up
+    - During 11th night found Manmo when going ENE
+- Manmo: 3200hp, 6000xp, 1000z
+    - Momo spam sheild
+    - Used Miracle (should also use with Shadow b/c Howling)
 - Oasis:
     - can find 800z in building to the right of the one where you gain control
-
 - Masters/Skill stuff:
     - Peco learns all of Ladon's skills
     - *SKILL INK (12): holy strike on Rei, Aura on Momo (make enough room in Momo's menu for Deis' skills)
@@ -822,10 +798,9 @@ Across The Ocean:
     - DONE MASTERS! NO MORE SKILL INKS!
 
 
-The Final Ascent:
-----------------
+Enter Myria Station:
+-------------------
 - buy Soul Gems in Faerie Village
-
 - Caer Xhan:
     - items to get: Protein, Moon Tears
     - last opportunity to shop, so get what you want.
@@ -835,36 +810,40 @@ The Final Ascent:
     - in main building, go downstairs to turn off lights first before grabbing Moon Tears.
     - in next building, use terminal to activate Normal Mode
     - in last building, use terminal to open gate
-
 - Myria station:
-    - unlocking the entrance:
-        - can get Gas Shells outside, Life Shard in a hidden corner in other outside, before turning on elevator
-        - take elevator to Arrival Platform first to get Wisdom Fruit, then Maintainance Deck
-        - go right at keycard doors to release main entrance lock, turn off lasers
-        - go left at keycard doors to get to locker room, find Hourglass (also can do Skill notes)
-        - get Life Shard in area to the right of glass entrance 
-    - Orange Path
-        - don't bother with the 10000 zenny unless you could use the extra fight
-        - get Holy Robe in side room
-        - get Swallow Eye in gas-off room
-        - walk through electric floor
-        - down the elevator, take the farther path for a Skill Ink
-        - get Ivory Dice around the corner before going to Chimera
-        - slicer after lift up
-        - Chimera: 7500hp, 9000xp, 2000z 
-            - use Ivory Dice if you have extra, but save 2 for Dragon Lord
-            - usual strats, used True Kaiser (Infinity + Trance + Radiance)
-            - be aware that he has TONS of power and can paralyze
-            - maybe not even worth it to use Shield, just use Soul Gems and Manly Clothes
-            - protect against fire and ice
-        - go down elevator to get HE Shells
-        - IF YOU ARE USING REI now would be a great time to grab the locked chests:
-            Giant Shield, Dragon Shield, and Dragon Helm
-    - Use keycard B in Worker Area to get DemonsBane
-    - Take green path to get to Eden
+    - can get Gas Shells outside, Life Shard in a hidden corner in other outside, before turning on elevator
+    - take elevator to Arrival Platform first to get Wisdom Fruit, then Maintainance Deck
+    - go right at keycard doors to release main entrance lock, turn off lasers
+    - go left at keycard doors to get to locker room, find Hourglass (also can do Skill notes)
+    - get Life Shard in area to the right of glass entrance 
 
-- Route to Eden:  NEED REI
-    - ROUTE path through grassy place (in particular items)
+
+Lab:
+---
+- take orange path
+- don't bother with the 10000 zenny unless you could use the extra fight
+- get Holy Robe in side room
+- get Swallow Eye in gas-off room
+- walk through electric floor
+- down the elevator, take the farther path for a Skill Ink
+- get Ivory Dice around the corner before going to Chimera
+- slicer after lift up
+- Chimera: 7500hp, 9000xp, 2000z 
+    - use Ivory Dice if you have extra, but save 2 for Dragon Lord
+    - usual strats, used True Kaiser (Infinity + Trance + Radiance)
+    - be aware that he has TONS of power and can paralyze
+    - maybe not even worth it to use Shield, just use Soul Gems and Manly Clothes
+    - protect against fire and ice
+- go down elevator to get HE Shells
+- IF YOU ARE USING REI now would be a great time to grab the locked chests:
+    Giant Shield, Dragon Shield, and Dragon Helm
+- Use keycard B in Worker Area to get DemonsBane
+- return to main area
+
+
+Eden:
+----
+- take green path to Eden, need Rei
     - try to steal Power Foods from Soul Traps
     - Wraiths have magic barriers. If Rei casts lightning Ryu can follow up with Royal Sword.
     - go straight to get Protein, then back to entrance
@@ -876,33 +855,35 @@ The Final Ascent:
     - Silver Tiara behind a tree
     - through the NW door there is a Dragon Spear
     - NE door leads to Eden, talk to the console
-
 - Eden
     - go NE to grab Soul Gem, SW for Force Armor
-    - Dream:
-        - head northwest to find Nina, then examine the dragon statue, and go back to talk to Rei.
-        - NW again, read the left plaque then go left to fall down hole
-        - tell the statue you want what's in the box, get Shaman's Ring, go NE into light
-        - Go NW again, pray in front of statue (just wait a while)
-        - go SW from main path to find Hourglass
-        - walk to swirling light
-        - go left then down to the yellow portal
-        - head northeast past Garr to the Purple portal
-        - work your way up to the green portal, pass Peco to the Blue portal
-        - Arwan: 2400hp, 5000xp, 0z
-            - uses a lot of ice; just use Kyrie, or Force + Gross and Aura
-    - Dragon Lord: 12500hp, 15000xp, 3000z
-        - protect against confusion and as many elements as possible
-        - STEAL AND EQUIP Dragon Blade (this is why Rei is a good idea in this fight) before Ryu transforms
-            - Dragon Blade DOUBLES damage output in this fight.
-        - Infinity + Trance + Radiance
-        - I like to use Hourglass with Ryu for Dragon transformation + two attacks
-        - use Weretiger with Rei if things look under control
-        - use Aura with Momo if she has extra time
-        - this fight can be haaaaard. Spam Soul Gems, use Wisdom Fruit/Seeds when you have to.
-        - Use Ivory Dice (I had 3! 2 extra from desert)
-            - I used 2 and got 20000 each, 3 only gives 21845 each (b/c exp cap)
+- Dream:
+    - head northwest to find Nina, then examine the dragon statue, and go back to talk to Rei.
+    - NW again, read the left plaque then go left to fall down hole
+    - tell the statue you want what's in the box, get Shaman's Ring, go NE into light
+    - Go NW again, pray in front of statue (just wait a while)
+    - go SW from main path to find Hourglass
+    - walk to swirling light
+    - go left then down to the yellow portal
+    - head northeast past Garr to the Purple portal
+    - work your way up to the green portal, pass Peco to the Blue portal
+    - Arwan: 2400hp, 5000xp, 0z
+        - uses a lot of ice; just use Kyrie, or Force + Gross and Aura
+- Dragon Lord: 12500hp, 15000xp, 3000z
+    - protect against confusion and as many elements as possible
+    - STEAL AND EQUIP Dragon Blade (this is why Rei is a good idea in this fight) before Ryu transforms
+        - Dragon Blade DOUBLES damage output in this fight.
+    - Infinity + Trance + Radiance
+    - I like to use Hourglass with Ryu for Dragon transformation + two attacks
+    - use Weretiger with Rei if things look under control
+    - use Aura with Momo if she has extra time
+    - this fight can be haaaaard. Spam Soul Gems, use Wisdom Fruit/Seeds when you have to.
+    - Use Ivory Dice (I had 3! 2 extra from desert)
+        - I used 2 and got 20000 each, 3 only gives 21845 each (b/c exp cap)
 
+
+Myria:
+-----
 - Refights:
     - use keycard A on worker level to get Light Bangle
     - go straight to refight rooms: go all the way back and then down the ramp
@@ -912,11 +893,9 @@ The Final Ascent:
     - go up, up, up, climb ladder [2], go left for Moon Tears
     - go down, grab Hourglass, then climb down ladder [1]
     - Room with Diary has ladder down to Myria, back door is rest room
-
 - Myria gives you the choice after Ryu talks to friends (everyone?), DON'T MASH
 - you get one last chance to change party members/formation
     - take Rei, Momo in Chain Formation
-
 - Myria: 20000hp
     - take the usual status precautions, have some Soul Gems equipped on weak people
     - make sure Rei gets Speed Belt
@@ -924,14 +903,17 @@ The Final Ascent:
     - make sure Ryu gets an extra turn, casting Speed if necessary (Chain formation is great for this)
     - go full Kaiser
 
+
+Berserkr & Archmage:
+-------------------
 - Berserker: 12000hp, 30000exp, 3000z
     - same strats as Myria!
     - uses a ton of Wisdom Fruit, Tankbots drop them sometimes (1/64 without Charm)
-
 - Archmage: 3000hp, 48000exp, 2000z
     - same strats, try to protect against Lightning, mostly will be using Soul Gems
     - restored 1500hp per turn and it VERY fast, had to use 2 Speeds to get extra turns
     - use those MultiVitamins to keep Ryu's health up
+
 
 ===========END==========
 Myrai 20:53, optional enemies 21:28

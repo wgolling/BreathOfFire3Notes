@@ -1,3 +1,9 @@
+### current
+
+- fix bug in template where the first split did not include current Zenny parameter
+
+- re-structure notes so the section headings match the split names.
+
 ### v1.0.1
 
 - finished run 6

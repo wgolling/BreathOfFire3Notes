@@ -108,8 +108,8 @@ RIPPERS: 0/1     AMMO: 0/1     ICE_CHRYSM: 0/1
 FIRE_CHRYSM: 0/1
 
 
-After Manor
------------
+Manor
+-----
 RYU: 8 (+5)     REI: 8 (+1)     TEEPO: 8 (+5)
 
 Zenny:
@@ -132,8 +132,8 @@ SCRAMASAX: 0/1     MAGICIAN_ROD: 0/1     RIPPERS: 0/1
 AMMO: 0/1     ICE_CHRYSM: 0/1     FIRE_CHRYSM: 0/1
 
 
-Wake up in a cell
------------------
+Mt. Mynerg
+----------
 RYU: 9 (+1)
 
 Zenny:
@@ -156,8 +156,8 @@ SCRAMASAX: 0/1     MAGICIAN_ROD: 0/1     RIPPERS: 0/1
 AMMO: 0/1     ICE_CHRYSM: 0/1     FIRE_CHRYSM: 0/1
 
 
-Across Mr. Boumore
-------------------
+Escape
+------
 RYU: 11 (+2)     NINA: 6 (+1)
 
 Zenny:
@@ -201,8 +201,8 @@ Weapon:
 SCRAMASAX: 0/1
 
 
-Clean The Dump
---------------
+Coffee Break
+------------
 RYU: 13 (+1)     NINA: 8     MOMO: 11 (+1)     PECO: 1
 
 Zenny:
@@ -269,8 +269,8 @@ Weapon:
 Completed!
 
 
-Through the Volcano
--------------------
+Mt. Zublo
+---------
 RYU: 21 (+2)     NINA: 16     MOMO: 14 (+1)     PECO: 1
 GARR: 13
 
@@ -315,8 +315,8 @@ Weapon:
 Completed!
 
 
-Childhood Ends
---------------
+Angel Tower
+-----------
 RYU: 24 (+1)     NINA: 16     MOMO: 14     PECO: 17
 GARR: 13
 
@@ -338,8 +338,8 @@ Weapon:
 Completed!
 
 
-Out of Mine
------------
+Third Awakening
+---------------
 RYU: 24     GARR: 15 (+2)
 
 Zenny:
@@ -383,8 +383,8 @@ Weapon:
 Completed!
 
 
-After Plant
------------
+Plant
+-----
 RYU: 27 (+1)     REI: 20     NINA: 16     MOMO: 18 (+4)
 PECO: 17     GARR: 19 (+3)
 
@@ -452,7 +452,7 @@ Weapon:
 Completed!
 
 
-Across the Sea
+The Black Ship
 --------------
 RYU: 28     REI: 20     NINA: 20 (+3)     MOMO: 19 (+1)
 PECO: 17     GARR: 22 (+2)
@@ -475,8 +475,8 @@ Weapon:
 Completed!
 
 
-Fixed the Antenna
------------------
+Back Across The Ocean
+---------------------
 RYU: 30 (+2)     REI: 21 (+1)     NINA: 20     MOMO: 20 (+1)
 PECO: 17     GARR: 22
 
@@ -521,8 +521,8 @@ Weapon:
 Completed!
 
 
-After Factory
--------------
+Factory
+-------
 RYU: 30     REI: 21     NINA: 22 (+2)     MOMO: 34
 PECO: 17     GARR: 22
 
@@ -567,8 +567,8 @@ Weapon:
 Completed!
 
 
-After Lab
----------
+Lab
+---
 RYU: 34 (+2)     REI: 32 (+4)     NINA: 23     MOMO: 36 (+1)
 PECO: 26     GARR: 22
 
@@ -590,8 +590,8 @@ Weapon:
 Completed!
 
 
-Dragon Lord
------------
+Eden
+----
 RYU: 38 (+4)     REI: 35 (+3)     NINA: 23     MOMO: 38 (+2)
 PECO: 26     GARR: 22
 
