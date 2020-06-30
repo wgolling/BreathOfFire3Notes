@@ -75,17 +75,3 @@ can't break anything.
 - Make a CLI or GUI for the `DataTracker` object.
 
 - Serialize `DataTracker` information.
-
-## Change Log
-
-### v0.11
-
-- Correct printing error with "CURRENT" attributes.
-
-- Refactor DataPrinter's Zenny and Skill Ink printing, and greatly improve presentation.
-
-- Change DataTracker.split so it now requires the current Zenny as an argument.
-
-### v0.10 
-
-- It works.
