@@ -99,16 +99,16 @@ Manor:
 - roof:
     - on other side grab *WEAPON: Broad Sword, then Vitamin from bathroom, then Swallow Eye
     - Amalgam: 520hp, 210exp, 200z (can steal Magic Shard)
-
-
-Mt. Mynerg:
-----------
 - post-manor:
     - grab Healing Herb from basement if you haven't already
     - take equipment off Rei and Teepo, *WEAPON ROUTE: give them a Dagger and Ballock Knife
     - go to farm to confront Loki
     - game takes Skills off of Rei and Teepo automatically!
     - learn (at least) Frost from Mygas
+
+
+Mt. Mynerg:
+----------
 - if not done with Mygas yet, get Frost from Mygas and do a loop of Mount Mynerg until you are (want to be high 9)
 - apprentice Ryu to Bunyan
 - Mt. Mynerg: 
@@ -265,10 +265,11 @@ Champion:
     - Garr can stay alive and not level up
 - *GENE pick up Frost across the bridge
 - 400z in artists drawers
-- my ryu is 19 so he can finish with Bunyan
-- caught Martian Squid to get rodmaster (E. of Mt. Mynerg, Heavy Caro)
+- switch to Peco, Nina
 - talk to Fahl, get Flower Jewel and Wisdom Fruit
 - Nina finish with Durandel, set to Yggdrasil
+- my ryu is 19 so he can finish with Bunyan
+- caught Martian Squid to get rodmaster (E. of Mt. Mynerg, Heavy Caro)
 
 
 Fix the Lighthouse:
