@@ -1,106 +1,121 @@
-Info from from https://gamefaqs.gamespot.com/ps/196817-breath-of-fire-iii/faqs/17594
+Info from https://gamefaqs.gamespot.com/ps/196817-breath-of-fire-iii/faqs/17594
 
 
-Mygas:  -1 Pwr, -1 Def, +2 Int, +1 AP     (give him all your money)
+Mygas:  After Nu, Give him all your money
 -----
+-1 Pwr, -1 Def, +2 Int, +1 AP     
 lvl 1  - Frost
 lvl 4  - Meditation
 lvl 6  - Magic Ball
 lvl 8  - Typhoon
 
 
-Bunyan: +2 Pwr, +1 Def, -3 Int, +2 HP, -2 AP (available after Balio + Sunder, just re-enter forest)
+Bunyan: After Balio + Sunder, just re-enter forest
 ------
++2 Pwr, +1 Def, -3 Int, +2 HP, -2 AP 
 lvl 2  - Risky Blow
 lvl 5  - Focus
 lvl 8  - Super Combo
 lvl 10 - Disembowel
 
 
-Durandal:
+Durandal: No requirement
 --------
 lvl 1  - Unmotivate
 lvl 2  - Feign Swing
 lvl 3  - Backhand
 
 
-D'lonzo:  +1 Pwr, +1 Agl, -1 HP, -2 AP, Accuracy up      (have 15 distinct unequipped weapons)
+D'lonzo:  Have 15 distinct unequipped weapons
 -------
++1 Pwr, +1 Agl, -1 HP, -2 AP, Accuracy up      
 lvl 2  - Monopolize
 lvl 3  - Intimidate
 lvl 4  - Steal
 
 
-Yggdrasil:  -2 Pwr, +1 Def, +2 Int, -1 HP, +1 AP, Weak vs Fire (need Peco, give Wisdom fruit)
+Yggdrasil:  Need Peco, give him Wisdom fruit
 ---------
+-2 Pwr, +1 Def, +2 Int, -1 HP, +1 AP, Weak vs Fire 
 lvl 2  - Sanctuary
 lvl 5  - Recall
 lvl 8  - Shield
 
 
-Giotto:  -1 Pwr, -1 Def, -1 Int, -1 Agl, +4 HP, +3 AP (Rodmaster)
+Giotto:  Need Rodmaster fishing rank
 ------
+-1 Pwr, -1 Def, -1 Int, -1 Agl, +4 HP, +3 AP 
 lvl 2  - Trump
 lvl 5  - Berserk
 lvl 8  - Sudden Death
 
 
-Meryleep: -1 Pwr, -1 Def, +2 Agl, -1 HP
+Meryleep: Give her the Flower Jewel after visiting Faerie Village
 --------
+-1 Pwr, -1 Def, +2 Agl, -1 HP
 lvl 2  - Charm
 lvl 5  - Shadowwalk
 lvl 8  - War Shout
 
 
-Hondara:  -2 Pwr, +1 Int, +1 AP, Holy property up  (learn Backhand from Dunrandal)
+Hondara:  Learn Backhand from Durandal
 -------
+-2 Pwr, +1 Int, +1 AP, Holy property up  
 lvl 2  - Purify
 lvl 5  - Kyrie
 lvl 8  - Benediction
 
 
-Fahl: +1 Pwr, +3 Def, -3 Int, -3 Agl, +4 HP  (end 30 battles without resting, running counts)
+Fahl: Enter 30 battles without resting at an Inn or Camp (running away counts)
 ----
++1 Pwr, +3 Def, -3 Int, -3 Agl, +4 HP  
 lvl 2  - Charge
 lvl 4  - Counter
 lvl 6  - Resist
 
 
-Emitai: -2 Pwr, -2 Def, +4 Int, +4 AP   (pay 10000z)
+Emitai: Pay 10000z
 ------ 
+-2 Pwr, -2 Def, +4 Int, +4 AP   
 lvl 2  - Barrier
 lvl 4  - Mind Sword
 lvl 6  - Enlighten
 
 
-Hachio: +2 Pwr, +1 Def, -1 Int, -1 Agl, +2 HP, -2 AP  (Swallow Eye, Beef Jerky, Angler, Martian Squid)
-------                                                (After Deis)
+Hachio: After freeing Deis, give him Swallow Eye, Beef Jerky, Angler, and Martian Squid
+------                                                
++2 Pwr, +1 Def, -1 Int, -1 Agl, +2 HP, -2 AP  
 lvl 2  - Mighty Chop
 lvl 4  - Demonbane
 
 
-Bais: +1 Pwr   (Hide & Seek, come back to Wyndia after Gaist) (Bald guy)
-----
+Bais (bald): After Gaist, return to Wyndia and complete Hide & Seek
+-----------
++1 Pwr   
 lvl 3  - Chain Formation
 
 
-Lang: +1 Def (Fat guy)
-----
+Lang (mohawk): After Gaist, return to Wyndia and complete Hide & Seek
+-------------
++1 Def 
 lvl 3  - Cupid's Lyre
 
 
-Lee: +1 Int  (Dress)
-----
+Lee (long): After Gaist, return to Wyndia and complete Hide & Seek
+----------
++1 Int  
 lvl 3  - Magic Formation
 
 
-Wynn: +1 HP  (Mushroom cut)
-----
+Wynn (mushroom): After Gaist, return to Wyndia and complete Hide & Seek
+---------------
++1 HP  
 lvl 3  - Refuge Formation
 
 
-Deis: +1 Pwr, -3 Def, +3 Int, +1 Agl, -3 HP, +3 AP    (Tell her "I like you this way", call her "Ma'am".)
-----                                                  (After Parch)
+Deis: After Parch, tell her "I like you this way", call her "Ma'am"
+----
++1 Pwr, -3 Def, +3 Int, +1 Agl, -3 HP, +3 AP    
 lvl 2  - Inferno
 lvl 5  - Blizzard
 lvl 8  - Myollnir
@@ -108,8 +123,9 @@ lvl 11 - Sirocco
 lvl 15 - Celerity
 
 
-Ladon: +2 Pwr, +2 Def, +2 Int, +1 Agl, -6 HP, -6 AP    (Have all 18 dragon genes)
+Ladon: Have all 18 dragon genes
 -----
++2 Pwr, +2 Def, +2 Int, +1 Agl, -6 HP, -6 AP    
 lvl 3  - Mind's Eye
 lvl 5  - Holy Strike
 lvl 7  - Ward of Light
