@@ -1,4 +1,4 @@
-### current
+### v1.0.2
 
 - fix bug in template where the first split did not include current Zenny parameter
 

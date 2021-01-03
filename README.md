@@ -1,5 +1,7 @@
 # Breath of Fire III Notes
 
+v1.0.2
+
 This is a project to help me take notes when doing runs for Breath Of Fire III. 
 I want to keep track of things like character levels, various attributes related
 to the game's Zenny currency (Zenny that is picked up, gotten from boss drops,
@@ -67,8 +69,6 @@ can't break anything.
 ### `DataPrinter`
 
 - Polish output string/debug.
-
-- Documentation.
 
 ### At some point, down the road, eventually, etc., etc....
 
