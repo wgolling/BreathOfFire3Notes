@@ -12,13 +12,13 @@ Nina        5  -  3       *Durandal   3        After Wyndia
 
 Momo        10 - 14       *D'Lonzo    4        After Tower 
             14 - 20       *Emitai     6        After finding Momo as an adult
-            20 - 35        Deis       15       After finishing Emitai's skills (Colony/Antenna)
+            20 - 35       *Deis       15       After finishing Emitai's skills (Colony/Antenna)
 
 Peco        1  -  9       *Hondara    8        After Mt. Zublo 
             9  - 17       *Meryleep   8        During grind
-            17 - 26        Ladon      9        After Elder
+            17 - 26       *Ladon      9        After Elder
 
 Garr        13 - 19       *Fahl       6        After grind
             19 - 22       *Wynn       3        After Gaist
 
-Rei         20 - 24        Hacchio    4        After Gaist
+Rei         20 - 24       *Hacchio    4        After Gaist
